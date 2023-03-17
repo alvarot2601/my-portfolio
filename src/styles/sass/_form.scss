@@ -1,0 +1,99 @@
+
+form{
+    display: grid;
+    gap:10px;
+    margin-top:8px;
+    #name{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #mail{
+        grid-column: 2;
+        grid-row: 1;
+    }
+    #message{
+        grid-column: 1/3;
+        grid-row: 2;
+    }
+    #submit{
+        grid-column: 3;
+        grid-row: 1/3;
+        display: flex;
+        flex-direction: column;
+        gap:15px;
+        justify-content: center;
+        align-items: center;
+        background: #FFF480;
+        cursor: pointer;
+        color: #1D1C16;
+        font-weight: 600;
+    }
+    
+    input, textarea, button{
+        -webkit-border-radius: 86px;
+        -moz-border-radius: 86px;
+        border-radius: 86px;
+        padding: 56px 78px;
+        outline: none;
+        border: none;
+        background: #1D1C16;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #FFF480;
+        &::placeholder{
+            color: #FFF480;
+        }
+        &:focus{
+            outline:2px solid #FFF480;
+        }
+    }
+    
+    svg{
+        font-size: 2rem;
+    }
+    textarea{
+        outline: none;
+        -webkit-box-shadow: inset 0 0 0 1px #1d1c16;
+        -moz-box-shadow: inset 0 0 0 1px #1D1C16;
+        box-shadow: inset 0 0 0 1px #1d1c16;
+        border: 0;
+        color: #FFF480;
+        font-weight: 400;
+        -webkit-transition: 0.125s ease-out;
+        -o-transition: 0.125s ease-out;
+        -moz-transition: 0.125s ease-out;
+        transition: 0.125s ease-out;
+        //width: 100%;
+        height: 300px;
+        box-sizing: border-box;
+        resize: none;
+        
+        -webkit-appearance: none;
+    }
+    
+}
+
+@media screen and (max-width:1200px){
+    form{
+        input{
+            padding: 36px 44px;
+            border-radius: 50px;
+        }
+        #name, #mail, #message, #submit{
+            grid-column: 1/3;
+        }
+        #name{
+            grid-row: 1;
+        }
+        #mail{
+            grid-row: 2;
+        }
+        #message{
+            grid-row: 3;
+        }
+        #submit{
+            grid-row: 4;
+        }
+    }
+}
+

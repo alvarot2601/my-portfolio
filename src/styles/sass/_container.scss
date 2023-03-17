@@ -1,0 +1,14 @@
+.container{
+    border-radius: 86px;
+    padding: 48px 48px 54px 72px;
+    &--header{
+        border-radius: 60px;
+        position: relative;
+    }
+}
+@media screen and (max-width:1000px){
+    .container{
+        border-radius: 48px;
+        padding: 38px 38px 44px 62px;
+    }
+}

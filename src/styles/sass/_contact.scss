@@ -1,0 +1,343 @@
+.contact{
+    color: #FFF480;
+    &__container{
+        background-color: #1D1C16;
+        p{
+            font-size: clamp(40px, 7vw, 80px);
+            margin: 26px 0px;
+        }
+    }
+    &__subcontainer{
+        display: flex;
+        flex-direction: row;
+    }
+    &__action{
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        div{
+            display: flex;
+            flex-direction: row;
+            gap:20px;
+            align-items: center;
+        }
+    }
+    > p{
+        margin-top: 20px;
+        margin-bottom: 40px;
+        font-size: 6.52vw;
+        line-height: 100%;
+        margin-right: 20vw;
+        letter-spacing: -0.024em;
+    }
+    a{
+        color: #FFF480;
+        text-align: center;
+        padding: 20px;
+        border: 2px solid #FFF480;
+        border-radius: 60px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Righteous', cursive;
+        &:hover{
+            animation: changeBackground 0.3s forwards, textColor 0.5s forwards;
+        }
+        &:not(:hover){
+            animation: changeBackgroundOut 0.3s forwards, textColorOut 0.5s forwards;
+            
+        }
+    }
+    &__action--social{
+        svg{
+            font-size: 2rem;
+        }
+        a{
+            min-width: 160px;
+            
+        }
+    }
+    
+}
+.circle{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    border-radius: 50%;
+    &__text-container
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    span{
+        font-size: 1rem;
+        font-weight: 900;
+        position: absolute;
+        left: 50%;
+        top:0%;
+        transform-origin: 0 75px;
+    }
+    .arrow{
+        font-size: 1.5rem;
+    }
+}
+
+//animation
+.circle__text-container{
+    transition: transform 0.55s ease-out;
+  }
+
+@keyframes changeBackground {
+    0%{background: linear-gradient(0deg, rgba(0,0,0,0)100%, rgba(255,244,128,1) 100%);}
+1%{background: linear-gradient(0deg, rgba(0,0,0,0)99%, rgba(255,244,128,1) 99%)}
+2%{background: linear-gradient(0deg, rgba(0,0,0,0)98%, rgba(255,244,128,1) 98%)}
+3%{background: linear-gradient(0deg, rgba(0,0,0,0)97%, rgba(255,244,128,1) 97%)}
+4%{background: linear-gradient(0deg, rgba(0,0,0,0)96%, rgba(255,244,128,1) 96%)}
+5%{background: linear-gradient(0deg, rgba(0,0,0,0)95%, rgba(255,244,128,1) 95%)}
+6%{background: linear-gradient(0deg, rgba(0,0,0,0)94%, rgba(255,244,128,1) 94%)}
+7%{background: linear-gradient(0deg, rgba(0,0,0,0)93%, rgba(255,244,128,1) 93%)}
+8%{background: linear-gradient(0deg, rgba(0,0,0,0)92%, rgba(255,244,128,1) 92%)}
+9%{background: linear-gradient(0deg, rgba(0,0,0,0)91%, rgba(255,244,128,1) 91%)}
+10%{background: linear-gradient(0deg, rgba(0,0,0,0)90%, rgba(255,244,128,1) 90%)}
+11%{background: linear-gradient(0deg, rgba(0,0,0,0)89%, rgba(255,244,128,1) 89%)}
+12%{background: linear-gradient(0deg, rgba(0,0,0,0)88%, rgba(255,244,128,1) 88%)}
+13%{background: linear-gradient(0deg, rgba(0,0,0,0)87%, rgba(255,244,128,1) 87%)}
+14%{background: linear-gradient(0deg, rgba(0,0,0,0)86%, rgba(255,244,128,1) 86%)}
+15%{background: linear-gradient(0deg, rgba(0,0,0,0)85%, rgba(255,244,128,1) 85%)}
+16%{background: linear-gradient(0deg, rgba(0,0,0,0)84%, rgba(255,244,128,1) 84%)}
+17%{background: linear-gradient(0deg, rgba(0,0,0,0)83%, rgba(255,244,128,1) 83%)}
+18%{background: linear-gradient(0deg, rgba(0,0,0,0)82%, rgba(255,244,128,1) 82%)}
+19%{background: linear-gradient(0deg, rgba(0,0,0,0)81%, rgba(255,244,128,1) 81%)}
+20%{background: linear-gradient(0deg, rgba(0,0,0,0)80%, rgba(255,244,128,1) 80%)}
+21%{background: linear-gradient(0deg, rgba(0,0,0,0)79%, rgba(255,244,128,1) 79%)}
+22%{background: linear-gradient(0deg, rgba(0,0,0,0)78%, rgba(255,244,128,1) 78%)}
+23%{background: linear-gradient(0deg, rgba(0,0,0,0)77%, rgba(255,244,128,1) 77%)}
+24%{background: linear-gradient(0deg, rgba(0,0,0,0)76%, rgba(255,244,128,1) 76%)}
+25%{background: linear-gradient(0deg, rgba(0,0,0,0)75%, rgba(255,244,128,1) 75%)}
+26%{background: linear-gradient(0deg, rgba(0,0,0,0)74%, rgba(255,244,128,1) 74%)}
+27%{background: linear-gradient(0deg, rgba(0,0,0,0)73%, rgba(255,244,128,1) 73%)}
+28%{background: linear-gradient(0deg, rgba(0,0,0,0)72%, rgba(255,244,128,1) 72%)}
+29%{background: linear-gradient(0deg, rgba(0,0,0,0)71%, rgba(255,244,128,1) 71%)}
+30%{background: linear-gradient(0deg, rgba(0,0,0,0)70%, rgba(255,244,128,1) 70%)}
+31%{background: linear-gradient(0deg, rgba(0,0,0,0)69%, rgba(255,244,128,1) 69%)}
+32%{background: linear-gradient(0deg, rgba(0,0,0,0)68%, rgba(255,244,128,1) 68%)}
+33%{background: linear-gradient(0deg, rgba(0,0,0,0)67%, rgba(255,244,128,1) 67%)}
+34%{background: linear-gradient(0deg, rgba(0,0,0,0)66%, rgba(255,244,128,1) 66%)}
+35%{background: linear-gradient(0deg, rgba(0,0,0,0)65%, rgba(255,244,128,1) 65%)}
+36%{background: linear-gradient(0deg, rgba(0,0,0,0)64%, rgba(255,244,128,1) 64%)}
+37%{background: linear-gradient(0deg, rgba(0,0,0,0)63%, rgba(255,244,128,1) 63%)}
+38%{background: linear-gradient(0deg, rgba(0,0,0,0)62%, rgba(255,244,128,1) 62%)}
+39%{background: linear-gradient(0deg, rgba(0,0,0,0)61%, rgba(255,244,128,1) 61%)}
+40%{background: linear-gradient(0deg, rgba(0,0,0,0)60%, rgba(255,244,128,1) 60%)}
+41%{background: linear-gradient(0deg, rgba(0,0,0,0)59%, rgba(255,244,128,1) 59%)}
+42%{background: linear-gradient(0deg, rgba(0,0,0,0)58%, rgba(255,244,128,1) 58%)}
+43%{background: linear-gradient(0deg, rgba(0,0,0,0)57%, rgba(255,244,128,1) 57%)}
+44%{background: linear-gradient(0deg, rgba(0,0,0,0)56%, rgba(255,244,128,1) 56%)}
+45%{background: linear-gradient(0deg, rgba(0,0,0,0)55%, rgba(255,244,128,1) 55%)}
+46%{background: linear-gradient(0deg, rgba(0,0,0,0)54%, rgba(255,244,128,1) 54%)}
+47%{background: linear-gradient(0deg, rgba(0,0,0,0)53%, rgba(255,244,128,1) 53%)}
+48%{background: linear-gradient(0deg, rgba(0,0,0,0)52%, rgba(255,244,128,1) 52%)}
+49%{background: linear-gradient(0deg, rgba(0,0,0,0)51%, rgba(255,244,128,1) 51%)}
+50%{background: linear-gradient(0deg, rgba(0,0,0,0)50%, rgba(255,244,128,1) 50%)}
+51%{background: linear-gradient(0deg, rgba(0,0,0,0)49%, rgba(255,244,128,1) 49%)}
+52%{background: linear-gradient(0deg, rgba(0,0,0,0)48%, rgba(255,244,128,1) 48%)}
+53%{background: linear-gradient(0deg, rgba(0,0,0,0)47%, rgba(255,244,128,1) 47%)}
+54%{background: linear-gradient(0deg, rgba(0,0,0,0)46%, rgba(255,244,128,1) 46%)}
+55%{background: linear-gradient(0deg, rgba(0,0,0,0)45%, rgba(255,244,128,1) 45%)}
+56%{background: linear-gradient(0deg, rgba(0,0,0,0)44%, rgba(255,244,128,1) 44%)}
+57%{background: linear-gradient(0deg, rgba(0,0,0,0)43%, rgba(255,244,128,1) 43%)}
+58%{background: linear-gradient(0deg, rgba(0,0,0,0)42%, rgba(255,244,128,1) 42%)}
+59%{background: linear-gradient(0deg, rgba(0,0,0,0)41%, rgba(255,244,128,1) 41%)}
+60%{background: linear-gradient(0deg, rgba(0,0,0,0)40%, rgba(255,244,128,1) 40%)}
+61%{background: linear-gradient(0deg, rgba(0,0,0,0)39%, rgba(255,244,128,1) 39%)}
+62%{background: linear-gradient(0deg, rgba(0,0,0,0)38%, rgba(255,244,128,1) 38%)}
+63%{background: linear-gradient(0deg, rgba(0,0,0,0)37%, rgba(255,244,128,1) 37%)}
+64%{background: linear-gradient(0deg, rgba(0,0,0,0)36%, rgba(255,244,128,1) 36%)}
+65%{background: linear-gradient(0deg, rgba(0,0,0,0)35%, rgba(255,244,128,1) 35%)}
+66%{background: linear-gradient(0deg, rgba(0,0,0,0)34%, rgba(255,244,128,1) 34%)}
+67%{background: linear-gradient(0deg, rgba(0,0,0,0)33%, rgba(255,244,128,1) 33%)}
+68%{background: linear-gradient(0deg, rgba(0,0,0,0)32%, rgba(255,244,128,1) 32%)}
+69%{background: linear-gradient(0deg, rgba(0,0,0,0)31%, rgba(255,244,128,1) 31%)}
+70%{background: linear-gradient(0deg, rgba(0,0,0,0)30%, rgba(255,244,128,1) 30%)}
+71%{background: linear-gradient(0deg, rgba(0,0,0,0)29%, rgba(255,244,128,1) 29%)}
+72%{background: linear-gradient(0deg, rgba(0,0,0,0)28%, rgba(255,244,128,1) 28%)}
+73%{background: linear-gradient(0deg, rgba(0,0,0,0)27%, rgba(255,244,128,1) 27%)}
+74%{background: linear-gradient(0deg, rgba(0,0,0,0)26%, rgba(255,244,128,1) 26%)}
+75%{background: linear-gradient(0deg, rgba(0,0,0,0)25%, rgba(255,244,128,1) 25%)}
+76%{background: linear-gradient(0deg, rgba(0,0,0,0)24%, rgba(255,244,128,1) 24%)}
+77%{background: linear-gradient(0deg, rgba(0,0,0,0)23%, rgba(255,244,128,1) 23%)}
+78%{background: linear-gradient(0deg, rgba(0,0,0,0)22%, rgba(255,244,128,1) 22%)}
+79%{background: linear-gradient(0deg, rgba(0,0,0,0)21%, rgba(255,244,128,1) 21%)}
+80%{background: linear-gradient(0deg, rgba(0,0,0,0)20%, rgba(255,244,128,1) 20%)}
+81%{background: linear-gradient(0deg, rgba(0,0,0,0)19%, rgba(255,244,128,1) 19%)}
+82%{background: linear-gradient(0deg, rgba(0,0,0,0)18%, rgba(255,244,128,1) 18%)}
+83%{background: linear-gradient(0deg, rgba(0,0,0,0)17%, rgba(255,244,128,1) 17%)}
+84%{background: linear-gradient(0deg, rgba(0,0,0,0)16%, rgba(255,244,128,1) 16%)}
+85%{background: linear-gradient(0deg, rgba(0,0,0,0)15%, rgba(255,244,128,1) 15%)}
+86%{background: linear-gradient(0deg, rgba(0,0,0,0)14%, rgba(255,244,128,1) 14%)}
+87%{background: linear-gradient(0deg, rgba(0,0,0,0)13%, rgba(255,244,128,1) 13%)}
+88%{background: linear-gradient(0deg, rgba(0,0,0,0)12%, rgba(255,244,128,1) 12%)}
+89%{background: linear-gradient(0deg, rgba(0,0,0,0)11%, rgba(255,244,128,1) 11%)}
+90%{background: linear-gradient(0deg, rgba(0,0,0,0)10%, rgba(255,244,128,1) 10%)}
+91%{background: linear-gradient(0deg, rgba(0,0,0,0)9%, rgba(255,244,128,1) 9%)}
+92%{background: linear-gradient(0deg, rgba(0,0,0,0)8%, rgba(255,244,128,1) 8%)}
+93%{background: linear-gradient(0deg, rgba(0,0,0,0)7%, rgba(255,244,128,1) 7%)}
+94%{background: linear-gradient(0deg, rgba(0,0,0,0)6%, rgba(255,244,128,1) 6%)}
+95%{background: linear-gradient(0deg, rgba(0,0,0,0)5%, rgba(255,244,128,1) 5%)}
+96%{background: linear-gradient(0deg, rgba(0,0,0,0)4%, rgba(255,244,128,1) 4%)}
+97%{background: linear-gradient(0deg, rgba(0,0,0,0)3%, rgba(255,244,128,1) 3%)}
+98%{background: linear-gradient(0deg, rgba(0,0,0,0)2%, rgba(255,244,128,1) 2%)}
+99%{background: linear-gradient(0deg, rgba(0,0,0,0)1%, rgba(255,244,128,1) 1%)}
+100%{background: linear-gradient(0deg, rgba(0,0,0,0)0%, rgba(255,244,128,1) 0%); }
+}
+@keyframes changeBackgroundOut{
+    0%{background: linear-gradient(0deg, rgba(29,28,22,1) 0%, rgba(255,244,128,1) 1%);}
+    1%{background: linear-gradient(0deg, rgba(29,28,22,1) 1%, rgba(255,244,128,1) 2%);}
+    2%{background: linear-gradient(0deg, rgba(29,28,22,1) 2%, rgba(255,244,128,1) 3%);}
+    3%{background: linear-gradient(0deg, rgba(29,28,22,1) 3%, rgba(255,244,128,1) 4%);}
+    4%{background: linear-gradient(0deg, rgba(29,28,22,1) 4%, rgba(255,244,128,1) 5%);}
+    5%{background: linear-gradient(0deg, rgba(29,28,22,1) 5%, rgba(255,244,128,1) 6%);}
+    6%{background: linear-gradient(0deg, rgba(29,28,22,1) 6%, rgba(255,244,128,1) 7%);}
+    7%{background: linear-gradient(0deg, rgba(29,28,22,1) 7%, rgba(255,244,128,1) 8%);}
+    8%{background: linear-gradient(0deg, rgba(29,28,22,1) 8%, rgba(255,244,128,1) 9%);}
+    9%{background: linear-gradient(0deg, rgba(29,28,22,1) 9%, rgba(255,244,128,1) 10%);}
+    10%{background: linear-gradient(0deg, rgba(29,28,22,1) 10%, rgba(255,244,128,1) 11%);}
+    11%{background: linear-gradient(0deg, rgba(29,28,22,1) 11%, rgba(255,244,128,1) 12%);}
+    12%{background: linear-gradient(0deg, rgba(29,28,22,1) 12%, rgba(255,244,128,1) 13%);}
+    13%{background: linear-gradient(0deg, rgba(29,28,22,1) 13%, rgba(255,244,128,1) 14%);}
+    14%{background: linear-gradient(0deg, rgba(29,28,22,1) 14%, rgba(255,244,128,1) 15%);}
+    15%{background: linear-gradient(0deg, rgba(29,28,22,1) 15%, rgba(255,244,128,1) 16%);}
+    16%{background: linear-gradient(0deg, rgba(29,28,22,1) 16%, rgba(255,244,128,1) 17%);}
+    17%{background: linear-gradient(0deg, rgba(29,28,22,1) 17%, rgba(255,244,128,1) 18%);}
+    18%{background: linear-gradient(0deg, rgba(29,28,22,1) 18%, rgba(255,244,128,1) 19%);}
+    19%{background: linear-gradient(0deg, rgba(29,28,22,1) 19%, rgba(255,244,128,1) 20%);}
+    20%{background: linear-gradient(0deg, rgba(29,28,22,1) 20%, rgba(255,244,128,1) 21%);}
+    21%{background: linear-gradient(0deg, rgba(29,28,22,1) 21%, rgba(255,244,128,1) 22%);}
+    22%{background: linear-gradient(0deg, rgba(29,28,22,1) 22%, rgba(255,244,128,1) 23%);}
+    23%{background: linear-gradient(0deg, rgba(29,28,22,1) 23%, rgba(255,244,128,1) 24%);}
+    24%{background: linear-gradient(0deg, rgba(29,28,22,1) 24%, rgba(255,244,128,1) 25%);}
+    25%{background: linear-gradient(0deg, rgba(29,28,22,1) 25%, rgba(255,244,128,1) 26%);}
+    26%{background: linear-gradient(0deg, rgba(29,28,22,1) 26%, rgba(255,244,128,1) 27%);}
+    27%{background: linear-gradient(0deg, rgba(29,28,22,1) 27%, rgba(255,244,128,1) 28%);}
+    28%{background: linear-gradient(0deg, rgba(29,28,22,1) 28%, rgba(255,244,128,1) 29%);}
+    29%{background: linear-gradient(0deg, rgba(29,28,22,1) 29%, rgba(255,244,128,1) 30%);}
+    30%{background: linear-gradient(0deg, rgba(29,28,22,1) 30%, rgba(255,244,128,1) 31%);}
+    31%{background: linear-gradient(0deg, rgba(29,28,22,1) 31%, rgba(255,244,128,1) 32%);}
+    32%{background: linear-gradient(0deg, rgba(29,28,22,1) 32%, rgba(255,244,128,1) 33%);}
+    33%{background: linear-gradient(0deg, rgba(29,28,22,1) 33%, rgba(255,244,128,1) 34%);}
+    34%{background: linear-gradient(0deg, rgba(29,28,22,1) 34%, rgba(255,244,128,1) 35%);}
+    35%{background: linear-gradient(0deg, rgba(29,28,22,1) 35%, rgba(255,244,128,1) 36%);}
+    36%{background: linear-gradient(0deg, rgba(29,28,22,1) 36%, rgba(255,244,128,1) 37%);}
+    37%{background: linear-gradient(0deg, rgba(29,28,22,1) 37%, rgba(255,244,128,1) 38%);}
+    38%{background: linear-gradient(0deg, rgba(29,28,22,1) 38%, rgba(255,244,128,1) 39%);}
+    39%{background: linear-gradient(0deg, rgba(29,28,22,1) 39%, rgba(255,244,128,1) 40%);}
+    40%{background: linear-gradient(0deg, rgba(29,28,22,1) 40%, rgba(255,244,128,1) 41%);}
+    41%{background: linear-gradient(0deg, rgba(29,28,22,1) 41%, rgba(255,244,128,1) 42%);}
+    42%{background: linear-gradient(0deg, rgba(29,28,22,1) 42%, rgba(255,244,128,1) 43%);}
+    43%{background: linear-gradient(0deg, rgba(29,28,22,1) 43%, rgba(255,244,128,1) 44%);}
+    44%{background: linear-gradient(0deg, rgba(29,28,22,1) 44%, rgba(255,244,128,1) 45%);}
+    45%{background: linear-gradient(0deg, rgba(29,28,22,1) 45%, rgba(255,244,128,1) 46%);}
+    46%{background: linear-gradient(0deg, rgba(29,28,22,1) 46%, rgba(255,244,128,1) 47%);}
+    47%{background: linear-gradient(0deg, rgba(29,28,22,1) 47%, rgba(255,244,128,1) 48%);}
+    48%{background: linear-gradient(0deg, rgba(29,28,22,1) 48%, rgba(255,244,128,1) 49%);}
+    49%{background: linear-gradient(0deg, rgba(29,28,22,1) 49%, rgba(255,244,128,1) 50%);}
+    50%{background: linear-gradient(0deg, rgba(29,28,22,1) 50%, rgba(255,244,128,1) 51%);}
+    51%{background: linear-gradient(0deg, rgba(29,28,22,1) 51%, rgba(255,244,128,1) 52%);}
+    52%{background: linear-gradient(0deg, rgba(29,28,22,1) 52%, rgba(255,244,128,1) 53%);}
+    53%{background: linear-gradient(0deg, rgba(29,28,22,1) 53%, rgba(255,244,128,1) 54%);}
+    54%{background: linear-gradient(0deg, rgba(29,28,22,1) 54%, rgba(255,244,128,1) 55%);}
+    55%{background: linear-gradient(0deg, rgba(29,28,22,1) 55%, rgba(255,244,128,1) 56%);}
+    56%{background: linear-gradient(0deg, rgba(29,28,22,1) 56%, rgba(255,244,128,1) 57%);}
+    57%{background: linear-gradient(0deg, rgba(29,28,22,1) 57%, rgba(255,244,128,1) 58%);}
+    58%{background: linear-gradient(0deg, rgba(29,28,22,1) 58%, rgba(255,244,128,1) 59%);}
+    59%{background: linear-gradient(0deg, rgba(29,28,22,1) 59%, rgba(255,244,128,1) 60%);}
+    60%{background: linear-gradient(0deg, rgba(29,28,22,1) 60%, rgba(255,244,128,1) 61%);}
+    61%{background: linear-gradient(0deg, rgba(29,28,22,1) 61%, rgba(255,244,128,1) 62%);}
+    62%{background: linear-gradient(0deg, rgba(29,28,22,1) 62%, rgba(255,244,128,1) 63%);}
+    63%{background: linear-gradient(0deg, rgba(29,28,22,1) 63%, rgba(255,244,128,1) 64%);}
+    64%{background: linear-gradient(0deg, rgba(29,28,22,1) 64%, rgba(255,244,128,1) 65%);}
+    65%{background: linear-gradient(0deg, rgba(29,28,22,1) 65%, rgba(255,244,128,1) 66%);}
+    66%{background: linear-gradient(0deg, rgba(29,28,22,1) 66%, rgba(255,244,128,1) 67%);}
+    67%{background: linear-gradient(0deg, rgba(29,28,22,1) 67%, rgba(255,244,128,1) 68%);}
+    68%{background: linear-gradient(0deg, rgba(29,28,22,1) 68%, rgba(255,244,128,1) 69%);}
+    69%{background: linear-gradient(0deg, rgba(29,28,22,1) 69%, rgba(255,244,128,1) 70%);}
+    70%{background: linear-gradient(0deg, rgba(29,28,22,1) 70%, rgba(255,244,128,1) 71%);}
+    71%{background: linear-gradient(0deg, rgba(29,28,22,1) 71%, rgba(255,244,128,1) 72%);}
+    72%{background: linear-gradient(0deg, rgba(29,28,22,1) 72%, rgba(255,244,128,1) 73%);}
+    73%{background: linear-gradient(0deg, rgba(29,28,22,1) 73%, rgba(255,244,128,1) 74%);}
+    74%{background: linear-gradient(0deg, rgba(29,28,22,1) 74%, rgba(255,244,128,1) 75%);}
+    75%{background: linear-gradient(0deg, rgba(29,28,22,1) 75%, rgba(255,244,128,1) 76%);}
+    76%{background: linear-gradient(0deg, rgba(29,28,22,1) 76%, rgba(255,244,128,1) 77%);}
+    77%{background: linear-gradient(0deg, rgba(29,28,22,1) 77%, rgba(255,244,128,1) 78%);}
+    78%{background: linear-gradient(0deg, rgba(29,28,22,1) 78%, rgba(255,244,128,1) 79%);}
+    79%{background: linear-gradient(0deg, rgba(29,28,22,1) 79%, rgba(255,244,128,1) 80%);}
+    80%{background: linear-gradient(0deg, rgba(29,28,22,1) 80%, rgba(255,244,128,1) 81%);}
+    81%{background: linear-gradient(0deg, rgba(29,28,22,1) 81%, rgba(255,244,128,1) 82%);}
+    82%{background: linear-gradient(0deg, rgba(29,28,22,1) 82%, rgba(255,244,128,1) 83%);}
+    83%{background: linear-gradient(0deg, rgba(29,28,22,1) 83%, rgba(255,244,128,1) 84%);}
+    84%{background: linear-gradient(0deg, rgba(29,28,22,1) 84%, rgba(255,244,128,1) 85%);}
+    85%{background: linear-gradient(0deg, rgba(29,28,22,1) 85%, rgba(255,244,128,1) 86%);}
+    86%{background: linear-gradient(0deg, rgba(29,28,22,1) 86%, rgba(255,244,128,1) 87%);}
+    87%{background: linear-gradient(0deg, rgba(29,28,22,1) 87%, rgba(255,244,128,1) 88%);}
+    88%{background: linear-gradient(0deg, rgba(29,28,22,1) 88%, rgba(255,244,128,1) 89%);}
+    89%{background: linear-gradient(0deg, rgba(29,28,22,1) 89%, rgba(255,244,128,1) 90%);}
+    90%{background: linear-gradient(0deg, rgba(29,28,22,1) 90%, rgba(255,244,128,1) 91%);}
+    91%{background: linear-gradient(0deg, rgba(29,28,22,1) 91%, rgba(255,244,128,1) 92%);}
+    92%{background: linear-gradient(0deg, rgba(29,28,22,1) 92%, rgba(255,244,128,1) 93%);}
+    93%{background: linear-gradient(0deg, rgba(29,28,22,1) 93%, rgba(255,244,128,1) 94%);}
+    94%{background: linear-gradient(0deg, rgba(29,28,22,1) 94%, rgba(255,244,128,1) 95%);}
+    95%{background: linear-gradient(0deg, rgba(29,28,22,1) 95%, rgba(255,244,128,1) 96%);}
+    96%{background: linear-gradient(0deg, rgba(29,28,22,1) 96%, rgba(255,244,128,1) 97%);}
+    97%{background: linear-gradient(0deg, rgba(29,28,22,1) 97%, rgba(255,244,128,1) 98%);}
+    98%{background: linear-gradient(0deg, rgba(29,28,22,1) 98%, rgba(255,244,128,1) 99%);}
+    99%{background: linear-gradient(0deg, rgba(29,28,22,1) 99%, rgba(255,244,128,1) 100%);}
+}
+
+@keyframes textColor{
+    from{
+        color: #FFF480;
+        transform:translateY(0px);
+    }
+    to {
+        color: #1D1C16;
+        transform:translateY(5px);
+    }
+}
+@keyframes textColorOut{
+    from{
+        transform:translateY(5px);
+        color: #1D1C16;
+    }
+    to {
+        transform:translateY(0px);
+        color: #FFF480;
+    }
+}
+
+@media screen and (max-width:601px){
+    .contact{
+        &__email, &__number{
+            width: 100%;
+        }
+        &__action{
+            div:first-child{
+                flex-direction: column;
+            }
+        }
+        &__action--social{
+            margin-bottom: 30px;
+            a{
+                width: 50%;
+            }
+        }
+    }
+}

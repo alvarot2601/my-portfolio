@@ -1,0 +1,122 @@
+//slider
+@import "variables";
+.swiper-wrapper{
+    height: 200px;
+    display: flex;
+ }
+ .slider{
+    width: 130%;
+    -ms-transform: rotate(20deg); /* IE 9 */
+    transform: rotate(-24deg);
+    .swiper-1, .swiper-2{
+        will-change: transform;
+        transition: transform 1.5s;
+    }
+    .swiper-1{
+        transform: translateX(-300px);
+    }
+    .swiper-2{
+        margin-top: 20px;
+        transform: translateX(300px);
+    }
+    &__item{
+        flex-shrink: 0;
+        width: 200px!important;
+        height: 100%;
+        border-radius: 500px;
+        border: 1px solid #ffaed8;
+        box-shadow: 0 0 0 2px inset #ffaed8;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6rem;
+    }
+    &__item-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        span{
+            font-size: 1.3rem;
+            font-family: $first-font;
+        }
+    }
+}
+
+@media screen and (max-width:768px){
+    .slider{
+        .swiper-1{
+            transform: translateX(0px);
+        }
+        .swiper-2{
+            transform: translateX(0px);
+        }
+    }
+}
+
+/*
+@media screen and (max-width:1600px){
+    .swiper-wrapper{
+        height: 180px;
+     }
+    .slider{
+        &__item{
+            width: 180px!important;
+            font-size:5rem;
+        }
+    }
+}
+@media screen and (max-width:1400px){
+    .swiper-wrapper{
+        height: 170px;
+     }
+    .slider{
+        &__item{
+            width: 170px!important;
+            font-size:5rem;
+        }
+    }
+}
+@media screen and (max-width:1200px){
+    .swiper-wrapper{
+        height: 150px;
+     }
+    .slider{
+        &__item{
+            width: 150px!important;
+            font-size:4rem;
+        }
+    }
+}
+@media screen and (max-width:1000px){
+    .swiper-wrapper{
+        height: 130px;
+     }
+    .slider{
+        &__item{
+            width: 130px!important;
+            height: 100%;
+            font-size: 4rem;
+        }
+        .swiper-1{
+            transform: translateX(-150px);
+        }
+        .swiper-2{
+            transform: translateX(150px);
+        }
+    }
+}
+
+@media screen and (max-width:800px){
+    .swiper-wrapper{
+        height: 110px;
+     }
+    .slider{
+        &__item{
+            width: 110px!important;
+            font-size:3rem;
+        }
+    }
+}*/
