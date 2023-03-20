@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkportfolio=self.webpackChunkportfolio||[]).push([[859],{859:function(o,s,r){r.r(s);r(791);var e=r(425),a=r(184);s.default=function(){return(0,a.jsxs)("footer",{className:"footer",children:[(0,a.jsxs)("span",{className:"footer__copyright",children:["Copyright ",(0,a.jsx)(e.Cf_,{className:"footer__copyright-icon"})," 2023"]}),(0,a.jsx)("span",{children:"Dise\xf1ado por \xc1lvaro Taibo Aguza"})]})}}}]);
+//# sourceMappingURL=859.feef7e80.chunk.js.map

@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/my-portfolio/static/css/main.85786380.css",
+    "main.js": "/my-portfolio/static/js/main.ce6db261.js",
+    "static/js/738.50e467b7.chunk.js": "/my-portfolio/static/js/738.50e467b7.chunk.js",
+    "static/js/149.d642dd14.chunk.js": "/my-portfolio/static/js/149.d642dd14.chunk.js",
+    "static/js/859.feef7e80.chunk.js": "/my-portfolio/static/js/859.feef7e80.chunk.js",
+    "static/js/787.1ed0c42c.chunk.js": "/my-portfolio/static/js/787.1ed0c42c.chunk.js",
+    "static/js/425.0613940a.chunk.js": "/my-portfolio/static/js/425.0613940a.chunk.js",
+    "static/media/eye.svg": "/my-portfolio/static/media/eye.564e026c4eac2fff219ef70676fd260b.svg",
+    "static/media/logo-andel.svg": "/my-portfolio/static/media/logo-andel.201131fdc41506f4232d58b5ad9ce224.svg",
+    "index.html": "/my-portfolio/index.html",
+    "static/media/hotel-miranda-logo.svg": "/my-portfolio/static/media/hotel-miranda-logo.0394fbb628fe2ca44623dc5c19d7f794.svg",
+    "static/media/shape-1.svg": "/my-portfolio/static/media/shape-1.d67e5071ec77f9573d4814bf1ebb7d49.svg",
+    "static/media/shape-3.svg": "/my-portfolio/static/media/shape-3.1e200d9c1de92feaeb3d2844104e1a9f.svg",
+    "static/media/shape-2.svg": "/my-portfolio/static/media/shape-2.06a5a6f857cd0682b7a29ca217cb2734.svg",
+    "main.85786380.css.map": "/my-portfolio/static/css/main.85786380.css.map",
+    "main.ce6db261.js.map": "/my-portfolio/static/js/main.ce6db261.js.map",
+    "738.50e467b7.chunk.js.map": "/my-portfolio/static/js/738.50e467b7.chunk.js.map",
+    "149.d642dd14.chunk.js.map": "/my-portfolio/static/js/149.d642dd14.chunk.js.map",
+    "859.feef7e80.chunk.js.map": "/my-portfolio/static/js/859.feef7e80.chunk.js.map",
+    "787.1ed0c42c.chunk.js.map": "/my-portfolio/static/js/787.1ed0c42c.chunk.js.map",
+    "425.0613940a.chunk.js.map": "/my-portfolio/static/js/425.0613940a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85786380.css",
+    "static/js/main.ce6db261.js"
+  ]
+}
