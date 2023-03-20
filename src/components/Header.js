@@ -7,11 +7,12 @@ import shape1 from '../assets/img/shape-1.svg';
 import shape2 from '../assets/img/shape-2.svg';
 import shape3 from '../assets/img/shape-3.svg';
 import {IoMdMailUnread} from 'react-icons/io';
+import { BrowserRouter, Link } from "react-router-dom";
 
 const Header = () => {
     const [actualLink, setActualLink] = useState(0);
     const info = [
-        ['services-link', 'Ver mis servicios', <TfiArrowDown/>, 'Especializado en React. ', 'mywho'],
+        ['services-link', 'Ver mis servicios', <TfiArrowDown/>, 'Especializado en React.', 'mywho'],
         ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen/>, 'Mira algunos de mis proyectos. ','my-work'],
         ['contact-link', 'Contáctame', <IoMdMailUnread/>, '¿Quieres hablar de negocios? !Contacta conmigo! '],
         ['about-link', 'Sobre mí', <HiIdentification/>, 'Aprende más sobre mí. ']
@@ -36,48 +37,50 @@ const Header = () => {
 
 
     return (
-        <header className="header">
-            {
-                info.map(link => {
-                    let animationClass = '';
-                    if(link[0] === 'services-link'){
-                        animationClass = ' marque-animation--hidden';
-                    }
-                    return (
-                        <div className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
-                            <a href={`#${link[4]}`}>
-                                <div className="header__card">
-                                    <span>{link[1]}</span>
-                                    {
-                                        link[2]
-                                    }
-                                    {
-                                        (link[0] === 'services-link') 
-                                        ? (
-                                            <div className="header__shape">
-                                                <div>
-                                                    <div className="quarter-circle quarter-circle--1"></div>
-                                                    <div className="quarter-circle quarter-circle--2"></div>
-                                                    <div className="quarter-circle quarter-circle--3"></div>
-                                                    <div className="quarter-circle quarter-circle--4"></div>
+        <BrowserRouter>
+            <header className="header">
+                {
+                    info.map(link => {
+                        let animationClass = '';
+                        if(link[0] === 'services-link'){
+                            animationClass = ' marque-animation--hidden';
+                        }
+                        return (
+                            <div className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
+                                <Link to={`/my-portfolio#${link[4]}`}>
+                                    <div className="header__card">
+                                        <span>{link[1]}</span>
+                                        {
+                                            link[2]
+                                        }
+                                        {
+                                            (link[0] === 'services-link') 
+                                            ? (
+                                                <div className="header__shape">
+                                                    <div>
+                                                        <div className="quarter-circle quarter-circle--1"></div>
+                                                        <div className="quarter-circle quarter-circle--2"></div>
+                                                        <div className="quarter-circle quarter-circle--3"></div>
+                                                        <div className="quarter-circle quarter-circle--4"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
-                                        : ''
-                                    }
-                                </div>
-                                <div className={`marquee-animation ${animationClass}`}>
-                                    <p>{link[3]}</p>
-                                </div>
-                                <div className={`marquee-animation marquee-animation--2 ${animationClass}`}>
-                                    <p>{link[3]}</p>
-                                </div>
-                            </a>
-                        </div>
-                    );
-                })
-            }
-       </header>
+                                            )
+                                            : ''
+                                        }
+                                    </div>
+                                    <div className={`marquee-animation ${animationClass}`}>
+                                        <p>{link[3]}</p>
+                                    </div>
+                                    <div className={`marquee-animation marquee-animation--2 ${animationClass}`}>
+                                        <p>{link[3]}</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        );
+                    })
+                }
+        </header>
+       </BrowserRouter>
     );
 }
 export default Header;

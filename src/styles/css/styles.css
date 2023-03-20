@@ -1644,5 +1644,10 @@ a {
     position: static;
   }
 }
+@media screen and (max-width: 1000px) {
+  .marquee-animation {
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */
