@@ -74,8 +74,8 @@
           value: 0
       };
       let circleRotate2 = {
-        value: 0
-    };
+          value: 0
+      };
       const circleTextYTop = circleTextServices.getBoundingClientRect().top;
       const circleTextYBottom = circleTextServices.getBoundingClientRect().bottom;
       const circleTextYTop2 = circleText.getBoundingClientRect().top;
@@ -134,16 +134,17 @@
       const serviceItem6 = document.querySelector('.services__item--3');
       const serviceItem7 = document.querySelector('.services__item--purple-3');
       const translateRow1 = {
-        value:0
+        value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
       const translateRow2 = {
-        value:0
+        value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
+      console.log(translateRow2.value)
       const translateRow3 = {
-        value:0
+        value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
       const translateRow4 = {
-        value:0
+        value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
 
       let reachedLimitBottom = false;
@@ -151,9 +152,7 @@
       let necessaryScrollMoves = ((rowServices1YTop + (rowServiceHeight/2)) - (rowServices1YTop - (window.innerHeight / 2))) / pxPerScroll;
       if((necessaryScrollMoves - Math.floor(necessaryScrollMoves)) !== 0) necessaryScrollMoves =  Math.round(necessaryScrollMoves) + 1;
 
-      let translateRowValue = ((window.innerWidth / 2) / 2) / necessaryScrollMoves;
-      console.log(Math.round(necessaryScrollMoves))
-      console.log('necessaryScrollMoves', necessaryScrollMoves);
+      const translateRowValue = (window.innerWidth > 1000) ? ((window.innerWidth / 2) / 2) / necessaryScrollMoves : - (window.innerWidth / 2) / necessaryScrollMoves;
 
       const myName = document.querySelector(".nav__text");
       const myNameYTop = myName.getBoundingClientRect().top;
@@ -213,9 +212,7 @@
       const circleAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value, element2 = null, element3 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
         if (wheelDelta < 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
          obj.value += value;
-         console.log('entra1')
-         console.log('value',value)
-         console.log('obj.value1', obj.value)
+         console.log('entra1')         
         }else if(wheelDelta > 0 && coordYTop < limitBottom && coordYBottom > limitTop){
           obj.value -= value;
           console.log('entra2')
@@ -241,11 +238,9 @@
           element2.style.transform =  transform + "(" + parseInt(obj.value) + unit + ")";
           element3.style.transform =  transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
         }
-      console.log('obj.value', obj.value)
-      console.log('obj', obj)
       }
 
-      const servicesAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value, animatedElement1, animatedElement2 , limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
+      const servicesAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value, animatedElement1 = null, animatedElement2 = null , limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
         if (wheelDelta < 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
           //(Math.abs(y) - pxPerScroll) le añado nuevo el -pxperscroll 
           if(coordYBottom > ((Math.abs(y) - pxPerScroll)  + (window.innerHeight / 2))){
@@ -254,7 +249,7 @@
          }else if(wheelDelta > 0 && coordYTop < limitBottom && coordYBottom > limitTop){
 
           //el 150 está hardcodeado
-          if((coordYTop + 150) > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))){
+          if((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))){
 
             //el problema q existe es que no se contrae en la misma posicion en la que se expande, tarda 1 scroll más en contraerse
             obj.value -= value;
@@ -262,11 +257,21 @@
          }
          const unit = (transform === 'translateX') ? 'px' : 'deg';
          
-           if(obj.value < 0) obj.value = 0;
-           else if(obj.value > (halfviewportWidth / 2)) obj.value = (halfviewportWidth / 2);
            
-           animatedElement2.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
-           animatedElement1.style.transform =  transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
+           
+           if(animatedElement1 === null){
+            if(obj.value < 0) obj.value = 0;
+            else if(obj.value > (halfviewportWidth)) obj.value = (halfviewportWidth);
+
+            element.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
+           }else{
+            if(obj.value < 0) obj.value = 0;
+            else if(obj.value > (halfviewportWidth / 2)) obj.value = (halfviewportWidth / 2);
+
+            animatedElement2.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
+            animatedElement1.style.transform =  transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
+           }
+           
       }
 
       const disappearTextAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value) => {
@@ -298,12 +303,21 @@
         circleAnimation(e.wheelDelta, y, circleTextServices, circleTextYTop, circleTextYBottom, 'rotate', circleRotate, circleValue);
 
         circleAnimation(e.wheelDelta, y, slider, my_who_contentTop, my_who_contentBottom, 'translateX', sliderValue, slideValue, swiper_1, swiper_2);
+        //si es mayor a 1000 debe haber 2 barras desplegables en los servicios, en caso de q sea menor habrá 1
+        if(window.innerWidth > 1000) {
+          servicesAnimation(e.wheelDelta, y, rowServices1, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, serviceItem0, serviceItem1);
+          servicesAnimation(e.wheelDelta, y, rowServices2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, serviceItem2, serviceItem3);
+          servicesAnimation(e.wheelDelta, y, rowServices3, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, serviceItem4, serviceItem5);
+          servicesAnimation(e.wheelDelta, y, rowServices4, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, serviceItem6, serviceItem7);
+        }
+        else{
+          servicesAnimation(e.wheelDelta, y, serviceItem0, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, null, null);
+          servicesAnimation(e.wheelDelta, y, serviceItem2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, null, null);
+          servicesAnimation(e.wheelDelta, y, serviceItem4, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, null, null);
+          servicesAnimation(e.wheelDelta, y, serviceItem6, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, null, null);
 
-
-        servicesAnimation(e.wheelDelta, y, rowServices1, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, serviceItem0, serviceItem1);
-        servicesAnimation(e.wheelDelta, y, rowServices2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, serviceItem2, serviceItem3);
-        servicesAnimation(e.wheelDelta, y, rowServices3, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, serviceItem4, serviceItem5);
-        servicesAnimation(e.wheelDelta, y, rowServices4, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, serviceItem6, serviceItem7);
+        }
+        
         
         if (e.wheelDelta < 0 && y <= initialLimit && (Math.abs(y) + window.innerHeight) < finalLimit) {
           y -= pxPerScroll;
@@ -337,3 +351,14 @@
 </body>
 
 </html>
+
+<!--
+     const serviceItem0 = document.querySelector('.services__item--0');
+      const serviceItem2 = document.querySelector('.services__item--1');
+      const serviceItem4 = document.querySelector('.services__item--2');
+      const serviceItem6 = document.querySelector('.services__item--3');
+      const serviceItem1= (window.innerWidth > 1000) ? document.querySelector('.services__item--purple-0') : null;
+      const serviceItem3= (window.innerWidth > 1000) ? document.querySelector('.services__item--purple-1') : null;
+      const serviceItem5= (window.innerWidth > 1000) ? document.querySelector('.services__item--purple-2') : null;
+      const serviceItem7= (window.innerWidth > 1000) ? document.querySelector('.services__item--purple-3') : null;
+-->
