@@ -47,7 +47,7 @@ const Header = () => {
                         }
                         return (
                             <div className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
-                                <Link to={`/my-portfolio#${link[4]}`}>
+                                <Link to={`#${link[4]}`}>
                                     <div className="header__card">
                                         <span>{link[1]}</span>
                                         {
