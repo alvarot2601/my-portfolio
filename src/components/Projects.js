@@ -61,7 +61,7 @@ const Projects = () => {
             {
                 projects.map((project, index) => {
                     return (
-                        <a href={project[4]} target="_blank" className={`container my-work__item my-work__item--${index} ${project[0]}`}>
+                        <a key={`a-${index}`} href={project[4]} target="_blank" className={`container my-work__item my-work__item--${index} ${project[0]}`}>
                             <div className="my-work__content">
                               <div className="my-work__row">
                                 <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type">{project[2]}</span>

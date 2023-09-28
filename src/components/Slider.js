@@ -10,16 +10,16 @@ import "swiper/css/autoplay";
 //import { gsap} from "gsap";
 //import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-import {SiRedux} from 'react-icons/si';
-import {FaReact, FaPhp, FaFigma} from 'react-icons/fa';
+import { SiRedux, SiTailwindcss } from 'react-icons/si';
+import { FaReact, FaPhp, FaFigma } from 'react-icons/fa';
 
-import {BsWordpress} from 'react-icons/bs';
-import {IoLogoJavascript} from 'react-icons/io';
-import {SiSass, SiJquery} from 'react-icons/si';
+import { BsBootstrap, BsBootstrapFill, BsWordpress } from 'react-icons/bs';
+import { IoLogoJavascript } from 'react-icons/io';
+import { SiSass, SiJquery } from 'react-icons/si';
 
-import {DiMysql} from 'react-icons/di';
+import { DiMysql } from 'react-icons/di';
 
-import {AiFillGithub} from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
 
 SwiperCore.use([Autoplay])
 
@@ -27,34 +27,38 @@ SwiperCore.use([Autoplay])
 const Slider = () => {
 
     const mySkills = [
-        [<FaReact/>, 'REACT'],
-        [<SiRedux/>, 'REDUX'],
-        [<IoLogoJavascript/>, 'Javascript'],
-        [<SiSass/>, 'SASS'],
-        [<SiJquery/>, 'JQuery'],
-        [<FaFigma/>, 'Figma'],
-        [<DiMysql/>, 'Mysql'],
-        [<FaReact/>, 'REACT'],
-        [<SiRedux/>, 'REDUX'],
-        [<IoLogoJavascript/>, 'Javascript'],
-        [<SiSass/>, 'SASS'],
-        [<SiJquery/>, 'JQuery'],
-        [<FaFigma/>, 'Figma'],
-        [<DiMysql/>, 'Mysql']
+        [<FaReact />, 'REACT'],
+        [<SiRedux />, 'REDUX'],
+        [<IoLogoJavascript />, 'Javascript'],
+        [<SiSass />, 'SASS'],
+        [<SiJquery />, 'JQuery'],
+        [<FaFigma />, 'Figma'],
+        [<BsBootstrapFill />, 'Bootstrap'],
+        [<DiMysql />, 'Mysql'],
+        [<FaReact />, 'REACT'],
+        [<SiRedux />, 'REDUX'],
+        [<IoLogoJavascript />, 'Javascript'],
+        [<SiSass />, 'SASS'],
+        [<SiJquery />, 'JQuery'],
+        [<FaFigma />, 'Figma'],
+        [<DiMysql />, 'Mysql'],
+        [<BsBootstrapFill />, 'Bootstrap'],
     ];
     const mySkills2 = [
-        [<DiMysql/>, 'Mysql'],
-        [<FaPhp/>, 'PHP'],
-        [<AiFillGithub/>, 'Github'],
-        [<BsWordpress/>, 'Wordpress'],
-        [<DiMysql/>, 'Mysql'],
-        [<FaPhp/>, 'PHP'],
-        [<AiFillGithub/>, 'Github'],
-        [<BsWordpress/>, 'Wordpress'],
-        [<DiMysql/>, 'Mysql'],
-        [<FaPhp/>, 'PHP'],
-        [<AiFillGithub/>, 'Github'],
-        [<BsWordpress/>, 'Wordpress']
+        [<DiMysql />, 'Mysql'],
+        [<FaPhp />, 'PHP'],
+        [<AiFillGithub />, 'Github'],
+        [<BsWordpress />, 'Wordpress'],
+        [<SiTailwindcss />, 'Tailwind'],
+        [<DiMysql />, 'Mysql'],
+        [<FaPhp />, 'PHP'],
+        [<AiFillGithub />, 'Github'],
+        [<BsWordpress />, 'Wordpress'],
+        [<DiMysql />, 'Mysql'],
+        [<FaPhp />, 'PHP'],
+        [<AiFillGithub />, 'Github'],
+        [<BsWordpress />, 'Wordpress'],
+        [<SiTailwindcss />, 'Tailwind'],
     ];
 
     /*useEffect(()=>{
@@ -107,60 +111,62 @@ const Slider = () => {
     }, []);
 */
     ///////////EN CASO DE QUE LA PANTALLA SEA MAYOR A 1000PX LAS OPCIONES EN EL PARAMETRO SERÁN DIFERENTES, NO SE LE INCLUIRÁ EL AUTOPLAY A SWIPER
-    const params = (window.innerWidth >= 769 ) ? {
-        slidesPerView:'auto',
+    const params = (window.innerWidth >= 769) ? {
+        slidesPerView: 'auto',
         spaceBetween: 20,
-        loop:true,
-        freeMode : {
+        loop: true,
+        freeMode: {
             enabled: true,
             momentumBounce: false,
             momentumVelocityRatio: 0.4
         }
     }
-    : {
-        slidesPerView:'auto',
-        loop: true,
-        spaceBetween: 20,
-        speed:2500,
-        autoplay: {
-          delay: 10,
-          disableOnInteraction: false
-        },
-        freeMode: { enabled: true,
-            momentumBounce: false,
-            momentumVelocityRatio: 0.4,
-            minimumVelocity: 0.02}
-      };
+        : {
+            slidesPerView: 'auto',
+            loop: true,
+            spaceBetween: 20,
+            speed: 2500,
+            autoplay: {
+                delay: 10,
+                disableOnInteraction: false
+            },
+            freeMode: {
+                enabled: true,
+                momentumBounce: false,
+                momentumVelocityRatio: 0.4,
+                minimumVelocity: 0.02
+            }
+        };
 
     return (
         <div className="slider">
             <Swiper
                 {...params}
                 className={"swiper-1"}
-                >
+            >
                 {
-                     mySkills.map(skill =><SwiperSlide className="slider__item">
-                       <div className="slider__item-container">
+                    mySkills.map((skill, index) => <SwiperSlide key={`slider-1-${index}`} className="slider__item">
+                        <div className="slider__item-container">
                             {skill[0]}
                             <span>
                                 {skill[1]}
                             </span>
-                       </div>
+                        </div>
                     </SwiperSlide>)
                 }
             </Swiper>
             <Swiper
                 {...params}
                 className="swiper-2"
-                >
+            >
                 {
-                    mySkills2.map(skill =><SwiperSlide className="slider__item">
+                    mySkills2.map((skill, index) => <SwiperSlide key={`slider-2-${index}`} className="slider__item">
                         <div className="slider__item-container">
                             {skill[0]}
                             <span>
                                 {skill[1]}
                             </span>
-                       </div>
+                        </div>
                     </SwiperSlide>)
                 }
             </Swiper>

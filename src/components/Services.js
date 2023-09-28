@@ -81,7 +81,7 @@ const Services = () => {
             {
                 servicesArray.map((item, index) =>{
                     return (
-                        <div className={`services__row services__row_${index}`}>
+                        <div key={`services-${index}`} className={`services__row services__row_${index}`}>
                              <div className={`services__item services__item--${index} container`}>
                                 <div>
                                 {

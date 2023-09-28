@@ -43,7 +43,7 @@ const Main = () => {
         <main>
             {
                 projects.map((project, index)=>{
-                    return <Container className={`project ${project[0]}`}/>
+                    return <Container key={`container-${index}`} className={`project ${project[0]}`}/>
                 })
             }       
         </main>

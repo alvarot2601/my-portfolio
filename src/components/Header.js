@@ -40,13 +40,13 @@ const Header = () => {
         <BrowserRouter>
             <header className="header">
                 {
-                    info.map(link => {
+                    info.map((link, index) => {
                         let animationClass = '';
                         if(link[0] === 'services-link'){
                             animationClass = ' marque-animation--hidden';
                         }
                         return (
-                            <div className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
+                            <div key={`div-${index}`} className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
                                 <Link to={`#${link[4]}`}>
                                     <div className="header__card">
                                         <span>{link[1]}</span>
