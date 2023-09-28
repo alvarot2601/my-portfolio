@@ -1512,6 +1512,7 @@ form textarea {
   }
   .services__item {
     width: 100%;
+    transform: translateX(50%);
   }
   .services .circle {
     display: none;
@@ -1641,6 +1642,11 @@ a {
 @media screen and (max-width: 769px) {
   body {
     position: static;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .marquee-animation {
+    width: 100%;
   }
 }
 
