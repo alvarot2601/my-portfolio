@@ -184,7 +184,7 @@
       };
 
 
-      var delay = 1; // 1s
+      const delay = 1; // 1s
 
       var handlerFunction = debounce(function (e) {
 
@@ -291,7 +291,8 @@
         //element.style.transform = `translateY()`;
       }
       const smooth = debounce((e) => {
-        circleAnimation(e.wheelDelta, y, text, textCoordYTop, textCoordYBottom, 'translateX', transX, transXValue);
+        if(window.innerWidth>=768)
+          circleAnimation(e.wheelDelta, y, text, textCoordYTop, textCoordYBottom, 'translateX', transX, transXValue);
         //animation(e, y);
 
         //falta meterle la animacion al texto 
@@ -299,8 +300,9 @@
         //para que el circulo con texto no siga dando vueltas si se llega al final
         if(!reachedLimitBottom || e.wheelDelta > 0)
           circleAnimation(e.wheelDelta, y, circleText, circleTextYTop2, circleTextYBottom2, 'rotate', circleRotate2, circleValue);
-
-        circleAnimation(e.wheelDelta, y, circleTextServices, circleTextYTop, circleTextYBottom, 'rotate', circleRotate, circleValue);
+        
+        //ya incluido
+        //circleAnimation(e.wheelDelta, y, circleTextServices, circleTextYTop, circleTextYBottom, 'rotate', circleRotate, circleValue);
 
         circleAnimation(e.wheelDelta, y, slider, my_who_contentTop, my_who_contentBottom, 'translateX', sliderValue, slideValue, swiper_1, swiper_2);
         //si es mayor a 1000 debe haber 2 barras desplegables en los servicios, en caso de q sea menor habrá 1
@@ -319,7 +321,7 @@
         }
         
         
-        if (e.wheelDelta < 0 && y <= initialLimit && (Math.abs(y) + window.innerHeight) < finalLimit) {
+        /*if (e.wheelDelta < 0 && y <= initialLimit && (Math.abs(y) + window.innerHeight) < finalLimit) {
           y -= pxPerScroll;
           if ((Math.abs(y) + window.innerHeight) > finalLimit) {
             //y += pxPerScroll;
@@ -338,7 +340,7 @@
           reachedLimitBottom = false;
         }
         if(!reachedLimitBottom)
-          scroll.style.transform = "translateY(" + y + "px)";
+          scroll.style.transform = "translateY(" + y + "px)";*/
       }, delay);
 
 

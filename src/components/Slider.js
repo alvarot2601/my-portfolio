@@ -27,38 +27,38 @@ SwiperCore.use([Autoplay])
 const Slider = () => {
 
     const mySkills = [
-        [<FaReact />, 'REACT'],
-        [<SiRedux />, 'REDUX'],
-        [<IoLogoJavascript />, 'Javascript'],
-        [<SiSass />, 'SASS'],
-        [<SiJquery />, 'JQuery'],
-        [<FaFigma />, 'Figma'],
-        [<BsBootstrapFill />, 'Bootstrap'],
-        [<DiMysql />, 'Mysql'],
-        [<FaReact />, 'REACT'],
-        [<SiRedux />, 'REDUX'],
-        [<IoLogoJavascript />, 'Javascript'],
-        [<SiSass />, 'SASS'],
-        [<SiJquery />, 'JQuery'],
-        [<FaFigma />, 'Figma'],
-        [<DiMysql />, 'Mysql'],
-        [<BsBootstrapFill />, 'Bootstrap'],
+        [<FaReact className="text-5xl md:text-7xl"/>, 'REACT'],
+        [<SiRedux className="text-5xl md:text-7xl"/>, 'REDUX'],
+        [<IoLogoJavascript className="text-5xl md:text-7xl"/>, 'Javascript'],
+        [<SiSass className="text-5xl md:text-7xl"/>, 'SASS'],
+        [<SiJquery className="text-5xl md:text-7xl"/>, 'JQuery'],
+        [<FaFigma className="text-5xl md:text-7xl"/>, 'Figma'],
+        [<BsBootstrapFill className="text-5xl md:text-7xl"/>, 'Bootstrap'],
+        [<DiMysql className="text-5xl md:text-7xl"/>, 'Mysql'],
+        [<FaReact className="text-5xl md:text-7xl"/>, 'REACT'],
+        [<SiRedux className="text-5xl md:text-7xl"/>, 'REDUX'],
+        [<IoLogoJavascript className="text-5xl md:text-7xl"/>, 'Javascript'],
+        [<SiSass className="text-5xl md:text-7xl"/>, 'SASS'],
+        [<SiJquery className="text-5xl md:text-7xl"/>, 'JQuery'],
+        [<FaFigma className="text-5xl md:text-7xl"/>, 'Figma'],
+        [<DiMysql className="text-5xl md:text-7xl"/>, 'Mysql'],
+        [<BsBootstrapFill className="text-5xl md:text-7xl"/>, 'Bootstrap'],
     ];
     const mySkills2 = [
-        [<DiMysql />, 'Mysql'],
-        [<FaPhp />, 'PHP'],
-        [<AiFillGithub />, 'Github'],
-        [<BsWordpress />, 'Wordpress'],
-        [<SiTailwindcss />, 'Tailwind'],
-        [<DiMysql />, 'Mysql'],
-        [<FaPhp />, 'PHP'],
-        [<AiFillGithub />, 'Github'],
-        [<BsWordpress />, 'Wordpress'],
-        [<DiMysql />, 'Mysql'],
-        [<FaPhp />, 'PHP'],
-        [<AiFillGithub />, 'Github'],
-        [<BsWordpress />, 'Wordpress'],
-        [<SiTailwindcss />, 'Tailwind'],
+        [<DiMysql className="text-5xl md:text-7xl"/>, 'Mysql'],
+        [<FaPhp className="text-5xl md:text-7xl"/>, 'PHP'],
+        [<AiFillGithub className="text-5xl md:text-7xl"/>, 'Github'],
+        [<BsWordpress className="text-5xl md:text-7xl"/>, 'Wordpress'],
+        [<SiTailwindcss className="text-5xl md:text-7xl"/>, 'Tailwind'],
+        [<DiMysql className="text-5xl md:text-7xl"/>, 'Mysql'],
+        [<FaPhp className="text-5xl md:text-7xl"/>, 'PHP'],
+        [<AiFillGithub className="text-5xl md:text-7xl"/>, 'Github'],
+        [<BsWordpress className="text-5xl md:text-7xl"/>, 'Wordpress'],
+        [<DiMysql className="text-5xl md:text-7xl"/>, 'Mysql'],
+        [<FaPhp className="text-5xl md:text-7xl"/>, 'PHP'],
+        [<AiFillGithub className="text-5xl md:text-7xl"/>, 'Github'],
+        [<BsWordpress className="text-5xl md:text-7xl"/>, 'Wordpress'],
+        [<SiTailwindcss className="text-5xl md:text-7xl"/>, 'Tailwind'],
     ];
 
     /*useEffect(()=>{
@@ -139,28 +139,32 @@ const Slider = () => {
         };
 
     return (
-        <div className="slider">
+        <div className="slider mt-8">
             <Swiper
                 {...params}
-                className={"swiper-1"}
+                className={"swiper-1 h-[150px]"}
             >
                 {
-                    mySkills.map((skill, index) => <SwiperSlide key={`slider-1-${index}`} className="slider__item">
-                        <div className="slider__item-container">
-                            {skill[0]}
-                            <span>
-                                {skill[1]}
-                            </span>
-                        </div>
-                    </SwiperSlide>)
+                    mySkills.map((skill, index) => {
+                        return (
+                            <SwiperSlide key={`slider-1-${index}`} className="slider__item w-[150px!important] md:w-[200px]">
+                                <div className="slider__item-container">
+                                    {skill[0]}
+                                    <span>
+                                        {skill[1]}
+                                    </span>
+                                </div>
+                            </SwiperSlide>
+                        );
+                    })
                 }
             </Swiper>
             <Swiper
                 {...params}
-                className="swiper-2"
+                className="swiper-2 h-[150px]"
             >
                 {
-                    mySkills2.map((skill, index) => <SwiperSlide key={`slider-2-${index}`} className="slider__item">
+                    mySkills2.map((skill, index) => <SwiperSlide key={`slider-2-${index}`} className="slider__item w-[150px!important] md:w-[200px]">
                         <div className="slider__item-container">
                             {skill[0]}
                             <span>

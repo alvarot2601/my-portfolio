@@ -1,18 +1,16 @@
 @import "variables";
 .my-work{
-    display: flex;
+    
     flex-direction: row;
     justify-content: center;
     font-weight: 600;
     font-size: 1.3rem;
-    flex-wrap: wrap;
-    gap:10px;
     &__item{
         position: relative;
         padding: 54px 72px 54px 72px;
-        width: 49%;
+        
         transition: 0.7s;
-        min-height: 350px;
+        
         &:hover{
             transform: scale(0.97);
         }
@@ -106,10 +104,8 @@
 
 @media screen and (max-width:1000px){
     .my-work{
-        
         &__item{
             padding: 34px 52px 34px 52px;
-            width: 49%;
         }
         &__item--0{
             width: 100%;

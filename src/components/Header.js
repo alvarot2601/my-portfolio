@@ -3,6 +3,7 @@ import {AiOutlineFundProjectionScreen} from 'react-icons/ai';
 import {IoIosContact} from 'react-icons/io';
 import {HiIdentification} from 'react-icons/hi';
 import {TfiArrowDown} from 'react-icons/tfi';
+import {FaMobile} from 'react-icons/fa';
 import shape1 from '../assets/img/shape-1.svg';
 import shape2 from '../assets/img/shape-2.svg';
 import shape3 from '../assets/img/shape-3.svg';
@@ -12,10 +13,10 @@ import { BrowserRouter, Link } from "react-router-dom";
 const Header = () => {
     const [actualLink, setActualLink] = useState(0);
     const info = [
-        ['services-link', 'Ver mis servicios', <TfiArrowDown/>, 'Especializado en React.', 'mywho'],
-        ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen/>, 'Mira algunos de mis proyectos. ','my-work'],
-        ['contact-link', 'Contáctame', <IoMdMailUnread/>, '¿Quieres hablar de negocios? !Contacta conmigo! '],
-        ['about-link', 'Sobre mí', <HiIdentification/>, 'Aprende más sobre mí. ']
+        ['services-link', 'Ver mis servicios', <TfiArrowDown className="order-0 md:order-1 text-3xl lg:text-4xl"/>, 'Especializado en React.', 'mywho'],
+        ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen className="order-0 md:order-1 text-3xl lg:text-4xl"/>, 'Mira algunos de mis proyectos. ','my-work'],
+        ['contact-link', 'Contáctame', <IoMdMailUnread className="order-0 md:order-1 text-3xl lg:text-4xl"/>, '¿Quieres hablar de negocios? !Contacta conmigo! '],
+        ['about-link', 'Sobre mí', <HiIdentification className="order-0 md:order-1 text-3xl lg:text-4xl"/>, 'Aprende más sobre mí. ']
     ];
 
     const hideText = (e) => {
@@ -42,14 +43,41 @@ const Header = () => {
                 {
                     info.map((link, index) => {
                         let animationClass = '';
+                        let displayClass = 'flex';
+                        
                         if(link[0] === 'services-link'){
                             animationClass = ' marque-animation--hidden';
                         }
+                        let generalClass = 'rounded-[48px] min-h-[400px]';
+                        let fontsizeClass = 'text-5xl'
+                        let flexClass = 'flex flex-row justify-between items-end ';    
+                        if(link[0]==='projects-link' || link[0]==='contact-link' || link[0]==='about-link'){
+                            generalClass = 'rounded-full lg:rounded-3xl h-full';//h-[calc(50vw-5px)] md:h-[170px]
+                            fontsizeClass = 'text-3xl';
+                            flexClass = 'flex flex-col lg:flex-row justify-center lg:justify-between gap-3 items-center lg:items-end';
+                            displayClass = 'hidden md:flex';
+                        }
+                        if(link[0] === 'contact-link'){
+                            generalClass = 'rounded-[48px] h-full';//h-[calc(50vw-5px)] md:h-[170px]
+                        }
+                        
                         return (
-                            <div key={`div-${index}`} className={`container--header ${link[0]}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
-                                <Link to={`#${link[4]}`}>
-                                    <div className="header__card">
-                                        <span>{link[1]}</span>
+                            <div key={`div-${index}`} className={`container--header ${link[0]} ${generalClass}`} onMouseOver={(e) => hideText(e)} onMouseOut = {showText}>
+                                <Link to={`#${link[4]}`} className="flex flex-col items-end h-full">
+                                    {
+                                        (link[0] === 'services-link') 
+                                        ? (
+                                            <div className={`w-full flex flex-row justify-between items-center pt-[30px] pb-[30px] pl-[40px] pr-[40px]`}>
+                                                
+                                                <span className="">ÁLVARO T A</span>
+                                                <FaMobile className="text-4xl"/>
+                                            </div>
+                                        )
+                                        : ''    
+                                    }
+                                    <div className={`header__card w-full ${flexClass} pt-[30px] pb-[30px] pl-[40px] pr-[40px]`}>
+                                        
+                                        <span className="order-1 md:order-0">{link[1]}</span>
                                         {
                                             link[2]
                                         }
@@ -58,20 +86,20 @@ const Header = () => {
                                             ? (
                                                 <div className="header__shape">
                                                     <div>
-                                                        <div className="quarter-circle quarter-circle--1"></div>
-                                                        <div className="quarter-circle quarter-circle--2"></div>
-                                                        <div className="quarter-circle quarter-circle--3"></div>
-                                                        <div className="quarter-circle quarter-circle--4"></div>
+                                                        <div className="quarter-circle quarter-circle--1 bg-zinc-300"></div>
+                                                        <div className="quarter-circle quarter-circle--2 bg-zinc-300"></div>
+                                                        <div className="quarter-circle quarter-circle--3 bg-zinc-300"></div>
+                                                        <div className="quarter-circle quarter-circle--4 bg-zinc-300"></div>
                                                     </div>
                                                 </div>
                                             )
                                             : ''
                                         }
                                     </div>
-                                    <div className={`marquee-animation ${animationClass}`}>
+                                    <div className={`marquee-animation ${animationClass} ${fontsizeClass} ${displayClass}`}>
                                         <p>{link[3]}</p>
                                     </div>
-                                    <div className={`marquee-animation marquee-animation--2 ${animationClass}`}>
+                                    <div className={`marquee-animation marquee-animation--2 ${animationClass} ${fontsizeClass} ${displayClass}`}>
                                         <p>{link[3]}</p>
                                     </div>
                                 </Link>

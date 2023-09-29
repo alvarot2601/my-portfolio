@@ -7,6 +7,7 @@ import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 
 const Form = () => {
     const [sw, setSw] = useState(false);
     const circleText = useRef(null);
+    const circleTextServices = useRef(null);
     const form = useRef(null);
     const name_input = useRef(null);
     const mail_input = useRef(null);
@@ -18,6 +19,24 @@ const Form = () => {
         message: ''
     });
     const [inputValue, setInputValue] = useState('Enviar');
+
+    
+    //efecto del texto para que de vueltas
+    useEffect(() => {
+        const smooth = (e) => {
+            const circleTextYTop = circleTextServices.current.getBoundingClientRect().top;
+            const circleTextYBottom = circleTextServices.current.getBoundingClientRect().bottom;
+            //if(!reachedLimitBottom || e.wheelDelta > 0)
+            //    circleAnimation(e.wheelDelta, y, circleTextServices.current, circleTextYTop, circleTextYBottom, 'rotate', circleRotate2, circleValue);
+        }
+        //para eliminar el smooth scroll en pantallas que no pertenezcan a pc
+        if(window.innerWidth >= 768) {
+            document.body.addEventListener("wheel", smooth);
+            return ()=> document.body.remove("wheel", smooth);
+        }
+    }, []);
+
+
 
     useEffect(() => {
         circleText.current.innerHTML = circleText.current.innerHTML.split("").map((char, i) => {
@@ -87,8 +106,8 @@ const Form = () => {
                     ¿Tienes alguna pregunta o idea? ¿Necesitas ayuda en algún proyecto?
                     ¡Contáctame!
                 </p>
-                <div className="contact__subcontainer">
-                    <div className="contact__action">
+                <div className="contact__subcontainer w-full">
+                    <div className="contact__action w-full">
                         <div>
                             <a href="mailto:alvarot2601@gmail.com" className="contact__email">
                                 alvarot2601@gmail.com
@@ -97,7 +116,7 @@ const Form = () => {
                                 +34 684 025 751
                             </a>
                         </div>
-                        <div className="contact__action--social">
+                        <div className="w-full flex gap-5 items-center justify-center md:justify-start">
                             <a href="https://www.linkedin.com/in/alvaro-taibo-developer/" target="_blank" aria-label="Link to my linkedin profile">
                                 <AiFillLinkedin />
                             </a>
@@ -107,9 +126,9 @@ const Form = () => {
                         </div>
                         
                     </div>
-                    <div className="circle">
+                    <div className="circle hidden md:flex items-center justify-center">
                         <AiOutlineArrowDown className="arrow" />
-                        <div className="circle__text-container" id="circle__text-container--2">
+                        <div className="circle__text-container" id="circle__text-container--2" ref={circleTextServices}>
                             <p className="circle__text" ref={circleText}>
                                 CONTÁCTAME | CONTÁCTAME | CONTÁCTAME |
                             </p>

@@ -57,11 +57,15 @@ const Projects = () => {
         ],
       ];
     return (
-        <section className="my-work" id="my-work">
+        <section className="my-work flex flex-wrap gap-[1%] " id="my-work">
             {
                 projects.map((project, index) => {
+                    let heightClass = 'min-h-[300px]';
+                    if (index===0){
+                      heightClass = 'min-h-[380px]';
+                    }
                     return (
-                        <a key={`a-${index}`} href={project[4]} target="_blank" className={`container my-work__item my-work__item--${index} ${project[0]}`}>
+                        <a key={`a-${index}`} href={project[4]} target="_blank" className={`w-[49%] ${heightClass} lg:min-h-[350px] container my-work__item my-work__item--${index} ${project[0]}`}>
                             <div className="my-work__content">
                               <div className="my-work__row">
                                 <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type">{project[2]}</span>

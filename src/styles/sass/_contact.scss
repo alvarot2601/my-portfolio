@@ -3,7 +3,7 @@
     &__container{
         background-color: #1D1C16;
         p{
-            font-size: clamp(40px, 7vw, 80px);
+            font-size: clamp(30px, 7vw, 80px);
             margin: 26px 0px;
         }
     }
@@ -64,9 +64,7 @@
 }
 .circle{
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
     width: 150px;
     height: 150px;
     margin-left: auto;

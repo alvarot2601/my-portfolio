@@ -36,7 +36,7 @@
         gap:30px;
         align-items: center;
         svg{
-            font-size: 4rem;
+            //font-size: 4rem;
             color: #A5A1FF;
         }
     }
@@ -59,7 +59,7 @@
             font-weight: 700;
         }
         svg{
-            font-size: 4rem;
+            //font-size: 4rem;
             color:#1B1B1F;
         }
     }
@@ -75,28 +75,28 @@
         margin: auto;
     }
     &__subtitle{
-        font-size: 1.5rem;
-        font-weight: 900;
+        //font-size: 1.5rem;
+        //font-weight: 900;
     }
     &__row-info{
-        font-size: 1.3rem;
+        //font-size: 1.3rem;
         margin: 0;
-        font-weight: 300;
+        //font-weight: 300;
         font-family: 'Righteous', cursive;
 
     }
     &__info{
-        font-weight: 500;
-        margin: 0;
-        margin-top: 26px;
-        font-size: clamp(30px, 6.2vw, 118px);
+        //font-weight: 500;
+        //margin: 0;
+        //margin-top: 26px;
+        //font-size: clamp(30px, 6.2vw, 118px);
         letter-spacing: -0.024em;
         line-height: 114%;
     }
     &__item-container{
-        display: flex;
-        flex-direction: column;
-        gap:25px;
+        //display: flex;
+        //flex-direction: column;
+        //gap:25px;
     }
     &__icons-container{
         display: flex;
@@ -107,23 +107,23 @@
 @media screen and (max-width:1400px){
     .services{
         &__info{
-            font-size: clamp(30px, 5.5vw, 118px);
+            //font-size: clamp(30px, 5.5vw, 118px);
         }
     }
 }
 @media screen and (max-width:1300px){
     .services{
         &__item{      
-            padding: 28px 28px 34px 52px;         
+            //padding: 28px 28px 34px 52px;         
             svg{
-                font-size: 3rem;
+                //font-size: 3rem;
             }
             span:nth-of-type(2){
                 font-size: 1.9rem;
             }
         }
         &__row-info{
-            font-size: 1.1rem;
+            //font-size: 1.1rem;
         }
     }
 }
@@ -141,7 +141,7 @@
             display: none;
         }
         &__info{
-            font-size: clamp(30px, 7.3vw, 118px);
+            //font-size: clamp(30px, 7.3vw, 118px);
             line-height: 118%;
         }
     }
