@@ -5,12 +5,12 @@
     display: flex;
  }
  .slider{
-    width: 130%;
-    -ms-transform: rotate(20deg); /* IE 9 */
-    transform: rotate(-24deg);
+    //width: 130%;
+    //-ms-transform: rotate(20deg); /* IE 9 */
+    //transform: rotate(-24deg);
     .swiper-1, .swiper-2{
         will-change: transform;
-        transition: transform 1.5s;
+        transition: transform 0.75s ease-out;
     }
     .swiper-1{
         transform: translateX(-300px);

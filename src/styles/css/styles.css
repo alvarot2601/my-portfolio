@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Righteous&family=Tourney:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 .header {
-  padding: 8px;
   display: grid;
-  gap: 10px;
+  gap: 6px;
   min-height: 380px;
-  height: -webkit-calc(60vh - 8px);
-  height: -moz-calc(60vh - 8px);
-  height: calc(60vh - 8px);
-  padding: 8px;
+  height: -webkit-calc(60vh - 6px);
+  height: -moz-calc(60vh - 6px);
+  height: calc(60vh - 6px);
+  padding: 6px;
 }
 .header__card {
   height: 100%;
@@ -108,7 +107,7 @@
 }
 
 .services-link, .contact-link, .projects-link, .about-link {
-  transition: 0.5s transform;
+  transition: 0.5s transform linear;
   overflow: hidden;
 }
 .services-link span, .contact-link span, .projects-link span, .about-link span {
@@ -122,11 +121,11 @@
 
 .contact-link .marquee-animation, .projects-link .marquee-animation, .about-link .marquee-animation {
   visibility: hidden;
-  animation: show 0.3s linear;
-  transition: visibility 0.3s;
+  animation: show 0.5s linear;
+  transition: visibility 0.5s;
 }
 .contact-link:hover .marquee-animation, .projects-link:hover .marquee-animation, .about-link:hover .marquee-animation {
-  animation: hide 0.3s linear;
+  animation: hide 0.5s linear;
   visibility: visible;
 }
 
@@ -218,8 +217,6 @@ main .oxygen {
 
 form {
   display: grid;
-  gap: 10px;
-  margin-top: 8px;
 }
 form #name {
   grid-column: 1;
@@ -250,7 +247,6 @@ form input, form textarea, form button {
   -webkit-border-radius: 86px;
   -moz-border-radius: 86px;
   border-radius: 86px;
-  padding: 56px 78px;
   outline: none;
   border: none;
   background: #1D1C16;
@@ -316,11 +312,6 @@ form textarea {
   padding: 0;
   overflow: hidden;
 }
-.my-who__name {
-  font-size: 10vw;
-  font-weight: 500;
-  margin: 0px;
-}
 .my-who__animation {
   margin: 0 auto;
   white-space: nowrap;
@@ -337,12 +328,11 @@ form textarea {
   animation-delay: 7s;
 }
 .my-who__info {
-  padding-top: clamp(150px, 16vw, 300px);
   font-size: 2.1vw;
   font-weight: 500;
 }
 .my-who__info p {
-  transition: transform 0.6s ease-out;
+  transition: transform 0.75s ease-out;
   font-family: "Righteous", cursive;
   letter-spacing: 0.05rem;
 }
@@ -361,14 +351,9 @@ form textarea {
   display: flex;
 }
 
-.slider {
-  width: 130%;
-  -ms-transform: rotate(20deg); /* IE 9 */
-  transform: rotate(-24deg);
-}
 .slider .swiper-1, .slider .swiper-2 {
   will-change: transform;
-  transition: transform 1.5s;
+  transition: transform 0.75s ease-out;
 }
 .slider .swiper-1 {
   transform: translateX(-300px);
@@ -557,7 +542,7 @@ form textarea {
 }
 
 .circle__text-container {
-  transition: transform 0.55s ease-out;
+  transition: transform 0.75s ease-out;
 }
 
 @keyframes changeBackground {
@@ -1210,7 +1195,7 @@ form textarea {
 .my-work__item {
   position: relative;
   padding: 54px 72px 54px 72px;
-  transition: 0.7s;
+  transition: 0.75s ease-out;
 }
 .my-work__item:hover {
   transform: scale(0.97);
@@ -1226,7 +1211,7 @@ form textarea {
   gap: 30px;
   justify-content: space-between;
   align-items: center;
-  transition: 0.7s;
+  transition: 0.75s ease-out;
 }
 .my-work__row {
   width: 100%;
@@ -1237,7 +1222,7 @@ form textarea {
 }
 .my-work__logo, .my-work__logo-svg {
   transform: scale(0.9);
-  transition: 0.7s;
+  transition: 0.75s ease-out;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1303,9 +1288,6 @@ form textarea {
   }
 }
 @media screen and (max-width: 550px) {
-  .my-work__item--1, .my-work__item--2, .my-work__item--3, .my-work__item--4 {
-    border-radius: 500px;
-  }
   .my-work__row {
     justify-content: center;
   }
@@ -1347,7 +1329,7 @@ form textarea {
 .services {
   color: #A5A1FF;
   font-weight: 600;
-  padding: 8px;
+  padding: 6px;
 }
 .services__content {
   background-color: #1B1B1F;
@@ -1376,7 +1358,7 @@ form textarea {
   right: 0;
   margin: auto;
   background-color: #1B1B1F;
-  transition: transform 1s;
+  transition: transform 0.75s ease-out;
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -1462,7 +1444,7 @@ form textarea {
   font-weight: 900;
 }
 .nav__text {
-  transition: all 1.5s;
+  transition: all 0.7s ease-out;
 }
 
 .footer {
@@ -1495,6 +1477,10 @@ html, body {
   padding: 0;
 }
 
+a {
+  cursor: pointer;
+}
+
 body {
   height: 100%;
   position: fixed;
@@ -1511,7 +1497,7 @@ body {
 }
 
 .smooth-scroll-wrapper {
-  transition: transform 0.55s ease-out;
+  transition: transform 0.7s ease-out;
 }
 
 .smooth-scroll-wrapper {
@@ -1523,7 +1509,7 @@ body {
 }
 
 section {
-  padding: 8px;
+  padding: 3px 6px;
 }
 
 a {
@@ -1538,15 +1524,17 @@ a {
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
+  width: 100%;
   align-items: center;
 }
 .marquee-animation p {
   padding-left: 100%;
-  animation: marquee 14s linear infinite;
+  animation: marquee 12s linear infinite;
 }
 
 .marquee-animation--2 p {
-  animation-delay: 7s;
+  animation-delay: 6s;
 }
 
 @keyframes marquee {

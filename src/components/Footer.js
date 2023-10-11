@@ -7,7 +7,7 @@ const Footer = () => {
             <span className="flex justify-center w-full">
                 Copyright <RiCopyrightFill className="footer__copyright-icon"/> 2023
             </span>
-            <span>
+            <span className="text-center">
                 Diseñado por Álvaro Taibo Aguza
             </span>
         </footer>

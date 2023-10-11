@@ -1,12 +1,11 @@
 .header{
-    padding: 8px;
     display: grid;
-    gap:10px;
+    gap:6px;
     min-height: 380px;
-    height: -webkit-calc(60vh - 8px);
-    height: -moz-calc(60vh - 8px);
-    height: calc(60vh - 8px);
-    padding:8px;
+    height: -webkit-calc(60vh - 6px);
+    height: -moz-calc(60vh - 6px);
+    height: calc(60vh - 6px);
+    padding:6px;
     &__card{
         height: 100%;
     }
@@ -114,7 +113,7 @@
 }
 ///out
 .services-link, .contact-link, .projects-link, .about-link{
-    transition: 0.5s transform;
+    transition: 0.5s transform linear;
     overflow: hidden;
     span{
         font-size: 1.1rem;
@@ -138,12 +137,12 @@
 .contact-link, .projects-link, .about-link{
     .marquee-animation{
         visibility: hidden;
-        animation: show 0.3s linear ;
-        transition: visibility 0.3s;
+        animation: show 0.5s linear ;
+        transition: visibility 0.5s ;
     }
     &:hover{
         .marquee-animation{
-            animation: hide 0.3s linear;
+            animation: hide 0.5s linear;
             visibility: visible;
         }
     }

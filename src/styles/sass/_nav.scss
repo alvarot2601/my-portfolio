@@ -9,6 +9,6 @@
     font-size: clamp(16px, 7vw, 70px);
     font-weight: 900;
     &__text{
-        transition: all 1.5s;
+        transition: all 0.70s ease-out;
     }
 }

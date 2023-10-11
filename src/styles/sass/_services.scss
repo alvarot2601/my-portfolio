@@ -2,7 +2,7 @@
 .services{
     color: #A5A1FF;
     font-weight: 600;
-    padding:8px;
+    padding:6px;
     &__content{
         background-color: #1B1B1F;
         display: flex;
@@ -30,7 +30,7 @@
         right: 0;
         margin: auto;
         background-color: #1B1B1F;
-        transition: transform 1s;
+        transition: transform 0.75s ease-out;
         display: flex;
         flex-direction: row;
         gap:30px;

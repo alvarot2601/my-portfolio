@@ -9,7 +9,7 @@
         position: relative;
         padding: 54px 72px 54px 72px;
         
-        transition: 0.7s;
+        transition: 0.75s ease-out;
         
         &:hover{
             transform: scale(0.97);
@@ -27,7 +27,7 @@
         gap:30px;
         justify-content: space-between;
         align-items: center;
-        transition: 0.7s;
+        transition: 0.75s ease-out;
     }
     &__row{
         width: 100%;
@@ -39,7 +39,7 @@
     }
     &__logo, &__logo-svg{
         transform: scale(0.9);
-        transition: 0.7s;
+        transition: 0.75s ease-out;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -116,7 +116,7 @@
     .my-work{
         
         &__item--1, &__item--2, &__item--3, &__item--4{
-            border-radius: 500px;
+            //border-radius: 500px;
         }
         &__row{
             justify-content: center;

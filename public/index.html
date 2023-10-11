@@ -139,7 +139,6 @@
       const translateRow2 = {
         value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
-      console.log(translateRow2.value)
       const translateRow3 = {
         value: (window.innerWidth > 1000) ? 0 : (window.innerWidth/2)
       };
@@ -186,11 +185,7 @@
 
       const delay = 1; // 1s
 
-      var handlerFunction = debounce(function (e) {
-
-      }, delay);
-      document.addEventListener("wheel", handlerFunction)
-
+      
 
 
       const animation = (e, y) => {
@@ -291,26 +286,39 @@
         //element.style.transform = `translateY()`;
       }
       const smooth = debounce((e) => {
-        if(window.innerWidth>=768)
-          circleAnimation(e.wheelDelta, y, text, textCoordYTop, textCoordYBottom, 'translateX', transX, transXValue);
+
+        //incluyendooolo
+        //if(window.innerWidth>=768)
+        //  circleAnimation(e.wheelDelta, y, text, textCoordYTop, textCoordYBottom, 'translateX', transX, transXValue);
         //animation(e, y);
 
         //falta meterle la animacion al texto 
-        disappearTextAnimation(e.wheelDelta, y, myName, myNameYTop, myNameYBottom, 'scale', properties, scaleValue);
+        //ya incluido
+        //disappearTextAnimation(e.wheelDelta, y, myName, myNameYTop, myNameYBottom, 'scale', properties, scaleValue);
+        
+        
+        //ya incluido
         //para que el circulo con texto no siga dando vueltas si se llega al final
-        if(!reachedLimitBottom || e.wheelDelta > 0)
-          circleAnimation(e.wheelDelta, y, circleText, circleTextYTop2, circleTextYBottom2, 'rotate', circleRotate2, circleValue);
+        //if(!reachedLimitBottom || e.wheelDelta > 0)
+        //  circleAnimation(e.wheelDelta, y, circleText, circleTextYTop2, circleTextYBottom2, 'rotate', circleRotate2, circleValue);
         
         //ya incluido
         //circleAnimation(e.wheelDelta, y, circleTextServices, circleTextYTop, circleTextYBottom, 'rotate', circleRotate, circleValue);
+        
 
-        circleAnimation(e.wheelDelta, y, slider, my_who_contentTop, my_who_contentBottom, 'translateX', sliderValue, slideValue, swiper_1, swiper_2);
+        
+        //ya incluido
+        //circleAnimation(e.wheelDelta, y, slider, my_who_contentTop, my_who_contentBottom, 'translateX', sliderValue, slideValue, swiper_1, swiper_2);
+        
+        
+        
+        //ya incluido
         //si es mayor a 1000 debe haber 2 barras desplegables en los servicios, en caso de q sea menor habrá 1
         if(window.innerWidth > 1000) {
-          servicesAnimation(e.wheelDelta, y, rowServices1, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, serviceItem0, serviceItem1);
-          servicesAnimation(e.wheelDelta, y, rowServices2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, serviceItem2, serviceItem3);
-          servicesAnimation(e.wheelDelta, y, rowServices3, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, serviceItem4, serviceItem5);
-          servicesAnimation(e.wheelDelta, y, rowServices4, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, serviceItem6, serviceItem7);
+          //servicesAnimation(e.wheelDelta, y, rowServices1, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, serviceItem0, serviceItem1);
+          //servicesAnimation(e.wheelDelta, y, rowServices2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, serviceItem2, serviceItem3);
+          //servicesAnimation(e.wheelDelta, y, rowServices3, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, serviceItem4, serviceItem5);
+          //servicesAnimation(e.wheelDelta, y, rowServices4, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, serviceItem6, serviceItem7);
         }
         else{
           servicesAnimation(e.wheelDelta, y, serviceItem0, rowServices1YTop, rowServices1YBottom, 'translateX', translateRow1, translateRowValue, null, null);

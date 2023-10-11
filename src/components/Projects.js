@@ -61,11 +61,13 @@ const Projects = () => {
             {
                 projects.map((project, index) => {
                     let heightClass = 'min-h-[300px]';
+                    let roundedClass = 'rounded-full lg:rounded-[86px]';
                     if (index===0){
                       heightClass = 'min-h-[380px]';
+                      roundedClass = 'rounded-[48px] lg:rounded-[86px]';
                     }
                     return (
-                        <a key={`a-${index}`} href={project[4]} target="_blank" className={`w-[49%] ${heightClass} lg:min-h-[350px] container my-work__item my-work__item--${index} ${project[0]}`}>
+                        <a key={`a-${index}`} href={project[4]} target="_blank" className={`w-[49%] ${heightClass}  ${roundedClass} lg:min-h-[350px] mt-2 pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`}>
                             <div className="my-work__content">
                               <div className="my-work__row">
                                 <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type">{project[2]}</span>
