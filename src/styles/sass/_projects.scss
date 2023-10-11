@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: center;
     font-weight: 600;
-    font-size: 1.3rem;
+    //font-size: 1.3rem;
     &__item{
         position: relative;
         padding: 54px 72px 54px 72px;
@@ -49,11 +49,11 @@
     }
     span{
         font-family: $first-font;
-        font-size: 1.3rem;
+        //font-size: 1.3rem;
     }
     img{
-        width: 100%;
-        max-width: 300px;
+        //width: 80%;
+        //max-width: 300px;
     }
     &__logo--1{
         width: 150px!important;
@@ -81,6 +81,9 @@
     .miranda{
         background-color: #fff;
         color: #000;
+    }
+    .marinaspa{
+        background-color: #fda4af;
     }
     
     svg{

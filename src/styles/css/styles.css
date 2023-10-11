@@ -1190,7 +1190,6 @@ form textarea {
   flex-direction: row;
   justify-content: center;
   font-weight: 600;
-  font-size: 1.3rem;
 }
 .my-work__item {
   position: relative;
@@ -1232,10 +1231,9 @@ form textarea {
 }
 .my-work span {
   font-family: "Righteous", cursive;
-  font-size: 1.3rem;
 }
 .my-work img {
-  width: 100%;
+  width: 80%;
   max-width: 300px;
 }
 .my-work__logo--1 {
@@ -1264,6 +1262,9 @@ form textarea {
 .my-work .miranda {
   background-color: #fff;
   color: #000;
+}
+.my-work .marinaspa {
+  background-color: #fda4af;
 }
 .my-work svg {
   font-size: 2rem;

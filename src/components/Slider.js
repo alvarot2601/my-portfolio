@@ -64,7 +64,7 @@ const Slider = ({ coordY, wheelDelta, my_who_content, pxPerScroll}) => {
             //obj.value += value;
             objSetter({value:obj.value + value});
         } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
-            console.log('obj.value3 ', parseInt(obj.value))
+            //console.log('obj.value3 ', parseInt(obj.value))
             //obj.value -= value;
             objSetter({value:obj.value - value});
         } else if (coordYBottom < (limitBottom ) && coordYBottom > (limitTop )) {
@@ -151,9 +151,7 @@ const Slider = ({ coordY, wheelDelta, my_who_content, pxPerScroll}) => {
         [<SiTailwindcss className="text-5xl md:text-7xl" />, 'Tailwind'],
     ];
 
-    useEffect(() => {
-
-    }, []);
+   
 
     /*useEffect(()=>{
         gsap.registerPlugin(ScrollTrigger);

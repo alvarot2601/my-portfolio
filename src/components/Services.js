@@ -8,7 +8,7 @@ import { TbBrandJavascript } from "react-icons/tb";
 //import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import { halfviewportWidth, rowServiceHeight } from "./Functions";
-import { circleRotate, circleValue } from "./Functions";
+import {circleValue } from "./Functions";
 import { px } from "framer-motion";
 const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
     const circleText = useRef(null);
@@ -47,6 +47,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             rowServiceHeight / 2 -
             (rowServices1YTop.current - window.innerHeight / 2)) /
         pxPerScroll;
+    necessaryScrollMoves = necessaryScrollMoves.toFixed(2);
     if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
         necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;
     const translateRowValue =
@@ -92,138 +93,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextYTop.current, circleTextYBottom.current, 'rotate', circleRotate, circleValue);
         }
         
-    }, [wheelDelta, coordY]);
-    /*useEffect(()=>{
-        CoordYRef.current = coordY;
-        const smooth = debounce2((e) => {
-            const rowServices1YTop = rowServices1.current.getBoundingClientRect().top;
-            const rowServices1YBottom = rowServices1.current.getBoundingClientRect().top + rowServiceHeight / 2;
-            const rowServicesLimitBottom = coordY + halfviewportWidth;
-            const rowServices2YTop = rowServices2.current.getBoundingClientRect().top;
-            const rowServices2YBottom =
-                rowServices2.current.getBoundingClientRect().top + rowServiceHeight / 2;
-            const rowServices3YTop = rowServices3.current.getBoundingClientRect().top;
-            const rowServices3YBottom =
-                rowServices3.current.getBoundingClientRect().top + rowServiceHeight / 2;
-            const rowServices4YTop = rowServices4.current.getBoundingClientRect().top;
-            const rowServices4YBottom =
-                rowServices4.current.getBoundingClientRect().top + rowServiceHeight / 2;
-
-            let necessaryScrollMoves =
-                (rowServices1YTop +
-                    rowServiceHeight / 2 -
-                    (rowServices1YTop - window.innerHeight / 2)) /
-                pxPerScroll;
-            if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
-                necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;
-            const translateRowValue =
-                window.innerWidth > 1000
-                    ? window.innerWidth / 2 / 2 / necessaryScrollMoves
-                    : -(window.innerWidth / 2) / necessaryScrollMoves;
-            //circleAnimation(e.wheelDelta, coordY, circleTextServices.current, circleTextYTop, circleTextYBottom, 'rotate', circleRotate, circleValue);
-
-            if (window.innerWidth > 1000) {
-
-               /* servicesAnimation(
-                    e.wheelDelta,
-                    CoordYRef.current,
-                    rowServices1.current,
-                    rowServices1YTop,
-                    rowServices1YBottom,
-                    "translateX",
-                    translateRow1,
-                    translateRowValue,
-                    serviceItem0.current,
-                    serviceItem1.current
-                );
-                servicesAnimation(
-                            e.wheelDelta,
-                            coordY,
-                            rowServices2.current,
-                            rowServices2YTop,
-                            rowServices2YBottom,
-                            "translateX",
-                            translateRow2,
-                            translateRowValue,
-                            serviceItem2.current,
-                            serviceItem3.current
-                        );
-                        servicesAnimation(
-                            e.wheelDelta,
-                            coordY,
-                            rowServices3.current,
-                            rowServices3YTop,
-                            rowServices3YBottom,
-                            "translateX",
-                            translateRow3,
-                            translateRowValue,
-                            serviceItem4.current,
-                            serviceItem5.current
-                        );
-                        servicesAnimation(
-                            e.wheelDelta,
-                            coordY,
-                            rowServices4.current,
-                            rowServices4YTop,
-                            rowServices4YBottom,
-                            "translateX",
-                            translateRow4,
-                            translateRowValue,
-                            serviceItem6.current,
-                            serviceItem7.current
-                        );
-            } else {
-                servicesAnimation(
-                    e.wheelDelta,
-                    coordY,
-                    serviceItem0,
-                    rowServices1YTop,
-                    rowServices1YBottom,
-                    "translateX",
-                    translateRow1,
-                    translateRowValue,
-                    null,
-                    null
-                );
-                servicesAnimation(
-                    e.wheelDelta,
-                    coordY,
-                    serviceItem2,
-                    rowServices2YTop,
-                    rowServices2YBottom,
-                    "translateX",
-                    translateRow2,
-                    translateRowValue,
-                    null,
-                    null
-                );
-                servicesAnimation(
-                    e.wheelDelta,
-                    coordY,
-                    serviceItem4,
-                    rowServices3YTop,
-                    rowServices3YBottom,
-                    "translateX",
-                    translateRow3,
-                    translateRowValue,
-                    null,
-                    null
-                );
-                servicesAnimation(
-                    e.wheelDelta,
-                    coordY,
-                    serviceItem6,
-                    rowServices4YTop,
-                    rowServices4YBottom,
-                    "translateX",
-                    translateRow4,
-                    translateRowValue,
-                    null,
-                    null
-                );
-            }
-        }, delay);
-    }, [coordY]);*/
+    }, [coordY]);
+    
 
     //cambio el argumento obj por el metodo para setear los estados 
     const servicesAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, translateRow, translateRowSetter, value, animatedElement1 = null, animatedElement2 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
@@ -247,44 +118,6 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             }//nuevo 04-10-23 14:41
             else return null;
         }
-
-        /*const unit = transform === "translateX" ? "px" : "deg";
-
-        if (animatedElement1 === null) {
-            if (translateRow1 < 0) {
-                //obj.value = 0;
-                setTranslateRow1(0);
-                //objSetter({val: 0 })
-            }
-            else if (translateRow1 > halfviewportWidth) {
-                //obj.value = halfviewportWidth;
-                setTranslateRow1(halfviewportWidth);
-                //objSetter({val: halfviewportWidth })
-            }
-
-            //element.style.transform =
-            //    transform + "(" + parseInt(obj.value) + unit + ")";
-
-
-        } else {
-            if (translateRow1 < 0) {
-                obj.value = 0;
-                setTranslateRow1(0);
-                //objSetter({val: 0})
-            }
-            else if (translateRow1 > halfviewportWidth / 2) {
-                obj.value = halfviewportWidth / 2;
-                setTranslateRow1(halfviewportWidth / 2);
-                //objSetter({val: halfviewportWidth / 2 })
-            }
-            
-            animatedElement2.style.transform =
-                transform + "(" + parseInt(obj.value) + unit + ")";
-
-            animatedElement1.style.transform =
-                transform + "(" + parseInt(obj.value) * -1 + unit + ")";
-        }*/
-
     };
     const circleAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value, element2 = null, element3 = null, limitTop = Math.abs(coordY), limitBottom = (Math.abs(coordY) + window.innerHeight)) => {
     
@@ -451,7 +284,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
                     <span className="little-title">¿QUÉ HAGO?</span>
-                    <p className="services__info mt-[26px] text-[clamp(28px,5.5vw,118px)]">
+                    <p className="services__info mt-[26px] text-[clamp(28px,7.5vw,118px)]">
                         Facilito a mis clientes <br></br> soluciones webs <br></br>
                         desarrolladas a medida<br></br> con habilidad y pasión.
                     </p>

@@ -48,7 +48,7 @@ function App() {
   const realScrollWrapperHeight = window.innerHeight - scrollBarHeight;
   //asignamos al cargar la pagina el height del wrapper de la scrollbar
   const scrollbarWrapper = useRef(null);
-  const TIMES_TO_REACH =50;
+  const TIMES_TO_REACH = 25;
   const [relativePercentage, setRelativePercentage] = useState((window.innerHeight - scrollBarHeight) / TIMES_TO_REACH);
   //variable para controlar si está pulsado la scrollbar
   const [continueScrolling, setContinueScrolling] = useState(false);

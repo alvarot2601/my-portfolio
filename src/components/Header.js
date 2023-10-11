@@ -52,13 +52,13 @@ const Header = () => {
                         let fontsizeClass = 'text-[3.45vw]';
                         let flexClass = 'flex flex-row justify-between items-end ';    
                         if(link[0]==='projects-link' || link[0]==='contact-link' || link[0]==='about-link'){
-                            generalClass = 'rounded-full lg:rounded-3xl h-[calc(50vw-6px)] md:h-full';//h-[calc(50vw-5px)] md:h-[170px]
+                            generalClass = 'rounded-full lg:rounded-3xl h-[calc(50vw-6px)] sm:h-[220px]';//h-[calc(50vw-5px)] md:h-[170px]
                             fontsizeClass = 'text-[2rem]';
                             flexClass = 'flex flex-col lg:flex-row justify-center lg:justify-between gap-3 items-center lg:items-end';
                             displayClass = 'hidden md:flex';
                         }
                         if(link[0] === 'contact-link'){
-                            generalClass = 'rounded-[48px] h-[calc(50vw-6px)] md:h-full';//h-[calc(50vw-5px)] md:h-[170px]
+                            generalClass = 'rounded-[48px] h-[calc(50vw-6px)] sm:h-[220px]';//h-[calc(50vw-5px)] md:h-[170px]
                         }
                         
                         return (
