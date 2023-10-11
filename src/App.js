@@ -48,8 +48,9 @@ function App() {
   const realScrollWrapperHeight = window.innerHeight - scrollBarHeight;
   //asignamos al cargar la pagina el height del wrapper de la scrollbar
   const scrollbarWrapper = useRef(null);
-  const TIMES_TO_REACH = 25;
-  const [relativePercentage, setRelativePercentage] = useState((window.innerHeight - scrollBarHeight) / TIMES_TO_REACH);
+  //almacena el numero de scrolleos necesarios para llegar al final de la pagina
+  const times_to_reach = useRef(null) //44;
+  const relativePercentage = useRef(null);//(window.innerHeight - scrollBarHeight) / TIMES_TO_REACH.current
   //variable para controlar si está pulsado la scrollbar
   const [continueScrolling, setContinueScrolling] = useState(false);
   const continueScrollingRef = useRef(null);
@@ -76,7 +77,6 @@ function App() {
   //const [finalLimit, setFinalLimit] = useState(0);
   const finalLimit = useRef(null);
   const scroll = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
   const [coordY, setCoordY] = useState(0);
 
   //estado para almacenar e.wheeldelta y poder pasarselo a otros componentes
@@ -87,14 +87,22 @@ function App() {
     finalLimit.current = document.body.scrollHeight;
     //setFinalLimit(document.body.scrollHeight);
     scrollbarWrapper.current.style.height = window.innerHeight + "px";
-    pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
+    pxPerScroll.current = 150//(document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
     continueScrollingRef.current = false;
     scrollbarDifference.current = true;
     lastCoordY.current = 0;
     allCoordY.current = [0, pxPerScroll.current, pxPerScroll.current*2, pxPerScroll.current*3, pxPerScroll.current*4, pxPerScroll.current*5, pxPerScroll.current*6, pxPerScroll.current*7, pxPerScroll.current*8,pxPerScroll.current*9, pxPerScroll.current*10, pxPerScroll.current*11, pxPerScroll.current*12,pxPerScroll.current*13, pxPerScroll.current*14, pxPerScroll.current*15, pxPerScroll.current*16, pxPerScroll.current*16, pxPerScroll.current*17, pxPerScroll.current*18, pxPerScroll.current*19, pxPerScroll.current*20];
-    relativeAnimPercentage.current = 100;  
+    relativeAnimPercentage.current = 100;//%  
     mousemoveExecutions.current = 0;
     relativeScrolledValueRef.current = 0;//falta añadir en el keyhandler
+    times_to_reach.current = (finalLimit.current - window.innerHeight) / pxPerScroll.current;
+
+    
+    
+      relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
+      alert(relativePercentage.current * times_to_reach.current)
+      alert(times_to_reach.current)
+      alert(relativePercentage.current)
 }
 
  
@@ -200,7 +208,7 @@ function App() {
     if (e.wheelDelta < 0 && y <= initialLimit) {
       //&& (Math.abs(y) + window.innerHeight) < finalLimit
       y -= pxPerScroll.current;
-      relativeScrolledValue += relativePercentage;
+      relativeScrolledValue += relativePercentage.current;
       //setCoordY(coordY - pxPerScroll);
       if ((Math.abs(y) + window.innerHeight) > finalLimit.current) {
 
@@ -215,7 +223,7 @@ function App() {
     } else if (e.wheelDelta > 0 && Math.abs(y) < finalLimit.current && y < 0) {
       
       y += pxPerScroll.current;
-      relativeScrolledValue -= relativePercentage;
+      relativeScrolledValue -= relativePercentage.current;
       //setCoordY(coordY + pxPerScroll);
       if (y > initialLimit) {
         y = 0;
@@ -315,10 +323,11 @@ function App() {
 
   const resize = ()=>{
     finalLimit.current = document.body.scrollHeight;
-    pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
+    pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / times_to_reach.current;
     scrollbarWrapper.current.style.height = document.body.scrollHeight + 'px';
     //relativePercentage = (windowHeight - scrollBarHeight) / TIMES_TO_REACH;
-    setRelativePercentage((document.body.innerHeight - scrollBarHeight) / TIMES_TO_REACH);
+    relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
+    //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
   }
   useEffect(()=>{
     window.addEventListener("resize",resize);

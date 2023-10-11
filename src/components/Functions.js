@@ -5,9 +5,10 @@ import React, { useEffect } from "react";
 export const halfviewportWidth = window.innerWidth / 2;
 //variable para igualar el valor de Y para que llegue exactamente al final de la pagina
 export const documentHeight = document.body.scrollHeight - window.innerHeight;
+//variable que almacena la altura de las filas de los slides
 export const rowServiceHeight = 300;
 export let y = 0;
-export const delay = 20;
+export const delay = 10;
 export const circleTextServices = document.querySelector("#circle__text-container--1");
 //creamos objeto en vez de variable ya que es de las pocas formas de enviar referencia en vez del valor por parametros 
 //export let circleRotate = {

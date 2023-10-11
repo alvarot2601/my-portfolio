@@ -41,13 +41,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
 
 
     const rowServicesLimitBottom = coordY + halfviewportWidth;
-
-    let necessaryScrollMoves =
-        (rowServices1YTop.current +
-            rowServiceHeight / 2 -
-            (rowServices1YTop.current - window.innerHeight / 2)) /
-        pxPerScroll;
-    necessaryScrollMoves = necessaryScrollMoves.toFixed(2);
+    //almacena los scrolls necesarios para que los slides terminen de desplegarse cuando el centro de la fila de los slides esté en el medio de la pantalla. Si
+    let necessaryScrollMoves = (rowServices1YTop.current + rowServiceHeight / 2 - (rowServices1YTop.current - window.innerHeight / 2)) / pxPerScroll;
+    //si es decimal le sumamos 1
+    
     if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
         necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;
     const translateRowValue =
@@ -55,16 +52,12 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             ? window.innerWidth / 2 / 2 / necessaryScrollMoves
             : -(window.innerWidth / 2) / necessaryScrollMoves;
 
-    /*const [translateRow1, setTranslateRow1] = useState({
-        val: window.innerWidth > 1000 ? 0 : window.innerWidth / 2,
-    });*/
+    
     const [translateRow1, setTranslateRow1] = useState(window.innerWidth > 1000 ? 0 : 0);//window.innerWidth / 2 lo cambio x 0 de mommento
-    /*const translateRow1 = {
-        value: window.innerWidth > 1000 ? 0 : window.innerWidth / 2,
-    };*/
+    
     const [translateRow2, setTranslateRow2] = useState(window.innerWidth > 1000 ? 0 :0);
-    const [translateRow3, setTranslateRow3] = useState(window.innerWidth > 1000 ? 0 : window.innerWidth / 2);
-    const [translateRow4, setTranslateRow4] = useState(window.innerWidth > 1000 ? 0 : window.innerWidth / 2);
+    const [translateRow3, setTranslateRow3] = useState(window.innerWidth > 1000 ? 0 : 0);
+    const [translateRow4, setTranslateRow4] = useState(window.innerWidth > 1000 ? 0 : 0);
 
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
@@ -92,7 +85,6 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             servicesAnimation(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
             circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextYTop.current, circleTextYBottom.current, 'rotate', circleRotate, circleValue);
         }
-        
     }, [coordY]);
     
 
@@ -107,7 +99,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
                 translateRowSetter(translateRow + value);
                 //objSetter({val: translateRow1.val + value })
 
-            } else return null;//nuevo
+            }
         } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
             //el 150 está hardcodeado
             if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
@@ -115,8 +107,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
                 //obj.value -= value;
                 translateRowSetter(translateRow - value);
                 //objSetter({val: translateRow1.val - value })
-            }//nuevo 04-10-23 14:41
-            else return null;
+            }
+           
         }
     };
     const circleAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, value, element2 = null, element3 = null, limitTop = Math.abs(coordY), limitBottom = (Math.abs(coordY) + window.innerHeight)) => {
