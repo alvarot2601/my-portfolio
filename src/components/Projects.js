@@ -13,7 +13,7 @@ const Projects = () => {
         [
           'miranda',
           hotelMirandaProject,
-          'HTML5 Y CSS3',
+          'html5 Y css3',
           '',
           "https://alvarot2601.github.io/Hotel-Miranda",
           "https://github.com/alvarot2601/Hotel-Miranda",
@@ -22,7 +22,7 @@ const Projects = () => {
         [
           'oxygen',
           oxygenShop,
-          'HTML5, CSS3 Y JS',
+          'html5, css3 y js',
           '',
           "https://alvarot2601.github.io/Oxygen-Shop",
           "https://github.com/alvarot2601/Oxygen-Shop",
@@ -31,7 +31,7 @@ const Projects = () => {
         [
           'unsplash',
           '',
-          'REACT Y REDUX',
+          'React y Redux',
           '',
           "https://alvarot2601.github.io/dashboard-photos",
           "https://github.com/alvarot2601/dashboard-photos",
@@ -40,7 +40,7 @@ const Projects = () => {
         [
           'umedi',
           umediProject,
-          'WORDPRESS',
+          'Wordpress',
           '',
           "https://l.umedi.com/colegio-infantil-concertado-en-bilbao/",
           "",
@@ -49,7 +49,7 @@ const Projects = () => {
         [
           'andel',
           andelProject,
-          'WORDPRESS',
+          'Wordpress',
           '',
           "https://andelfuenllanaykids.es/colegio-concertado-bilingue-en-alcorcon-andel",
           "",
@@ -70,7 +70,7 @@ const Projects = () => {
                         <a key={`a-${index}`} href={project[4]} target="_blank" className={`w-[49%] ${heightClass}  ${roundedClass} lg:min-h-[350px] mt-2 pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`}>
                             <div className="my-work__content">
                               <div className="my-work__row">
-                                <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type">{project[2]}</span>
+                                <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type hidden sm:flex">{project[2]}</span>
                               </div>
                               {
                                 project[3] !== '' 
@@ -80,7 +80,7 @@ const Projects = () => {
                                 : <img className= {`my-work__logo my-work__logo--${index}`} src={project[1]} alt={project[6]} />
                               }
                               <div className="my-work__row">
-                                <span className="my-work__finish">Proyecto terminado</span> <BsArrowUpRight/>
+                                <span className="my-work__finish hidden sm:flex">Proyecto terminado</span> <BsArrowUpRight/>
                               </div>
                             </div>
                         </a>

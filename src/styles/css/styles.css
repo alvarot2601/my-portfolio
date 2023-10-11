@@ -1291,9 +1291,6 @@ form textarea {
   .my-work__row {
     justify-content: center;
   }
-  .my-work__type, .my-work__finish {
-    display: none;
-  }
 }
 /*
 .my-work__item{
