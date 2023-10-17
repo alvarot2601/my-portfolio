@@ -59,8 +59,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
     const [translateRow1, setTranslateRow1] = useState(0);//window.innerWidth / 2 lo cambio x 0 de mommento
     const [translateSmallRow1, setTranslateSmallRow1] = useState(window.innerWidth / 2);
     const [translateRow2, setTranslateRow2] = useState(0);
+    const [translateSmallRow2, setTranslateSmallRow2] = useState(window.innerWidth / 2);
     const [translateRow3, setTranslateRow3] = useState(0);
+    const [translateSmallRow3, setTranslateSmallRow3] = useState(window.innerWidth / 2);
     const [translateRow4, setTranslateRow4] = useState(0);
+    const [translateSmallRow4, setTranslateSmallRow4] = useState(window.innerWidth / 2);
 
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
@@ -93,6 +96,9 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextYTop.current, circleTextYBottom.current, 'rotate', circleRotate, circleValue);
         } else {
             servicesAnimation3(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, 'translateX', translateSmallRow1, setTranslateSmallRow1, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, 'translateX', translateSmallRow2, setTranslateSmallRow2, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, 'translateX', translateSmallRow3, setTranslateSmallRow3, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, 'translateX', translateSmallRow4, setTranslateSmallRow4, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem4, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem6, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, null, null);
@@ -141,7 +147,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
                 let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
                 console.log('porcentaje, ', porcentaje);
                 porcentaje = 100 - (porcentaje * 100) / (window.innerWidth / 2);
-                const val = ((window.innerWidth / 2) * porcentaje) / 100;
+                const val = (window.innerWidth / 2) - ((window.innerWidth / 2) * porcentaje) / 100;
                 translateRowSetter(val);
                 console.log('porcentaje, ', porcentaje);
             }
@@ -210,7 +216,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
     useEffect(() => {
         if (translateSmallRow1 < 0) setTranslateSmallRow1(0);
         else if (translateSmallRow1 > halfviewportWidth) setTranslateSmallRow1(halfviewportWidth);
-        alert(translateSmallRow1)
+        //alert(translateSmallRow1)
         serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow1) + "px" + ")";
 
     }, [translateSmallRow1]);
@@ -221,17 +227,38 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
         serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) * -1 + "px" + ")";
     }, [translateRow2]);
     useEffect(() => {
+        if (translateSmallRow2 < 0) setTranslateSmallRow2(0);
+        else if (translateSmallRow2 > halfviewportWidth) setTranslateSmallRow2(halfviewportWidth);
+        //alert(translateSmallRow2)
+        serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow2) + "px" + ")";
+
+    }, [translateSmallRow2]);
+    useEffect(() => {
         if (translateRow3 < 0) setTranslateRow3(0);
         else if (translateRow3 > halfviewportWidth / 2) setTranslateRow3(halfviewportWidth / 2);
         serviceItem5.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
         serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) * -1 + "px" + ")";
     }, [translateRow3]);
     useEffect(() => {
+        if (translateSmallRow3 < 0) setTranslateSmallRow3(0);
+        else if (translateSmallRow3 > halfviewportWidth) setTranslateSmallRow3(halfviewportWidth);
+        //alert(translateSmallRow2)
+        serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow3) + "px" + ")";
+
+    }, [translateSmallRow3]);
+    useEffect(() => {
         if (translateRow4 < 0) setTranslateRow4(0);
         else if (translateRow4 > halfviewportWidth / 2) setTranslateRow4(halfviewportWidth / 2);
         serviceItem7.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
         serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) * -1 + "px" + ")";
     }, [translateRow4]);
+    useEffect(() => {
+        if (translateSmallRow4 < 0) setTranslateSmallRow4(0);
+        else if (translateSmallRow4 > halfviewportWidth) setTranslateSmallRow4(halfviewportWidth);
+        //alert(translateSmallRow2)
+        serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow4) + "px" + ")";
+
+    }, [translateSmallRow4]);
 
     //efecto del texto para que de vueltas
     useEffect(() => {
@@ -242,6 +269,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             return () => document.body.remove("wheel", smooth);
         }*/
     }, []);
+
+    
 
     const servicesArray = [
         [
@@ -334,17 +363,44 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
                   });*/
     }, []);
 
+
+    const servicesTouchAnimation = (element, row, topCoord) =>{
+        if(row.getBoundingClientRect().top < window.innerHeight) 
+        {
+            if(topCoord <= (window.scrollY + (window.innerHeight / 2))){
+                let percentage = 100 + ((((window.innerHeight/2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight/2));
+                console.log(percentage)
+                let val = (window.innerWidth/2) - (percentage * (window.innerWidth/2)) / 100;
+                if(val<0) val=0;
+                else if(val>window.innerWidth/2) val = window.innerWidth/2;
+                element.style.transform = "translateX" + "(" + parseInt(val) + "px" + ")";
+            }
+        }
+    }
+    const touchAnimation = () => {
+        servicesTouchAnimation(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
+        servicesTouchAnimation(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
+        servicesTouchAnimation(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
+        servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
+    }
+    useEffect(() => {
+        if (window.innerWidth < 768) {
+          //alert(window.innerWidth)
+          document.body.addEventListener("touchmove", touchAnimation);
+          return () => document.body.removeEventListener("touchmove", touchAnimation);
+        }
+      });
     return (
-        <section className="services">
+        <section className="services overflow-x-hidden">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
                     <span className="little-title">LO QUE HAGO</span>
-                    <p className="services__info mt-[26px] text-[clamp(28px,7.5vw,118px)]">
+                    <p className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
                         Facilito a mis clientes <br></br> soluciones webs <br></br>
                         desarrolladas a medida<br></br> con habilidad y pasión.
                     </p>
                 </div>
-                <div className="circle flex justify-center items-center">
+                <div className="circle w-[150px] h-[150px] flex justify-center items-center">
                     <AiOutlineArrowDown className="arrow" />
                     <div
                         className="circle__text-container"
@@ -416,7 +472,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
                                                     ? serviceItem7
                                                     : null
                                 }
-                                className={`services__item services__item--purple services__item--purple-${index}  container`}
+                                className={`services__item services__item--purple services__item--purple-${index}  rounded-[48px] p-4 lg:p-[48px]`}
                             >
                                 <span className="text-center text-xl xl:text-2xl 2xl:text-3xl font-thin">{item[1][0]}</span>
                                 {typeof item[1][1] === "string" ? (

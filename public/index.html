@@ -251,9 +251,7 @@
           } 
          }
          const unit = (transform === 'translateX') ? 'px' : 'deg';
-         
-           
-           
+          
            if(animatedElement1 === null){
             if(obj.value < 0) obj.value = 0;
             else if(obj.value > (halfviewportWidth)) obj.value = (halfviewportWidth);
@@ -352,8 +350,7 @@
       }, delay);
 
 
-      //para eliminar el smooth scroll en pantallas que no pertenezcan a pc
-      if(window.innerWidth >= 768) document.body.addEventListener("wheel", smooth);
+      
       //document.body.addEventListener("wheel", animation);
     })
 

@@ -294,13 +294,15 @@ function App() {
 
 
   useEffect(() => {
-
     //para eliminar el smooth scroll en pantallas que no pertenezcan a pc
     if (window.innerWidth >= 768) {
+      //alert(window.innerWidth)
       document.body.addEventListener("wheel", smooth);
       return () => document.body.removeEventListener("wheel", smooth);
     }
   });
+
+  
 
   useEffect(() => {
     scroll.current.style.transform = "translateY(" + coordY + "px)";

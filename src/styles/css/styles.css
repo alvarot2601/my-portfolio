@@ -516,8 +516,6 @@ form textarea {
 
 .circle {
   position: relative;
-  width: 150px;
-  height: 150px;
   margin-left: auto;
   border-radius: 50%;
 }
@@ -527,7 +525,7 @@ form textarea {
   height: 100%;
 }
 .circle span {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 900;
   position: absolute;
   left: 50%;
@@ -1572,13 +1570,13 @@ a {
 }
 
 body {
+  width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   background-color: #000;
-  width: 100%;
 }
 
 .smooth-scroll-wrapper {

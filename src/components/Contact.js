@@ -213,7 +213,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
                         </div>
                         
                     </div>
-                    <div className="circle hidden md:flex items-center justify-center">
+                    <div className="circle w-[150px] h-[150px] hidden md:flex items-center justify-center">
                         <AiOutlineArrowDown className="arrow" />
                         <div className="circle__text-container" id="circle__text-container--2" ref={circleTextServices}>
                             <p className="circle__text" ref={circleText}>
