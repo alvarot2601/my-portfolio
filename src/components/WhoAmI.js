@@ -101,10 +101,10 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
         <section ref={my_who_content} className="my-who" id="mywho">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] my-who__content">
                 <div className="my-who__animation">
-                    <p className="my-who__name text-6xl">¿Quién es Álvaro Taibo Aguza?</p>
+                    <p className="my-who__name text-6xl lg:text-9xl">¿Quién es Álvaro Taibo Aguza?</p>
                 </div>
                 <div className="my-who__animation my-who__animation--2 ">
-                    <p className="my-who__name text-6xl">¿Quién es Álvaro Taibo Aguza?</p>
+                    <p className="my-who__name text-6xl lg:text-9xl">¿Quién es Álvaro Taibo Aguza?</p>
                 </div>
                 <div className="my-who__info w-full md:w-[50vw] pt-[150px] md:pt-[350px]">
                     <p ref={text} className="my-who__text px-[38px] transform-none md:transform-gpu translate-x-[-300px] text-[clamp(18px,2.5vw,40px)]">

@@ -49,16 +49,16 @@ const Header = () => {
                             animationClass = ' marque-animation--hidden';
                         }
                         let generalClass = 'rounded-[48px] min-h-[400px]';
-                        let fontsizeClass = 'text-[3.45vw]';
+                        let fontsizeClass = 'text-5xl';
                         let flexClass = 'flex flex-row justify-between items-end ';    
                         if(link[0]==='projects-link' || link[0]==='contact-link' || link[0]==='about-link'){
-                            generalClass = 'rounded-full lg:rounded-3xl h-[calc(50vw-6px)] sm:h-[220px]';//h-[calc(50vw-5px)] md:h-[170px]
+                            generalClass = 'rounded-full lg:rounded-3xl h-[calc(50vw-6px)] sm:h-[220px] lg:h-full';//h-[calc(50vw-5px)] md:h-[170px]
                             fontsizeClass = 'text-[2rem]';
                             flexClass = 'flex flex-col lg:flex-row justify-center lg:justify-between gap-3 items-center lg:items-end';
                             displayClass = 'hidden md:flex';
                         }
                         if(link[0] === 'contact-link'){
-                            generalClass = 'rounded-[48px] h-[calc(50vw-6px)] sm:h-[220px]';//h-[calc(50vw-5px)] md:h-[170px]
+                            generalClass = 'rounded-[48px] h-[calc(50vw-6px)] sm:h-[220px] lg:h-full';//h-[calc(50vw-5px)] md:h-[170px]
                         }
                         
                         return (
@@ -86,10 +86,10 @@ const Header = () => {
                                             ? (
                                                 <div className="header__shape">
                                                     <div>
-                                                        <div className="quarter-circle quarter-circle--1 bg-zinc-300"></div>
-                                                        <div className="quarter-circle quarter-circle--2 bg-zinc-300"></div>
-                                                        <div className="quarter-circle quarter-circle--3 bg-zinc-300"></div>
-                                                        <div className="quarter-circle quarter-circle--4 bg-zinc-300"></div>
+                                                        <div className="quarter-circle quarter-circle--1 bg-[#313879]"></div>
+                                                        <div className="quarter-circle quarter-circle--2 bg-[#313879]"></div>
+                                                        <div className="quarter-circle quarter-circle--3 bg-[#313879]"></div>
+                                                        <div className="quarter-circle quarter-circle--4 bg-[#313879]"></div>
                                                     </div>
                                                 </div>
                                             )

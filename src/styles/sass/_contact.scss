@@ -42,7 +42,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: 'Righteous', cursive;
+        //font-family: 'Righteous', cursive;
         &:hover{
             animation: changeBackground 0.3s forwards, textColor 0.5s forwards;
         }

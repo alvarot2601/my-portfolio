@@ -96,13 +96,7 @@ function App() {
     mousemoveExecutions.current = 0;
     relativeScrolledValueRef.current = 0;//falta añadir en el keyhandler
     times_to_reach.current = (finalLimit.current - window.innerHeight) / pxPerScroll.current;
-
-    
-    
       relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
-      alert(relativePercentage.current * times_to_reach.current)
-      alert(times_to_reach.current)
-      alert(relativePercentage.current)
 }
 
  
@@ -364,9 +358,9 @@ function App() {
   }, []);
   //añado div que contenga a todos los elementos para meterle el smooth scroll
   return (
-    <div>
+    <div className=''>
       <div className='smooth-scroll-wrapper relative w-full md:w-[calc(100%-30px)]' ref={scroll}>
-        <div className='content '>
+        <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current}/>
           <Header />
           <Suspense fallback={<div>Loading...</div>}>

@@ -1,12 +1,12 @@
 @import "variables";
 .nav{
-    font-family: $first-font;
+    //font-family: $first-font;
     background: #000;
     color:#fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(16px, 7vw, 70px);
+    font-size: clamp(40px, 7vw, 70px);
     font-weight: 900;
     &__text{
         transition: all 0.70s ease-out;

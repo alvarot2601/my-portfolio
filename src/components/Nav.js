@@ -87,7 +87,7 @@ const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByS
     }, [properties]);
     return (
         <nav className="nav h-[30vh] md:h-[40vh] min-h-[150px] md:min-h-[280px]">
-            <p ref={myName} className="nav__text">ÁLVARO TAIBO AGUZA</p>
+            <p ref={myName} className="nav__text">My portfolio</p>
         </nav>
     );
 }

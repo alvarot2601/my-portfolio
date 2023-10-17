@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { send } from 'emailjs-com';
+import emailjs from '@emailjs/browser';
+
 import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 'react-icons/ai';
 //import gsap from "gsap";
 //import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -74,6 +76,21 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
     };
 
     const sendEmail = async (e) => {
+        e.preventDefault();
+
+    emailjs.sendForm('service_os2jvcn', 'template_q6ps3ho', form.current, '2R2QCBGBzuH1hvWpo')
+      .then((result) => {
+          alert("El email se ha enviado correctamente");
+      }, (error) => {
+        alert("Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!");
+        //console.log(error.text);
+      });
+
+
+
+
+
+
         e.preventDefault();
         let response = '';
         try {
@@ -172,7 +189,8 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
             <div className="contact__container pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px]">
                 <span className="little-title">¡CONTÁCTAME!</span>
                 <p>
-                    ¿Tienes alguna pregunta o idea? ¿Necesitas ayuda en algún proyecto?
+                    ¿Tienes alguna pregunta o idea?<br></br>
+                    ¿Necesitas ayuda en algún proyecto?<br></br>
                     ¡Contáctame!
                 </p>
                 <div className="contact__subcontainer w-full">
@@ -206,7 +224,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
                 </div>
             </div>
 
-            <form action="" method="post" className="mt-[4px] gap-[4px]">
+            <form ref={form} method="post" className="mt-[4px] gap-[4px]" onSubmit={sendEmail}>
                 <input ref={input1} type="text" id="name" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="from_name" placeholder={placeholder.input1} onChange={handleChange} onFocus={()=>handleFocus("input1")} onBlur={()=>handleBlur("input1")} value={toSend.from_name} required />
                 <input ref={input2} type="email" id="mail" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="user_mail" placeholder={placeholder.input2} onChange={handleChange} onFocus={()=>handleFocus("input2")} onBlur={()=>handleBlur("input2")} value={toSend.user_mail} required />
                 <textarea ref={textarea} id="message" className="px-[44px] py-[36px] rounded-[48px] lg:px-[78px] lg:py-[56px]" name="message" placeholder={placeholder.textarea} onChange={handleChange} onFocus={()=>handleFocus("textarea")} onBlur={()=>handleBlur("textarea")} value={toSend.message}>
