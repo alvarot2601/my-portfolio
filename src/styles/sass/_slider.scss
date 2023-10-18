@@ -1,16 +1,16 @@
 //slider
 @import "variables";
 .swiper-wrapper{
-    height: 200px;
+    //height: 200px;
     display: flex;
  }
  .slider{
-    width: 130%;
-    -ms-transform: rotate(20deg); /* IE 9 */
-    transform: rotate(-24deg);
+    //width: 130%;
+    //-ms-transform: rotate(20deg); /* IE 9 */
+    //transform: rotate(-24deg);
     .swiper-1, .swiper-2{
         will-change: transform;
-        transition: transform 1.5s;
+        transition: transform 0.75s ease-out;
     }
     .swiper-1{
         transform: translateX(-300px);
@@ -21,7 +21,7 @@
     }
     &__item{
         flex-shrink: 0;
-        width: 200px!important;
+        //width: 200px!important;
         height: 100%;
         border-radius: 500px;
         border: 1px solid #ffaed8;
@@ -30,7 +30,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 6rem;
+        //font-size: 6rem;
     }
     &__item-container{
         display: flex;

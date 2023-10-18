@@ -1,15 +1,12 @@
 .footer{
-    display: flex;
-    justify-content: space-around;
+    //display: flex;
+    //justify-content: space-around;
     color: #fff;
     padding: 50px;
-    font-size: 2rem;
+    
     font-weight: 900;
     gap:10px;
-    &__copyright{
-        display: flex;
-        align-items: center;
-    }
+   
     &__copyright-icon{
         margin: 0 10px;
     }

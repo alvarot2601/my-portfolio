@@ -1,31 +1,23 @@
 .header{
-    padding: 8px;
     display: grid;
-    gap:10px;
+    gap:6px;
     min-height: 380px;
-    height: -webkit-calc(60vh - 8px);
-    height: -moz-calc(60vh - 8px);
-    height: calc(60vh - 8px);
-    padding:8px;
+    height: -webkit-calc(60vh - 6px);
+    height: -moz-calc(60vh - 6px);
+    height: calc(60vh - 6px);
+    //padding:6px;
     &__card{
-        padding: 40px 50px 40px 50px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items:flex-end;
         height: 100%;
     }
     svg{
-        font-size: 1.5rem;
+        //font-size: 1.5rem;
     }
     .services-link{
         grid-column: 1/3;
         grid-row: 1 / span 2;
-        background-color: #00EB91; //005EFF
+        background-color: #A5A1FF; //005EFF
         position: relative;
-        p{
-            font-size: 6vw;   
-        }
+        
         a{
             color:#fff;
         }
@@ -75,8 +67,8 @@
         position: absolute;
         width: 100px; 
         height: 100px; 
-        border: 2px solid #1B1B1F; 
-        background: #1B1B1F;
+        //border: 2px solid #1B1B1F; 
+        //background: #1B1B1F;
         animation: spinAround 10s infinite linear;
     }
     .quarter-circle--1{
@@ -121,15 +113,13 @@
 }
 ///out
 .services-link, .contact-link, .projects-link, .about-link{
-    transition: 0.5s transform;
+    transition: 0.5s transform linear;
     overflow: hidden;
     span{
         font-size: 1.1rem;
         font-weight: 900;
     }
-    p{
-        font-size: 3vw;
-    }
+    
 }
 .services-link:hover, .contact-link:hover, .projects-link:hover, .about-link:hover{
     transform: scale(0.95); 
@@ -147,12 +137,12 @@
 .contact-link, .projects-link, .about-link{
     .marquee-animation{
         visibility: hidden;
-        animation: show 0.3s linear ;
-        transition: visibility 0.3s;
+        animation: show 0.5s linear ;
+        transition: visibility 0.5s ;
     }
     &:hover{
         .marquee-animation{
-            animation: hide 0.3s linear;
+            animation: hide 0.5s linear;
             visibility: visible;
         }
     }
@@ -205,11 +195,9 @@
     .header{
         height: auto;
         .services-link{
-            min-height: 300px;
+            //min-height: 300px;
         }
-        .contact-link, .projects-link, .about-link{
-            height: 200px;
-        }
+        
         .services-link{
             grid-column: 1/5;
         }

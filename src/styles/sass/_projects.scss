@@ -1,18 +1,16 @@
 @import "variables";
 .my-work{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 1.3rem;
-    flex-wrap: wrap;
-    gap:10px;
+    
+    //flex-direction: row;
+    //justify-content: center;
+    //font-weight: 600;
+    //font-size: 1.3rem;
     &__item{
         position: relative;
         padding: 54px 72px 54px 72px;
-        width: 49%;
-        transition: 0.7s;
-        min-height: 350px;
+        
+        transition: 0.75s ease-out;
+        
         &:hover{
             transform: scale(0.97);
         }
@@ -29,19 +27,19 @@
         gap:30px;
         justify-content: space-between;
         align-items: center;
-        transition: 0.7s;
+        transition: 0.75s ease-out;
     }
     &__row{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        //width: 100%;
+        //display: flex;
+        //flex-direction: row;
+        //align-items: center;
+        //justify-content: space-between;
         
     }
     &__logo, &__logo-svg{
         transform: scale(0.9);
-        transition: 0.7s;
+        transition: 0.75s ease-out;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -51,11 +49,11 @@
     }
     span{
         font-family: $first-font;
-        font-size: 1.3rem;
+        //font-size: 1.3rem;
     }
     img{
-        width: 100%;
-        max-width: 300px;
+        //width: 80%;
+        //max-width: 300px;
     }
     &__logo--1{
         width: 150px!important;
@@ -80,10 +78,15 @@
             font-size: 2rem;
         }
     }
-    .miranda{
+    .miranda, .complementos_ines{
         background-color: #fff;
         color: #000;
     }
+    .marinaspa{
+        background-color: #fda4af;
+        color: #e11d48;
+    }
+    
     
     svg{
         font-size: 2rem;
@@ -106,10 +109,8 @@
 
 @media screen and (max-width:1000px){
     .my-work{
-        
         &__item{
             padding: 34px 52px 34px 52px;
-            width: 49%;
         }
         &__item--0{
             width: 100%;
@@ -120,13 +121,13 @@
     .my-work{
         
         &__item--1, &__item--2, &__item--3, &__item--4{
-            border-radius: 500px;
+            //border-radius: 500px;
         }
         &__row{
-            justify-content: center;
+            //justify-content: center;
         }
         &__type, &__finish{
-             display: none;
+             //display: none;
         }
         
     }
