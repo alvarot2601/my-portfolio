@@ -70,4 +70,42 @@
         }
     }
 }
+.carrousel {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    p:nth-of-type(1){
+        animation-delay: 0s;
+    }
+    p:nth-of-type(2){
+        animation-delay: 5s;
+    }
+    &--hidden{
+        .frase:nth-of-type(1){
+            visibility: hidden;
+        }
+        .frase:nth-of-type(2){
+            visibility: hidden;
+        }  
+    }
+  }
+.frase {
+    //padding: 0 35px; /* Espaciado para el texto */
+    white-space: nowrap;
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    
+    transform: translate(0, -50%); 
+    opacity: 0;
+    animation: scroll 10s linear infinite;
+}
+
+
+
+  @keyframes scroll {
+    0%, 100% { opacity: 1; }
+    0% { transform: translate(100%, -50%); }
+    100% { transform: translate(-100%, -50%); }
+  }
 
