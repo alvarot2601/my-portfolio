@@ -203,7 +203,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
                                 +34 684 025 751
                             </a>
                         </div>
-                        <div className="w-full flex gap-5 items-center justify-center md:justify-start">
+                        <div className="w-full flex gap-5 items-center justify-center sm:justify-start">
                             <a href="https://www.linkedin.com/in/alvaro-taibo-developer/" target="_blank" aria-label="Link to my linkedin profile">
                                 <AiFillLinkedin />
                             </a>
