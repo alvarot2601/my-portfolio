@@ -1439,7 +1439,6 @@ form textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(40px, 7vw, 70px);
   font-weight: 900;
 }
 .nav__text {
