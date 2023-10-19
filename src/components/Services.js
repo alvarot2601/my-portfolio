@@ -68,7 +68,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
     const diferencia = useRef(null);
-    useEffect(() => {
+
+    const setInitialStates = ()=>{
         rowServiceHeight.current = rowServices1.current.offsetHeight;
         rowServices1YTop.current = rowServices1.current.getBoundingClientRect().top;
         rowServices1YBottom.current = rowServices1.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
@@ -84,7 +85,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
         circleTextYTop.current = circleTextServices.current.getBoundingClientRect().top;
         circleTextYBottom.current = circleTextServices.current.getBoundingClientRect().bottom;
         diferencia.current = (rowServices1YTop.current - (rowServices1YTop.current - (window.innerHeight / 2)));
-    }, []);
+    }
+    useEffect(() => {
+        window.addEventListener('load', setInitialStates)
+        return () => window.removeEventListener('load', setInitialStates);
+      }, []);
 
     //si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
     useEffect(() => {

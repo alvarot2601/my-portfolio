@@ -85,21 +85,21 @@ function App() {
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
     finalLimit.current = document.body.scrollHeight;
+    alert(finalLimit.current);
     //setFinalLimit(document.body.scrollHeight);
     scrollbarWrapper.current.style.height = window.innerHeight + "px";
     pxPerScroll.current = 150//(document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
     continueScrollingRef.current = false;
     scrollbarDifference.current = true;
     lastCoordY.current = 0;
-    allCoordY.current = [0, pxPerScroll.current, pxPerScroll.current*2, pxPerScroll.current*3, pxPerScroll.current*4, pxPerScroll.current*5, pxPerScroll.current*6, pxPerScroll.current*7, pxPerScroll.current*8,pxPerScroll.current*9, pxPerScroll.current*10, pxPerScroll.current*11, pxPerScroll.current*12,pxPerScroll.current*13, pxPerScroll.current*14, pxPerScroll.current*15, pxPerScroll.current*16, pxPerScroll.current*16, pxPerScroll.current*17, pxPerScroll.current*18, pxPerScroll.current*19, pxPerScroll.current*20];
+    allCoordY.current = [0, pxPerScroll.current, pxPerScroll.current * 2, pxPerScroll.current * 3, pxPerScroll.current * 4, pxPerScroll.current * 5, pxPerScroll.current * 6, pxPerScroll.current * 7, pxPerScroll.current * 8, pxPerScroll.current * 9, pxPerScroll.current * 10, pxPerScroll.current * 11, pxPerScroll.current * 12, pxPerScroll.current * 13, pxPerScroll.current * 14, pxPerScroll.current * 15, pxPerScroll.current * 16, pxPerScroll.current * 16, pxPerScroll.current * 17, pxPerScroll.current * 18, pxPerScroll.current * 19, pxPerScroll.current * 20];
     relativeAnimPercentage.current = 100;//%  
     mousemoveExecutions.current = 0;
     relativeScrolledValueRef.current = 0;//falta añadir en el keyhandler
     times_to_reach.current = (finalLimit.current - window.innerHeight) / pxPerScroll.current;
-      relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
-}
+    relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
+  }
 
- 
   const getStartCoordinates = (e) => {
     //continueScrolling = true;
     setContinueScrolling(true);
@@ -123,17 +123,17 @@ function App() {
   }
 
   const getActualCoordinates = (e) => {
-    
+
     const currentY = e.clientY;
-    
-    
+
+
     if (continueScrollingRef.current === true) {
       //alert(2)
       mousemoveExecutions.current += 1;
       setMovedByScroll(true);
       clientY.current = e.clientY;
       //alert('entra1')
-      if(mousemoveExecutions.current % 2 != 0 || mousemoveExecutions.current === 1) return;
+      if (mousemoveExecutions.current % 2 != 0 || mousemoveExecutions.current === 1) return;
       //alert('entra2')
       clientY2.current = e.clientY;
       let positionScrollbar = 0;
@@ -149,7 +149,7 @@ function App() {
         relativeAnimPercentage.current = 100;
         //scroll.current.style.transform = "translateY(" + ((finalLimit - window.innerHeight) * -1) + "px)";
       } else if (positionScrollbar < scrollbarStartLimit) {
-        
+
         positionScrollbar = scrollbarStartLimit;
         setRelativeScrolledValueState(positionScrollbar);
         setCoordY(0);
@@ -160,30 +160,30 @@ function App() {
         //alert(3)
         //percentage = variable para calcular el porcentaje relativo entre la distancia recorrida por la barra de scroll y el contenido de la web
         let percentage;
-        if(scrollbar.current.getBoundingClientRect().top===0){
+        if (scrollbar.current.getBoundingClientRect().top === 0) {
           percentage = -(1 * 100) / realScrollWrapperHeight;
-        }else{
+        } else {
           percentage = (scrollbar.current.getBoundingClientRect().top * 100) / realScrollWrapperHeight;
         }
-        
+
         const equivalentPercentage = -((percentage * (finalLimit.current - window.innerHeight)) / 100);
         setCoordY(equivalentPercentage);
         coordYref.current = equivalentPercentage;
         setRelativeScrolledValueState(positionScrollbar);
-        var value ;
-        for(let i=0;i<allCoordY.current.length-1;i++){
-          if(allCoordY.current[i] === Math.abs(equivalentPercentage)){
+        var value;
+        for (let i = 0; i < allCoordY.current.length - 1; i++) {
+          if (allCoordY.current[i] === Math.abs(equivalentPercentage)) {
             let valor = allCoordY.current[i];
             relativeAnimPercentage.current = 100;
             break;
-          }else if(allCoordY.current[i] < Math.abs(equivalentPercentage) && allCoordY.current[i+1] > Math.abs(equivalentPercentage)){
-            let valor = allCoordY.current[i+1];
+          } else if (allCoordY.current[i] < Math.abs(equivalentPercentage) && allCoordY.current[i + 1] > Math.abs(equivalentPercentage)) {
+            let valor = allCoordY.current[i + 1];
             relativeAnimPercentage.current = (equivalentPercentage * 100) / valor;
             break;
           }
         }
       }
-      
+
       //scrollbar.current.style.transform = "translateY(" + (positionScrollbar) + "px)";
 
       //para guardar las coordenadas y utilizarlas a la hora de hacer scroll utilizando la rueda del mouse
@@ -193,14 +193,14 @@ function App() {
       //setEquivalentPercentage(equivalentPercentageVar);
       //setCoordY(y);
     }
-    
+
   }
 
 
 
   const smooth = debounce2((e) => {
     let y = coordY;
-    setMovedByScroll(false); 
+    setMovedByScroll(false);
     let relativeScrolledValue = relativeScrolledValueState;
     if (e.wheelDelta < 0 && y <= initialLimit) {
       //&& (Math.abs(y) + window.innerHeight) < finalLimit
@@ -218,7 +218,7 @@ function App() {
         //setReachedLimitBottom(true);
       }
     } else if (e.wheelDelta > 0 && Math.abs(y) < finalLimit.current && y < 0) {
-      
+
       y += pxPerScroll.current;
       relativeScrolledValue -= relativePercentage.current;
       //setCoordY(coordY + pxPerScroll);
@@ -244,15 +244,15 @@ function App() {
 
 
 
-  
+
   useEffect(() => {
-   if(clientY.current > clientY2.current){
+    if (clientY.current > clientY2.current) {
       //alert('mayor')
       mousemoveExecutions.current = 1;
-    }else if(clientY.current < clientY2.current){
+    } else if (clientY.current < clientY2.current) {
       mousemoveExecutions.current = 1;
       //alert('menor')
-    }else if(clientY.current == clientY2.current){
+    } else if (clientY.current == clientY2.current) {
       //alert('igual')
     }
   }, [clientY.current]);
@@ -262,22 +262,22 @@ function App() {
     return () => window.removeEventListener('load', setInitialStates);
   }, []);
 
- /* useEffect(() => {
-    //añado mousemove al object window para que el usuario pueda seguir haciendo scroll sin tener el raton sobre la scrollbar
-    window.addEventListener("mousemove", getActualCoordinates);
-
-    return () => window.removeEventListener('mousemove', getActualCoordinates);
-  }, []);
-  useEffect( () => {
-    scrollbar.current.addEventListener("mousedown", getStartCoordinates);
-    return () => scrollbar.current.removeEventListener('mousedown', getStartCoordinates);
-  }, []);
-
-
-  useEffect(() => {
-    window.addEventListener("mouseup", getEndCoordinates);
-    return () => window.removeEventListener('mouseup', getEndCoordinates);
-  }, []);*/
+  /* useEffect(() => {
+     //añado mousemove al object window para que el usuario pueda seguir haciendo scroll sin tener el raton sobre la scrollbar
+     window.addEventListener("mousemove", getActualCoordinates);
+ 
+     return () => window.removeEventListener('mousemove', getActualCoordinates);
+   }, []);
+   useEffect( () => {
+     scrollbar.current.addEventListener("mousedown", getStartCoordinates);
+     return () => scrollbar.current.removeEventListener('mousedown', getStartCoordinates);
+   }, []);
+ 
+ 
+   useEffect(() => {
+     window.addEventListener("mouseup", getEndCoordinates);
+     return () => window.removeEventListener('mouseup', getEndCoordinates);
+   }, []);*/
 
 
 
@@ -292,22 +292,22 @@ function App() {
     }
   });
 
-  
+
 
   useEffect(() => {
     scroll.current.style.transform = "translateY(" + coordY + "px)";
     scrollbar.current.style.transform = "translateY(" + relativeScrolledValueState + "px)";
-    if(lastCoordY.current < relativeScrolledValueState){
+    if (lastCoordY.current < relativeScrolledValueState) {
       setWheelDelta(-150);
       lastCoordY.current = relativeScrolledValueState;
-    }else if(lastCoordY.current > relativeScrolledValueState){
+    } else if (lastCoordY.current > relativeScrolledValueState) {
       setWheelDelta(150);
       lastCoordY.current = relativeScrolledValueState;
     }
     console.log('coordY, ' + coordY)
   }, [coordY, relativeScrolledValueState]);
 
-  const resize = ()=>{
+  const resize = () => {
     finalLimit.current = document.body.scrollHeight;
     pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / times_to_reach.current;
     scrollbarWrapper.current.style.height = document.body.scrollHeight + 'px';
@@ -315,19 +315,19 @@ function App() {
     relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
     //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
   }
-  useEffect(()=>{
-    window.addEventListener("resize",resize);
-    return ()=> window.removeEventListener("resize", resize);
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
- 
 
-  const keydownHandle = (e)=>{
+
+  const keydownHandle = (e) => {
     let relativeScrolledValue = relativeScrolledValueRef.current;
-    if(e.keyCode=== 40){//abajo
-      if(Math.abs(coordYref.current - pxPerScroll.current) > finalLimit.current - window.innerHeight){
+    if (e.keyCode === 40) {//abajo
+      if (Math.abs(coordYref.current - pxPerScroll.current) > finalLimit.current - window.innerHeight) {
         coordYref.current = - (finalLimit.current - window.innerHeight);
         relativeScrolledValue = window.innerHeight - scrollBarHeight;
-      }else{
+      } else {
         coordYref.current -= pxPerScroll.current;
         relativeScrolledValue += relativePercentage.current;
       }
@@ -335,12 +335,12 @@ function App() {
       setRelativeScrolledValueState(relativeScrolledValue);
       setCoordY(coordYref.current);
       setWheelDelta(-150);
-    }else if(e.keyCode === 38){
-      
-      if(coordYref.current + pxPerScroll.current > 0){
+    } else if (e.keyCode === 38) {
+
+      if (coordYref.current + pxPerScroll.current > 0) {
         relativeScrolledValue = 0;
         coordYref.current = 0;
-      }else{
+      } else {
         coordYref.current += pxPerScroll.current;
         relativeScrolledValue -= relativePercentage.current;
       }
@@ -352,19 +352,18 @@ function App() {
     //alert(relativeScrolledValue)
     //alert(relativeScrolledValueState)
   }
-  useEffect(()=>{
-    if(window.innerWidth>=768){
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
       window.addEventListener("keydown", keydownHandle);
-      return ()=> window.addEventListener("keydown", keydownHandle);
+      return () => window.addEventListener("keydown", keydownHandle);
     }
-      
   }, []);
   //añado div que contenga a todos los elementos para meterle el smooth scroll
   return (
     <div className=''>
       <div className='smooth-scroll-wrapper relative w-full md:w-[calc(100%-30px)]' ref={scroll}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
-          <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current}/>
+          <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header />
           <Suspense fallback={<div>Loading...</div>}>
             <Services coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />

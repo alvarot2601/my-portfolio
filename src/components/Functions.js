@@ -3,8 +3,7 @@ import React, { useEffect } from "react";
 
 //export const pxPerScroll = 100;
 export const halfviewportWidth = window.innerWidth / 2;
-//variable para igualar el valor de Y para que llegue exactamente al final de la pagina
-export const documentHeight = document.body.scrollHeight - window.innerHeight;
+
 //variable que almacena la altura de las filas de los slides
 
 export let y = 0;
