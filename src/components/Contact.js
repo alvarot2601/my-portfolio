@@ -3,9 +3,7 @@ import { send } from 'emailjs-com';
 import emailjs from '@emailjs/browser';
 
 import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 'react-icons/ai';
-//import gsap from "gsap";
-//import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { debounce, circleValue, halfviewportWidth} from "./Functions";
+import {circleValue} from "./Functions";
 const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
     const input1 = useRef(null);
     const input2 = useRef(null);
