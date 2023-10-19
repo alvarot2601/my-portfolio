@@ -36,6 +36,7 @@ function App() {
   const scrollbar = useRef(null);
   //variable que almacena la altura de la barra de scroll
   const scrollBarHeight = 100;
+  const scrollbarWidth = 100;
   //altura real del contenedor de la barra de scroll
   const realScrollWrapperHeight = window.innerHeight - scrollBarHeight;
   //asignamos al cargar la pagina el height del wrapper de la scrollbar
@@ -366,12 +367,22 @@ function App() {
     //alert(relativeScrolledValueState)
   }
   useEffect(() => {
-    if (window.innerWidth >= 768) {
+    if (!isSmallScreen) {
       window.addEventListener("keydown", keydownHandle);
       return () => window.addEventListener("keydown", keydownHandle);
     }
-  }, []);
-  //añado div que contenga a todos los elementos para meterle el smooth scroll
+  }, [isSmallScreen]);
+  const moveScroll = () => {
+    const percentage = ((window.scrollY) * 100) / (document.body.scrollHeight - window.innerHeight);
+    const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
+    scrollbar.current.style.transform = "translateX(" + relativeValue + "px)";
+  }
+  useEffect(()=>{
+    if(isSmallScreen){
+      window.addEventListener("scroll", moveScroll);
+      return ()=> window.removeEventListener("scroll", moveScroll);
+    }
+  }, [isSmallScreen, finalLimit]);
   return (
     <div className=''>
       <div className='smooth-scroll-wrapper relative w-full md:w-[calc(100%-30px)]' ref={scroll}>
@@ -385,9 +396,9 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-2 md:top-0 h-[30px] md:h-full hidden sm:block md:block w-full md:w-[30px] bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 md:top-0 h-[30px] md:h-full hidden sm:block md:block w-full md:w-[30px] bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
-          <div className='flex flex-row md:flex-col w-full md:justify-center md:items-center absolute text-sm font-mono' >
+          <div className='flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>
