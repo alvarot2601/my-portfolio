@@ -80,9 +80,12 @@ function App() {
   //estado para almacenar e.wheeldelta y poder pasarselo a otros componentes
   const [wheelDelta, setWheelDelta] = useState(null);
   const [lastWheelDelta, setLastWheelDelta] = useState(0);
+  //estado para saber si la pantalla es inferior a 768px o no
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
     if(window.innerWidth >= 768){
+      setIsSmallScreen(false);
       const today = new Date();
       alert("Hacer scroll está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
     }
@@ -372,7 +375,7 @@ function App() {
       <div className='smooth-scroll-wrapper relative w-full md:w-[calc(100%-30px)]' ref={scroll}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
-          <Header />
+          <Header isSmallScreen={isSmallScreen}/>
             <Services coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
             <Projects />
             <WhoAmI coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
