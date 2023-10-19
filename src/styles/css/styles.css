@@ -185,20 +185,6 @@
     grid-row: 4;
   }
 }
-.container {
-  border-radius: 86px;
-  padding: 48px 48px 54px 72px;
-}
-.container--header {
-  position: relative;
-}
-
-@media screen and (max-width: 1000px) {
-  .container {
-    border-radius: 48px;
-    padding: 28px 28px 34px 42px;
-  }
-}
 main {
   display: grid;
   flex-direction: row;
