@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import SwiperCore, { FreeMode, Autoplay } from "swiper";
+import SwiperCore, {Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -7,21 +7,17 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 
-//import { gsap} from "gsap";
-//import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-import { SiLiberapay, SiRedux, SiTailwindcss } from 'react-icons/si';
+import {SiRedux, SiTailwindcss } from 'react-icons/si';
 import { FaReact, FaPhp, FaFigma } from 'react-icons/fa';
 
-import { BsBootstrap, BsBootstrapFill, BsWordpress } from 'react-icons/bs';
+import {BsBootstrapFill, BsWordpress } from 'react-icons/bs';
 import { IoLogoJavascript } from 'react-icons/io';
 import { SiSass, SiJquery } from 'react-icons/si';
 
 import { DiMysql } from 'react-icons/di';
 
 import { AiFillGithub } from 'react-icons/ai';
-
-import {circleAnimation, halfviewportWidth} from "./Functions";
 
 SwiperCore.use([Autoplay])
 

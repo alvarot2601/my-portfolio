@@ -1,6 +1,5 @@
 import React from "react";
 import oxygenShop from "../assets/img/eye.jpg";
-//import unsplashProject from "../assets/img/unsplash-project1.png";
 import hotelMirandaProject from "../assets/img/hotel-miranda-logo.svg";
 import umediProject from "../assets/img/LOGO-UMEDI.png";
 import andelProject from "../assets/img/logo-andel.svg";
