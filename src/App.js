@@ -372,15 +372,27 @@ function App() {
       return () => window.addEventListener("keydown", keydownHandle);
     }
   }, [isSmallScreen]);
-  const moveScroll = () => {
+  const moveScrollbar = () => {
     const percentage = ((window.scrollY) * 100) / (document.body.scrollHeight - window.innerHeight);
+    const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
+    scrollbar.current.style.transform = "translateX(" + relativeValue + "px)";
+  }
+  const scrollPage = () => {
+    alert(3)
+    const percentage = ((window.innerWidth - scrollbarWidth) * 100) / (scrollbar.current.getBoundingClientRect().left);
     const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
     scrollbar.current.style.transform = "translateX(" + relativeValue + "px)";
   }
   useEffect(()=>{
     if(isSmallScreen){
-      window.addEventListener("scroll", moveScroll);
-      return ()=> window.removeEventListener("scroll", moveScroll);
+      scrollbar.current.addEventListener("touchmove", scrollPage);
+      scrollbar.current.removeEventListener("touchmove", scrollPage);
+    }
+  });
+  useEffect(()=>{
+    if(isSmallScreen){
+      window.addEventListener("scroll", moveScrollbar);
+      return ()=> window.removeEventListener("scroll", moveScrollbar);
     }
   }, [isSmallScreen, finalLimit]);
   return (
