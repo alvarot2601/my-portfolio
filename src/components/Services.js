@@ -391,7 +391,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
         }
       });
     return (
-        <section className="services overflow-x-hidden">
+        <section className="services overflow-x-hidden" id="services">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
                     <span className="little-title">LO QUE HAGO</span>
