@@ -145,6 +145,7 @@ function App() {
         positionScrollbar = scrollbarEndLimit;
         setRelativeScrolledValueState(positionScrollbar);
         setCoordY(-(finalLimit.current - window.innerHeight));
+        coordYref.current = -(finalLimit.current - window.innerHeight);
         relativeAnimPercentage.current = 100;
         //scroll.current.style.transform = "translateY(" + ((finalLimit - window.innerHeight) * -1) + "px)";
       } else if (positionScrollbar < scrollbarStartLimit) {
@@ -152,6 +153,7 @@ function App() {
         positionScrollbar = scrollbarStartLimit;
         setRelativeScrolledValueState(positionScrollbar);
         setCoordY(0);
+        coordYref.current = 0;
         relativeAnimPercentage.current = 100;
         //scroll.current.style.transform = "translateY(0px)";
       } else {
@@ -166,6 +168,7 @@ function App() {
         
         const equivalentPercentage = -((percentage * (finalLimit.current - window.innerHeight)) / 100);
         setCoordY(equivalentPercentage);
+        coordYref.current = equivalentPercentage;
         setRelativeScrolledValueState(positionScrollbar);
         var value ;
         for(let i=0;i<allCoordY.current.length-1;i++){
@@ -228,6 +231,7 @@ function App() {
     }
     setWheelDelta(e.wheelDelta);
     setCoordY(y);
+    coordYref.current = y;
     setRelativeScrolledValueState(relativeScrolledValue);
   }, delay);
 
@@ -240,21 +244,7 @@ function App() {
 
 
 
-  /*useEffect(() => {
-    scroll.current.addEventListener('mousewheel', cancelScroll)
-    return () => scroll.removeEventListener('mousewheel', cancelScroll);
-  }, []);
-
-  useEffect(() => {
-    scroll.current.addEventListener('DOMMouseScroll', cancelScroll)
-    return () => scroll.removeEventListener('DOMMouseScroll', cancelScroll);
-  }, []);
-
-  useEffect(() => {
-    scroll.current.addEventListener('wheel', cancelScroll)
-    return () => scroll.removeEventListener('wheel', cancelScroll);
-  }, []);*/
-
+  
   useEffect(() => {
    if(clientY.current > clientY2.current){
       //alert('mayor')
@@ -272,7 +262,7 @@ function App() {
     return () => window.removeEventListener('load', setInitialStates);
   }, []);
 
-  useEffect(() => {
+ /* useEffect(() => {
     //añado mousemove al object window para que el usuario pueda seguir haciendo scroll sin tener el raton sobre la scrollbar
     window.addEventListener("mousemove", getActualCoordinates);
 
@@ -287,7 +277,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("mouseup", getEndCoordinates);
     return () => window.removeEventListener('mouseup', getEndCoordinates);
-  }, []);
+  }, []);*/
 
 
 
@@ -332,31 +322,42 @@ function App() {
  
 
   const keydownHandle = (e)=>{
-    
+    let relativeScrolledValue = relativeScrolledValueRef.current;
     if(e.keyCode=== 40){//abajo
       if(Math.abs(coordYref.current - pxPerScroll.current) > finalLimit.current - window.innerHeight){
         coordYref.current = - (finalLimit.current - window.innerHeight);
+        relativeScrolledValue = window.innerHeight - scrollBarHeight;
       }else{
         coordYref.current -= pxPerScroll.current;
+        relativeScrolledValue += relativePercentage.current;
       }
-      
+      relativeScrolledValueRef.current = relativeScrolledValue;
+      setRelativeScrolledValueState(relativeScrolledValue);
       setCoordY(coordYref.current);
       setWheelDelta(-150);
     }else if(e.keyCode === 38){
       
       if(coordYref.current + pxPerScroll.current > 0){
-        
+        relativeScrolledValue = 0;
         coordYref.current = 0;
       }else{
         coordYref.current += pxPerScroll.current;
+        relativeScrolledValue -= relativePercentage.current;
       }
+      relativeScrolledValueRef.current = relativeScrolledValue;
       setCoordY(coordYref.current);
       setWheelDelta(150);
+      setRelativeScrolledValueState(relativeScrolledValue);
     }
+    //alert(relativeScrolledValue)
+    //alert(relativeScrolledValueState)
   }
   useEffect(()=>{
+    if(window.innerWidth>=768){
       window.addEventListener("keydown", keydownHandle);
       return ()=> window.addEventListener("keydown", keydownHandle);
+    }
+      
   }, []);
   //añado div que contenga a todos los elementos para meterle el smooth scroll
   return (

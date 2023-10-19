@@ -25,11 +25,12 @@ const Header = () => {
     const aboutMeLinkIcon = useRef(null);
     const projectsLinkIcon = useRef(null);
     const info = [
-        ['services-link', 'Ver mis servicios', <TfiArrowDown className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Especializado en React.', 'mywho'],
-        ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Algunos de mis proyectos. ', 'my-work'],
-        ['contact-link', 'Contáctame', <IoMdMailUnread className="order-0 md:order-1 text-3xl lg:text-4xl" />, ' ¿Quieres hablar de negocios? !Contacta conmigo! '],
-        ['about-link', 'Sobre mí', <HiIdentification className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Aprende más sobre mí. ']
+        ['services-link', 'Ver mis servicios', <TfiArrowDown className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Especializado en React.', 'services'],
+        ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Algunos de mis proyectos. ', 'projects'],
+        ['contact-link', 'Contáctame', <IoMdMailUnread className="order-0 md:order-1 text-3xl lg:text-4xl" />, ' ¿Quieres hablar de negocios? !Contacta conmigo! ', 'contact'],
+        ['about-link', 'Sobre mí', <HiIdentification className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Aprende más sobre mí. ', 'aboutme']
     ];
+    
 
     const hideText = (e) => {
         //ejecutamos solo si la pantalla es mayor a x px
@@ -77,7 +78,6 @@ const Header = () => {
 
 
     return (
-        <BrowserRouter>
             <header className="header">
                 {
                     info.map((link, index) => {
@@ -128,6 +128,7 @@ const Header = () => {
                         }
                         return (
                             <div
+                              
                                 ref={
                                     (link[0] == 'projects-link')
                                         ? projectsLink
@@ -138,7 +139,7 @@ const Header = () => {
                                                 : servicesLink
                                 }
                                 key={`div-${index}`} className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
-                                <Link to={`#${link[4]}`} className="flex flex-col items-end h-full ">
+                                <a href={`#${link[4]}`} className="flex flex-col items-end h-full ">
 
                                     {
                                         (link[0] === 'services-link')
@@ -173,7 +174,7 @@ const Header = () => {
                                                 : ''
                                         }
                                     </div>
-                                </Link>
+                                </a>
                                 <p className={`frase ${frasePaddingClass} ${fraseFontSizeClass} ${fraseColorClass} font-black`} >{link[3]}</p>
                                 <p className={`frase ${frasePaddingClass} ${fraseFontSizeClass} ${fraseColorClass} font-black`}>{link[3]}</p>
                             </div>
@@ -181,7 +182,6 @@ const Header = () => {
                     })
                 }
             </header>
-        </BrowserRouter>
     );
 }
 export default Header;
