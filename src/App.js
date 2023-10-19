@@ -83,6 +83,12 @@ function App() {
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
     finalLimit.current = document.body.scrollHeight;
+    setTimeout(()=>{
+      if(finalLimit.current !== document.body.scrollHeight){
+        finalLimit.current = document.body.scrollHeight;
+        alert(4)
+      } 
+    }, 500);
     alert(finalLimit.current);
     //setFinalLimit(document.body.scrollHeight);
     scrollbarWrapper.current.style.height = window.innerHeight + "px";
