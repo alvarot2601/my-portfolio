@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { opacityValue, scaleValue } from "./Functions";
+import {scaleValue } from "./Functions";
 const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByScroll, mousemoveExecutions }) => {
     const myName = useRef(null);
     const myNameYTop = useRef(null);
