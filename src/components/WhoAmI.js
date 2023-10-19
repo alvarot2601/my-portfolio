@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "./Slider";
-import {pxPerScroll } from "./Functions";
 
 const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
     

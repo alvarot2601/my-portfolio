@@ -4,12 +4,9 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 import { SiAntdesign, SiRedux } from "react-icons/si";
 import { FaLaptopCode, FaReact, FaPhp } from "react-icons/fa";
 import { TbBrandJavascript } from "react-icons/tb";
-//import gsap from "gsap";
-//import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
-import { px } from "framer-motion";
 const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
 
     //tamaño de las filas de los slides de servicios. Para q la animacion funcione bien la altura debe ser múltiplo de 150, que es el valor actual de lo q baja en cada scroleo
