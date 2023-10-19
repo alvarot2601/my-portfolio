@@ -1,14 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
-import { IoIosContact } from 'react-icons/io';
 import { HiIdentification } from 'react-icons/hi';
 import { TfiArrowDown } from 'react-icons/tfi';
 import { FaMobile } from 'react-icons/fa';
-import shape1 from '../assets/img/shape-1.svg';
-import shape2 from '../assets/img/shape-2.svg';
-import shape3 from '../assets/img/shape-3.svg';
 import { IoMdMailUnread } from 'react-icons/io';
-import { BrowserRouter, Link } from "react-router-dom";
 
 const Header = ({isSmallScreen}) => {
     const [actualLink, setActualLink] = useState(0);
