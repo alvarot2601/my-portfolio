@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/my-portfolio/static/css/main.89c9c723.css",
-    "main.js": "/my-portfolio/static/js/main.4ba3017a.js",
+    "main.js": "/my-portfolio/static/js/main.83bee2ef.js",
     "static/js/787.1ed0c42c.chunk.js": "/my-portfolio/static/js/787.1ed0c42c.chunk.js",
     "static/media/Satoshi-VariableItalic.ttf": "/my-portfolio/static/media/Satoshi-VariableItalic.9519fea9567e2405bc08.ttf",
     "static/media/Satoshi-Variable.ttf": "/my-portfolio/static/media/Satoshi-Variable.536fda9b164542087fc7.ttf",
@@ -46,11 +46,11 @@
     "static/media/shape-3.svg": "/my-portfolio/static/media/shape-3.3a272a2fbe80d58e579625befb3ec1ba.svg",
     "static/media/shape-2.svg": "/my-portfolio/static/media/shape-2.7a89f3e4b650d926d7c72d7b9029e57f.svg",
     "main.89c9c723.css.map": "/my-portfolio/static/css/main.89c9c723.css.map",
-    "main.4ba3017a.js.map": "/my-portfolio/static/js/main.4ba3017a.js.map",
+    "main.83bee2ef.js.map": "/my-portfolio/static/js/main.83bee2ef.js.map",
     "787.1ed0c42c.chunk.js.map": "/my-portfolio/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.89c9c723.css",
-    "static/js/main.4ba3017a.js"
+    "static/js/main.83bee2ef.js"
   ]
 }
