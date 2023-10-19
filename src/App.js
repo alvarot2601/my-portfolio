@@ -82,14 +82,15 @@ function App() {
   const [lastWheelDelta, setLastWheelDelta] = useState(0);
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
+    const today = new Date();
+    alert("Para hacer scroll debes pulsar sobre las fechas del teclado o con la rueda del cursor. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
     finalLimit.current = document.body.scrollHeight;
-    setTimeout(()=>{
+    /*setTimeout(()=>{
       if(finalLimit.current !== document.body.scrollHeight){
         finalLimit.current = document.body.scrollHeight;
-        alert(4)
+        //alert(4)
       } 
-    }, 500);
-    alert(finalLimit.current);
+    }, 500);*/
     //setFinalLimit(document.body.scrollHeight);
     scrollbarWrapper.current.style.height = window.innerHeight + "px";
     pxPerScroll.current = 150//(document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
@@ -237,6 +238,7 @@ function App() {
     setCoordY(y);
     coordYref.current = y;
     setRelativeScrolledValueState(relativeScrolledValue);
+    relativeScrolledValueRef.current = relativeScrolledValue;
   }, delay);
 
 
