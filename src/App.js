@@ -16,11 +16,9 @@ import { debounce, initialLimit, finalLimit, delay, debounce2 } from './componen
 import { px } from 'framer-motion';
 import userEvent from '@testing-library/user-event';
 
-const Contact = lazy(() => import('./components/Contact'));
-const Projects = lazy(() => import('./components/Projects'));
-//const Services = lazy(()=>import('./components/Services'));
-//const WhoAmI = lazy(()=>import('./components/WhoAmI'));
-const Footer = lazy(() => import('./components/Footer'));
+import Contact from './components/Contact';
+import Projects from './components/Projects';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -365,21 +363,11 @@ function App() {
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header />
-          <Suspense fallback={<div>Loading...</div>}>
             <Services coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
             <Projects />
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
             <WhoAmI coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
             <Contact coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
             <Footer />
-          </Suspense>
         </div>
       </div>
       <div ref={scrollbarWrapper} id="scrollbar-wrapper" className=' fixed right-0 top-0 h-full hidden md:block w-[30px] bg-slate-50 z-10'>
