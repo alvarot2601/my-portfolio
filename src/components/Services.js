@@ -113,7 +113,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
         }
     }, [coordY]);
 
-
+    
     const servicesAnimation2 = (wheelDelta, y, element, coordYTop, coordYBottom, transform, translateRow, translateRowSetter, value, animatedElement1 = null, animatedElement2 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
         if (wheelDelta < 0 && coordYTop < limitBottom && coordYBottom > limitTop) {
             if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
@@ -224,13 +224,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) * -1 + "px" + ")";
         }
     }, [translateRow1]);
-    /*useEffect(() => {
-        if (translateSmallRow1 < 0) setTranslateSmallRow1(0);
-        else if (translateSmallRow1 > halfviewportWidth) setTranslateSmallRow1(halfviewportWidth);
-        //alert(translateSmallRow1)
-        serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow1) + "px" + ")";
-
-    }, [translateSmallRow1]);*/
+   
     useEffect(() => {
         if(isSmallScreen){
             if (translateRow2 < 0) setTranslateRow2(0);
@@ -243,13 +237,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) * -1 + "px" + ")";
         }
     }, [translateRow2]);
-    /*useEffect(() => {
-        if (translateSmallRow2 < 0) setTranslateSmallRow2(0);
-        else if (translateSmallRow2 > halfviewportWidth) setTranslateSmallRow2(halfviewportWidth);
-        //alert(translateSmallRow2)
-        serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow2) + "px" + ")";
-
-    }, [translateSmallRow2]);*/
+   
     useEffect(() => {
         if(isSmallScreen){
             if (translateRow3 < 0) setTranslateRow3(0);
@@ -262,13 +250,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) * -1 + "px" + ")";
         }
     }, [translateRow3]);
-    /*useEffect(() => {
-        if (translateSmallRow3 < 0) setTranslateSmallRow3(0);
-        else if (translateSmallRow3 > halfviewportWidth) setTranslateSmallRow3(halfviewportWidth);
-        //alert(translateSmallRow2)
-        serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow3) + "px" + ")";
-
-    }, [translateSmallRow3]);*/
+    
     useEffect(() => {
         if(isSmallScreen){
             if (translateRow4 < 0) setTranslateRow4(0);
@@ -281,24 +263,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) * -1 + "px" + ")";
         }
     }, [translateRow4]);
-    /*useEffect(() => {
-        if (translateSmallRow4 < 0) setTranslateSmallRow4(0);
-        else if (translateSmallRow4 > halfviewportWidth) setTranslateSmallRow4(halfviewportWidth);
-        //alert(translateSmallRow2)
-        serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow4) + "px" + ")";
-
-    }, [translateSmallRow4]);
-*/
-    //efecto del texto para que de vueltas
-    useEffect(() => {
-
-        /*//para eliminar el smooth scroll en pantallas que no pertenezcan a pc
-        if (window.innerWidth >= 768) {
-            document.body.addEventListener("wheel", smooth);
-            return () => document.body.remove("wheel", smooth);
-        }*/
-    }, []);
-
+  
+    
     
 
     const servicesArray = [
@@ -367,6 +333,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             ["Siempre estaré", "ENCANTADO DE AYUDARTE"],
         ],
     ];
+    
 
     useEffect(() => {
         circleText.current.innerHTML = circleText.current.innerHTML
@@ -391,6 +358,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
                     rotate: 360
                   });*/
     }, []);
+    
 
 
     const servicesTouchAnimation = (element, row, topCoord) =>{
@@ -412,12 +380,20 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
         servicesTouchAnimation(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
         servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
     }
+
+    useEffect(()=>{
+        if(isSmallScreen){
+            window.addEventListener("scroll", touchAnimation);
+            return () => window.removeEventListener("scroll", touchAnimation);
+        }
+    }, []);
+   
     useEffect(() => {
-        if (window.innerWidth < 768) {
+        if (isSmallScreen) {
           document.body.addEventListener("touchmove", touchAnimation);
           return () => document.body.removeEventListener("touchmove", touchAnimation);
         }
-      });
+      }, []);
     return (
         <section className="services overflow-x-hidden" id="services">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">

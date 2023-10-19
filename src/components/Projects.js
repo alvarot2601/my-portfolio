@@ -42,7 +42,6 @@ const Projects = () => {
           'Proyecto terminado',
           'Creado en bootcamp'
         ],
-        
         [
           'umedi',
           umediProject,
