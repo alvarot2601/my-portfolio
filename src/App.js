@@ -262,7 +262,7 @@ function App() {
     return () => window.removeEventListener('load', setInitialStates);
   }, []);
 
-  useEffect(() => {
+ /* useEffect(() => {
     //añado mousemove al object window para que el usuario pueda seguir haciendo scroll sin tener el raton sobre la scrollbar
     window.addEventListener("mousemove", getActualCoordinates);
 
@@ -277,7 +277,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("mouseup", getEndCoordinates);
     return () => window.removeEventListener('mouseup', getEndCoordinates);
-  }, []);
+  }, []);*/
 
 
 
