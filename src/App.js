@@ -1,21 +1,15 @@
-import { React, Suspense, lazy, useEffect, useReducer, useRef, useState } from 'react';
+import { React, useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
 import Nav from './components/Nav';
-//import Projects from './components/Projects';
 import WhoAmI from './components/WhoAmI';
 import Services from './components/Services';
-//import Footer from './components/Footer';
 
-//cant use lazy in services and whoami because page doesnt scroll
 
 
 import './App.css';
 import './styles/css/styles.css';
-import { debounce, initialLimit, finalLimit, delay, debounce2 } from './components/Functions';
-import { px } from 'framer-motion';
-import userEvent from '@testing-library/user-event';
-
+import {initialLimit, delay, debounce2 } from './components/Functions';
 import Contact from './components/Contact';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
