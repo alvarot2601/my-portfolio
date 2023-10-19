@@ -370,7 +370,7 @@ function App() {
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header isSmallScreen={isSmallScreen}/>
-            <Services coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+            <Services isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
             <Projects />
             <WhoAmI coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
             <Contact coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />

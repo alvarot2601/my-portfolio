@@ -7,7 +7,7 @@ import { TbBrandJavascript } from "react-icons/tb";
 
 import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
-const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
+const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
 
     //tamaño de las filas de los slides de servicios. Para q la animacion funcione bien la altura debe ser múltiplo de 150, que es el valor actual de lo q baja en cada scroleo
     const rowServiceHeight = useRef(null);
@@ -53,19 +53,24 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             : - (window.innerWidth / 2) / necessaryScrollMoves;
 
 
-    const [translateRow1, setTranslateRow1] = useState(0);//window.innerWidth / 2 lo cambio x 0 de mommento
-    const [translateSmallRow1, setTranslateSmallRow1] = useState(window.innerWidth / 2);
-    const [translateRow2, setTranslateRow2] = useState(0);
-    const [translateSmallRow2, setTranslateSmallRow2] = useState(window.innerWidth / 2);
-    const [translateRow3, setTranslateRow3] = useState(0);
-    const [translateSmallRow3, setTranslateSmallRow3] = useState(window.innerWidth / 2);
-    const [translateRow4, setTranslateRow4] = useState(0);
-    const [translateSmallRow4, setTranslateSmallRow4] = useState(window.innerWidth / 2);
+    const [translateRow1, setTranslateRow1] = useState(isSmallScreen ? window.innerWidth / 2 : 0);//window.innerWidth / 2 lo cambio x 0 de mommento
+    //const [translateSmallRow1, setTranslateSmallRow1] = useState(window.innerWidth / 2);
+    const [translateRow2, setTranslateRow2] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+    //const [translateSmallRow2, setTranslateSmallRow2] = useState(window.innerWidth / 2);
+    const [translateRow3, setTranslateRow3] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+    //const [translateSmallRow3, setTranslateSmallRow3] = useState(window.innerWidth / 2);
+    const [translateRow4, setTranslateRow4] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+    //const [translateSmallRow4, setTranslateSmallRow4] = useState(window.innerWidth / 2);
 
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
     const diferencia = useRef(null);
-
+    useEffect(()=>{
+        setTranslateRow1(isSmallScreen ? window.innerWidth / 2 : 0);
+        setTranslateRow2(isSmallScreen ? window.innerWidth / 2 : 0);
+        setTranslateRow3(isSmallScreen ? window.innerWidth / 2 : 0);
+        setTranslateRow4(isSmallScreen ? window.innerWidth / 2 : 0);
+    }, [isSmallScreen]);
     const setInitialStates = ()=>{
         rowServiceHeight.current = rowServices1.current.offsetHeight;
         rowServices1YTop.current = rowServices1.current.getBoundingClientRect().top;
@@ -97,10 +102,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
             servicesAnimation2(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
             circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextYTop.current, circleTextYBottom.current, 'rotate', circleRotate, circleValue);
         } else {
-            servicesAnimation3(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, 'translateX', translateSmallRow1, setTranslateSmallRow1, translateRowValue, null, null);
-            servicesAnimation3(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, 'translateX', translateSmallRow2, setTranslateSmallRow2, translateRowValue, null, null);
-            servicesAnimation3(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, 'translateX', translateSmallRow3, setTranslateSmallRow3, translateRowValue, null, null);
-            servicesAnimation3(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, 'translateX', translateSmallRow4, setTranslateSmallRow4, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, 'translateX', translateRow1, setTranslateRow1, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, 'translateX', translateRow2, setTranslateRow2, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, 'translateX', translateRow3, setTranslateRow3, translateRowValue, null, null);
+            servicesAnimation3(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, 'translateX', translateRow4, setTranslateRow4, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem2, rowServices2YTop, rowServices2YBottom, 'translateX', translateRow2, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem4, rowServices3YTop, rowServices3YBottom, 'translateX', translateRow3, translateRowValue, null, null);
             // servicesAnimation(e.wheelDelta, y, serviceItem6, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, null, null);
@@ -208,60 +213,82 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
 
     //PARA DESPLAZAR LOS ITEMS LILAS Y NEGROS hacia los lados
     useEffect(() => {
-
-        if (translateRow1 < 0) setTranslateRow1(0);
-        else if (translateRow1 > halfviewportWidth / 2) setTranslateRow1(halfviewportWidth / 2);
-        serviceItem1.current.style.transform = "translateX" + "(" + parseInt(translateRow1) + "px" + ")";
-        serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) * -1 + "px" + ")";
-
+        if(isSmallScreen){
+            if (translateRow1 < 0) setTranslateRow1(0);
+            else if (translateRow1 > halfviewportWidth) setTranslateRow1(halfviewportWidth);
+            serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) + "px" + ")";
+        }else{
+            if (translateRow1 < 0) setTranslateRow1(0);
+            else if (translateRow1 > halfviewportWidth / 2) setTranslateRow1(halfviewportWidth / 2);
+            serviceItem1.current.style.transform = "translateX" + "(" + parseInt(translateRow1) + "px" + ")";
+            serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) * -1 + "px" + ")";
+        }
     }, [translateRow1]);
-    useEffect(() => {
+    /*useEffect(() => {
         if (translateSmallRow1 < 0) setTranslateSmallRow1(0);
         else if (translateSmallRow1 > halfviewportWidth) setTranslateSmallRow1(halfviewportWidth);
         //alert(translateSmallRow1)
         serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow1) + "px" + ")";
 
-    }, [translateSmallRow1]);
+    }, [translateSmallRow1]);*/
     useEffect(() => {
-        if (translateRow2 < 0) setTranslateRow2(0);
-        else if (translateRow2 > halfviewportWidth / 2) setTranslateRow2(halfviewportWidth / 2);
-        serviceItem3.current.style.transform = "translateX" + "(" + parseInt(translateRow2) + "px" + ")";
-        serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) * -1 + "px" + ")";
+        if(isSmallScreen){
+            if (translateRow2 < 0) setTranslateRow2(0);
+            else if (translateRow2 > halfviewportWidth) setTranslateRow2(halfviewportWidth);
+            serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) + "px" + ")";
+        }else{
+            if (translateRow2 < 0) setTranslateRow2(0);
+            else if (translateRow2 > halfviewportWidth / 2) setTranslateRow2(halfviewportWidth / 2);
+            serviceItem3.current.style.transform = "translateX" + "(" + parseInt(translateRow2) + "px" + ")";
+            serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) * -1 + "px" + ")";
+        }
     }, [translateRow2]);
-    useEffect(() => {
+    /*useEffect(() => {
         if (translateSmallRow2 < 0) setTranslateSmallRow2(0);
         else if (translateSmallRow2 > halfviewportWidth) setTranslateSmallRow2(halfviewportWidth);
         //alert(translateSmallRow2)
         serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow2) + "px" + ")";
 
-    }, [translateSmallRow2]);
+    }, [translateSmallRow2]);*/
     useEffect(() => {
-        if (translateRow3 < 0) setTranslateRow3(0);
-        else if (translateRow3 > halfviewportWidth / 2) setTranslateRow3(halfviewportWidth / 2);
-        serviceItem5.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
-        serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) * -1 + "px" + ")";
+        if(isSmallScreen){
+            if (translateRow3 < 0) setTranslateRow3(0);
+            else if (translateRow3 > halfviewportWidth) setTranslateRow3(halfviewportWidth);
+            serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
+        }else{
+            if (translateRow3 < 0) setTranslateRow3(0);
+            else if (translateRow3 > halfviewportWidth / 2) setTranslateRow3(halfviewportWidth / 2);
+            serviceItem5.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
+            serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) * -1 + "px" + ")";
+        }
     }, [translateRow3]);
-    useEffect(() => {
+    /*useEffect(() => {
         if (translateSmallRow3 < 0) setTranslateSmallRow3(0);
         else if (translateSmallRow3 > halfviewportWidth) setTranslateSmallRow3(halfviewportWidth);
         //alert(translateSmallRow2)
         serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow3) + "px" + ")";
 
-    }, [translateSmallRow3]);
+    }, [translateSmallRow3]);*/
     useEffect(() => {
-        if (translateRow4 < 0) setTranslateRow4(0);
-        else if (translateRow4 > halfviewportWidth / 2) setTranslateRow4(halfviewportWidth / 2);
-        serviceItem7.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
-        serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) * -1 + "px" + ")";
+        if(isSmallScreen){
+            if (translateRow4 < 0) setTranslateRow4(0);
+            else if (translateRow4 > halfviewportWidth) setTranslateRow4(halfviewportWidth);
+            serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
+        }else{
+            if (translateRow4 < 0) setTranslateRow4(0);
+            else if (translateRow4 > halfviewportWidth / 2) setTranslateRow4(halfviewportWidth / 2);
+            serviceItem7.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
+            serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) * -1 + "px" + ")";
+        }
     }, [translateRow4]);
-    useEffect(() => {
+    /*useEffect(() => {
         if (translateSmallRow4 < 0) setTranslateSmallRow4(0);
         else if (translateSmallRow4 > halfviewportWidth) setTranslateSmallRow4(halfviewportWidth);
         //alert(translateSmallRow2)
         serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateSmallRow4) + "px" + ")";
 
     }, [translateSmallRow4]);
-
+*/
     //efecto del texto para que de vueltas
     useEffect(() => {
 
@@ -387,7 +414,6 @@ const Services = ({ coordY, wheelDelta, pxPerScroll }) => {
     }
     useEffect(() => {
         if (window.innerWidth < 768) {
-          //alert(window.innerWidth)
           document.body.addEventListener("touchmove", touchAnimation);
           return () => document.body.removeEventListener("touchmove", touchAnimation);
         }
