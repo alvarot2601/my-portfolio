@@ -84,7 +84,7 @@ function App() {
   const setInitialStates = () => {
     if(window.innerWidth >= 768){
       const today = new Date();
-      alert("Para hacer scroll debes pulsar sobre las fechas del teclado o con la rueda del cursor. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
+      alert("Hacer scroll está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
     }
     finalLimit.current = document.body.scrollHeight;
     /*setTimeout(()=>{

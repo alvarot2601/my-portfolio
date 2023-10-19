@@ -1435,7 +1435,7 @@ form textarea {
   }
 }
 .nav {
-  background: #020617;
+  background: #030712;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -1615,7 +1615,7 @@ body {
   top: 0;
   left: 0;
   margin: 0;
-  background-color: #020617;
+  background-color: #030712;
 }
 
 .smooth-scroll-wrapper {
