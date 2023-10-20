@@ -377,7 +377,7 @@ function App() {
     const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
     scrollbar.current.style.transform = "translateX(" + relativeValue + "px)";
   }
-  const scrollPage = () => {
+  /*const scrollPage = () => {
     alert(3)
     const percentage = ((window.innerWidth - scrollbarWidth) * 100) / (scrollbar.current.getBoundingClientRect().left);
     const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
@@ -385,10 +385,10 @@ function App() {
   }
   useEffect(()=>{
     if(isSmallScreen){
-      scrollbar.current.addEventListener("touchmove", scrollPage);
-      scrollbar.current.removeEventListener("touchmove", scrollPage);
+      scrollbar.current.addEventListener("touchstart", scrollPage);
+      scrollbar.current.removeEventListener("touchstart", scrollPage);
     }
-  });
+  });*/
   useEffect(()=>{
     if(isSmallScreen){
       window.addEventListener("scroll", moveScrollbar);
@@ -408,9 +408,9 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 md:top-0 h-[30px] md:h-full hidden sm:block md:block w-full md:w-[30px] bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 md:top-0 h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
-          <div className='flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
+          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>
@@ -429,7 +429,7 @@ function App() {
             <span>r</span>
             <span>o</span>
           </div >
-          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#1B1B1F] z-30 transform ease-out duration-700 hover:bg-zinc-600 rounded-xl'></div>
+          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#A5A1FF] md:bg-[#1B1B1F] z-30 transform ease-out duration-700 md:hover:bg-zinc-600 rounded-xl'></div>
         </div>
       </div>
     </div>
