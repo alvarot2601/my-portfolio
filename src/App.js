@@ -329,10 +329,10 @@ function App() {
     relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
     //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
   }
-  useEffect(() => {
+  /*useEffect(() => {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
-  }, []);
+  }, []);*/
 
 
   const keydownHandle = (e) => {
@@ -410,7 +410,7 @@ function App() {
       </div>
       <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='  w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
-          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute left-0 top-0 text-sm font-mono' >
+          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>
@@ -428,7 +428,7 @@ function App() {
             <span>a</span>
             <span>r</span>
             <span>o</span>
-          </div >
+          </div>
           <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#A5A1FF] md:bg-[#1B1B1F] z-30 transform ease-out duration-700 md:hover:bg-zinc-600 rounded-xl'></div>
         </div>
       </div>
