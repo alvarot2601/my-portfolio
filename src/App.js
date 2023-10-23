@@ -429,7 +429,7 @@ function App() {
             <span>r</span>
             <span>o</span>
           </div>
-          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#A5A1FF] md:bg-[#1B1B1F] z-30 transform ease-out duration-700 md:hover:bg-zinc-600 rounded-xl'></div>
+          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#A5A1FF] md:bg-[#1B1B1F] z-30 transform ease-out md:duration-700 md:hover:bg-zinc-600 rounded-xl'></div>
         </div>
       </div>
     </div>
