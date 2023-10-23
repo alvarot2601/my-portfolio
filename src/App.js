@@ -321,14 +321,14 @@ function App() {
     console.log('coordY, ' + coordY)
   }, [coordY, relativeScrolledValueState]);
 
-  const resize = () => {
+  /*const resize = () => {
     finalLimit.current = document.body.scrollHeight;
     pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / times_to_reach.current;
     scrollbarWrapper.current.style.height = document.body.scrollHeight + 'px';
     //relativePercentage = (windowHeight - scrollBarHeight) / TIMES_TO_REACH;
     relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
     //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
-  }/*
+  }
   useEffect(() => {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
