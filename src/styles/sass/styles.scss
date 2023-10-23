@@ -11,13 +11,12 @@
 @import 'footer';
 @import 'variables';
 @import 'satoshi';
-body {
-  padding-top: env(safe-area-inset-top); /* Añade espacio en la parte superior igual a la barra de navegación. */
-}
-.fixed-element {
+
+#scrollbar-wrapper{
   position: fixed;
-  top: calc(env(safe-area-inset-top) + 1rem); /* Ajusta la altura según sea necesario. */
-  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
 }
 *{
   box-sizing: border-box;
