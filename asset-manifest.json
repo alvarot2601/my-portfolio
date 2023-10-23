@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/my-portfolio/static/css/main.6d33caa7.css",
-    "main.js": "/my-portfolio/static/js/main.a3a0df14.js",
+    "main.css": "/my-portfolio/static/css/main.d5a9223d.css",
+    "main.js": "/my-portfolio/static/js/main.5f9da0f6.js",
     "static/js/787.1ed0c42c.chunk.js": "/my-portfolio/static/js/787.1ed0c42c.chunk.js",
     "static/media/Satoshi-VariableItalic.ttf": "/my-portfolio/static/media/Satoshi-VariableItalic.9519fea9567e2405bc08.ttf",
     "static/media/Satoshi-Variable.ttf": "/my-portfolio/static/media/Satoshi-Variable.536fda9b164542087fc7.ttf",
@@ -42,12 +42,12 @@
     "static/media/logo-andel.svg": "/my-portfolio/static/media/logo-andel.7e030e2075ec8d97727ddde5f5dccbe4.svg",
     "static/media/hotel-miranda-logo.svg": "/my-portfolio/static/media/hotel-miranda-logo.aba503bc26ed21dd74ae14107bff72bb.svg",
     "index.html": "/my-portfolio/index.html",
-    "main.6d33caa7.css.map": "/my-portfolio/static/css/main.6d33caa7.css.map",
-    "main.a3a0df14.js.map": "/my-portfolio/static/js/main.a3a0df14.js.map",
+    "main.d5a9223d.css.map": "/my-portfolio/static/css/main.d5a9223d.css.map",
+    "main.5f9da0f6.js.map": "/my-portfolio/static/js/main.5f9da0f6.js.map",
     "787.1ed0c42c.chunk.js.map": "/my-portfolio/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d33caa7.css",
-    "static/js/main.a3a0df14.js"
+    "static/css/main.d5a9223d.css",
+    "static/js/main.5f9da0f6.js"
   ]
 }
