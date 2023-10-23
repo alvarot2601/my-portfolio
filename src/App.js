@@ -105,13 +105,13 @@ function App() {
     relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
   }
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     if(isSmallScreen){
       scrollbarWrapper.current.style.height = "30px";
     }else{
       scrollbarWrapper.current.style.height = window.innerHeight + "px";
     }
-  }, [isSmallScreen]);
+  }, [isSmallScreen]);*/
 
   const getStartCoordinates = (e) => {
     //continueScrolling = true;
@@ -408,7 +408,7 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className=' sticky right-0 bottom-0 md:top-0 h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='hidden md:sticky right-0 bottom-0 md:top-0 h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
           <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
             <span>C</span>
