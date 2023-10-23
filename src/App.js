@@ -321,7 +321,7 @@ function App() {
     console.log('coordY, ' + coordY)
   }, [coordY, relativeScrolledValueState]);
 
-  const resize = () => {
+  /*const resize = () => {
     finalLimit.current = document.body.scrollHeight;
     pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / times_to_reach.current;
     scrollbarWrapper.current.style.height = document.body.scrollHeight + 'px';
@@ -332,7 +332,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
-  }, []);
+  }, []);*/
 
 
   const keydownHandle = (e) => {
