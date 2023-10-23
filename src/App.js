@@ -328,11 +328,11 @@ function App() {
     //relativePercentage = (windowHeight - scrollBarHeight) / TIMES_TO_REACH;
     relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
     //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
-  }
+  }/*
   useEffect(() => {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
-  }, []);
+  }, []);*/
 
 
   const keydownHandle = (e) => {
@@ -408,7 +408,7 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='sticky md:right-0 md:top-0 h-[30px] md:h-full  w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='fixed right-0 top-0 h-[30px] lg:h-full  w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
           <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
             <span>C</span>
