@@ -11,7 +11,14 @@
 @import 'footer';
 @import 'variables';
 @import 'satoshi';
-
+body {
+  padding-top: env(safe-area-inset-top); /* Añade espacio en la parte superior igual a la barra de navegación. */
+}
+.fixed-element {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 1rem); /* Ajusta la altura según sea necesario. */
+  width: 100%;
+}
 *{
   box-sizing: border-box;
 }
