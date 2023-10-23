@@ -408,7 +408,7 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-4 md:top-0 h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='fixed-element  h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
           <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
             <span>C</span>
