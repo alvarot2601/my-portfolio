@@ -118,7 +118,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
                
                 <div className="my-who__info w-full sm:w-[90vh] md:w-[70vw] lg:w-[60vw]">
                     <p ref={text} className="my-who__text px-[38px] transform-none md:transform-gpu translate-x-[-300px] text-[clamp(18px,2.5vw,50px)]">
-                        Soy un desarrollador web con varios años de experiencia trabajando con React, PHP, SQL, JavaScript y Wordpress en diversos proyectos para empresas internacionales (Europa), nacionales (España) y particulares.
+                        Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress. 
                     </p>
                 </div>
                 <Slider my_who_content={my_who_content} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll = {pxPerScroll} />

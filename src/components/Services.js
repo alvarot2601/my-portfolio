@@ -328,7 +328,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
             [
                 <MdSupportAgent className="text-3xl lg:text-5xl" />,
                 " Asistencia rápida y eficiente",
-                "En nuestro compromiso por ofrecer un servicio excepcional, nos aseguramos de que nuestra asistencia sea lo más rápida y oportuna posible.",
+                "En mi compromiso por ofrecer un servicio excepcional, me aseguro de que mi asistencia sea lo más rápida y oportuna posible.",
             ],
             ["Siempre estaré", "ENCANTADO DE AYUDARTE"],
         ],
