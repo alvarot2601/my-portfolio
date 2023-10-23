@@ -410,7 +410,7 @@ function App() {
       </div>
       <div ref={scrollbarWrapper} id="scrollbar-wrapper"  className='  w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
-          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
+          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute left-0 top-0 text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>
