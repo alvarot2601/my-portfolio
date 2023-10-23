@@ -1576,13 +1576,6 @@ form textarea {
   font-display: swap;
   font-style: italic;
 }
-#scrollbar-wrapper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 999;
-}
-
 * {
   box-sizing: border-box;
 }
