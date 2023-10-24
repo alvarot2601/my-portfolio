@@ -408,7 +408,7 @@ form textarea {
   font-family: "Righteous", cursive;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .slider .swiper-1 {
     transform: translateX(0px);
   }

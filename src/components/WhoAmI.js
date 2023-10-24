@@ -82,7 +82,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
     }, [pxPerScroll]);
     
     useEffect(() => {
-        if (window.innerWidth >= 768)
+        if (window.innerWidth >= 1024)
             circleAnimation(wheelDelta, coordY, text.current, textCoordYTop.current, textCoordYBottom.current, 'translateX', transX, setTransX, transXValue.current);
     }, [coordY]);
 

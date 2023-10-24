@@ -75,7 +75,7 @@ function App() {
   //estado para almacenar e.wheeldelta y poder pasarselo a otros componentes
   const [wheelDelta, setWheelDelta] = useState(null);
   const [lastWheelDelta, setLastWheelDelta] = useState(0);
-  //estado para saber si la pantalla es inferior a 768px o no
+  //estado para saber si la pantalla es inferior a 1024px o no
   const [isSmallScreen, setIsSmallScreen] = useState(true);
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
