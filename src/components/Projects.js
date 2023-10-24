@@ -6,8 +6,16 @@ import andelProject from "../assets/img/logo-andel.svg";
 
 import {SiUnsplash} from 'react-icons/si';
 import {BsArrowUpRight} from 'react-icons/bs';
+import { useEffect } from "react";
+import { useRef } from "react";
 
-const Projects = () => {
+const Projects = ({reference}) => {
+  const projectsRef = useRef(null);
+  //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+  useEffect(()=>{
+    reference.current = projectsRef.current;
+  }, []);
+
     const projects = [
       [
         'unsplash',
@@ -89,7 +97,7 @@ const Projects = () => {
         ]
       ];
     return (
-        <section className="my-work flex flex-wrap gap-[8px]" id="my-work">
+        <section ref={projectsRef} className="my-work flex flex-wrap gap-[8px]" id="my-work">
             {
                 projects.map((project, index) => {
                     let heightClass = 'min-h-[300px]';

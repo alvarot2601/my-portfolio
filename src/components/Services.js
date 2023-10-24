@@ -7,8 +7,8 @@ import { TbBrandJavascript } from "react-icons/tb";
 
 import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
-const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
-
+const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
+    const servicesRef = useRef(null);
     //tamaño de las filas de los slides de servicios. Para q la animacion funcione bien la altura debe ser múltiplo de 150, que es el valor actual de lo q baja en cada scroleo
     const rowServiceHeight = useRef(null);
     const circleText = useRef(null);
@@ -264,7 +264,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
         }
     }, [translateRow4]);
   
-    
+    //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+  useEffect(()=>{
+    reference.current = servicesRef.current;
+  }, []);
     
 
     const servicesArray = [
@@ -395,7 +398,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen }) => {
         }
       }, []);
     return (
-        <section className="services overflow-x-hidden" id="services">
+        <section ref={servicesRef} className="services overflow-x-hidden" id="services">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
                     <span className="little-title">LO QUE HAGO</span>

@@ -9,13 +9,19 @@ import Services from './components/Services';
 
 import './App.css';
 import './styles/css/styles.css';
-import {initialLimit, delay, debounce2 } from './components/Functions';
+import { initialLimit, delay, debounce2 } from './components/Functions';
 import Contact from './components/Contact';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 
 
 function App() {
+  const navRef = useRef(null);
+  const headerRef = useRef(null);
+  const projectsRef = useRef(null);
+  const servicesRef = useRef(null);
+  const whoamiRef = useRef(null);
+  
   //variables para el evento de teclado
   const coordYref = useRef(null);
   const relativeScrolledValueRef = useRef(null);
@@ -79,10 +85,10 @@ function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(true);
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
-    if(window.innerWidth >= 1024){
+    if (window.innerWidth >= 1024) {
       setIsSmallScreen(false);
       const today = new Date();
-      alert("Hacer scroll está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
+      alert("Hacer scroll está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo.");
     }
     finalLimit.current = document.body.scrollHeight;
     /*setTimeout(()=>{
@@ -105,10 +111,10 @@ function App() {
     relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
   }
 
-  useEffect(()=>{
-    if(isSmallScreen){
+  useEffect(() => {
+    if (isSmallScreen) {
       scrollbarWrapper.current.style.height = "30px";
-    }else{
+    } else {
       scrollbarWrapper.current.style.height = window.innerHeight + "px";
     }
   }, [isSmallScreen]);
@@ -208,8 +214,18 @@ function App() {
     }
 
   }
+  const debounce2 = (func, delay) => {
+    let timeoutId;
 
+    return function (...args) {
+      const context = this;
 
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  };
 
   const smooth = debounce2((e) => {
     let y = coordY;
@@ -389,23 +405,43 @@ function App() {
       scrollbar.current.removeEventListener("touchstart", scrollPage);
     }
   });*/
-  useEffect(()=>{
-    if(isSmallScreen){
+  useEffect(() => {
+    if (isSmallScreen) {
       window.addEventListener("scroll", moveScrollbar);
-      return ()=> window.removeEventListener("scroll", moveScrollbar);
+      return () => window.removeEventListener("scroll", moveScrollbar);
     }
   }, [isSmallScreen, finalLimit]);
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      window.addEventListener("scroll", changeScrollbarColor);
+      return () => window.removeEventListener("scroll", changeScrollbarColor);
+    }
+  }, []);
+
+  const changeScrollbarColor = () => {
+    console.log(projectsRef.current.getBoundingClientRect().top)
+    if(navRef.current.getBoundingClientRect().top<=0 && navRef.current.getBoundingClientRect().bottom > 0){
+      scrollbar.current.style.backgroundColor = "";
+    }
+    else if(projectsRef.current.getBoundingClientRect().top<=0 && projectsRef.current.getBoundingClientRect().bottom > 0){
+      scrollbar.current.style.backgroundColor = "";
+    }
+    else if(servicesRef.current.getBoundingClientRect().top<=0 && servicesRef.current.getBoundingClientRect().bottom > 0){
+      scrollbar.current.style.backgroundColor = "#78F3E2";
+    }//#fda4af
+  }
   return (
     <div className=''>
       <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
-          <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
-          <Header isSmallScreen={isSmallScreen}/>
-            <Services isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-            <Projects />
-            <WhoAmI coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-            <Contact coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-            <Footer />
+          <Nav reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
+          <Header reference={headerRef} isSmallScreen={isSmallScreen} />
+          <Services reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Projects reference={projectsRef} />
+          <WhoAmI reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Contact coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Footer />
         </div>
       </div>
       <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>

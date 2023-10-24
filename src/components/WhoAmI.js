@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "./Slider";
 
-const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
-    
+const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, reference }) => {
+    const whoamiRef = useRef(null);
+  //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+  useEffect(()=>{
+    reference.current = whoamiRef.current;
+  }, []);
     //const slideValue = 10;
     const my_who_content = useRef(null);
     const text = useRef(null);
@@ -109,7 +113,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
                 text-[clamp(25px,7.5vw,200px)]*/
 
     return (
-        <section ref={my_who_content} className="my-who" id="mywho">
+        <section ref={whoamiRef} className="my-who" id="mywho">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] my-who__content">
                 <div className="carrousel h-[150px] md:h-[200px] lg:h-[250px] xl:h-[300px]">
                     <p className="frase px-5 my-who__name text-[clamp(25px,10vw,150px)]">¿Quién es Álvaro Taibo Aguza?</p>
@@ -121,7 +125,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll }) => {
                         Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress. 
                     </p>
                 </div>
-                <Slider my_who_content={my_who_content} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll = {pxPerScroll} />
+                <Slider my_who_content={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll = {pxPerScroll} />
             </div>
         </section>
     );

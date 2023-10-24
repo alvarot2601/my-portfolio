@@ -5,7 +5,12 @@ import { TfiArrowDown } from 'react-icons/tfi';
 import { FaMobile } from 'react-icons/fa';
 import { IoMdMailUnread } from 'react-icons/io';
 
-const Header = ({isSmallScreen}) => {
+const Header = ({isSmallScreen, reference}) => {
+    const headerRef = useRef(null);
+    //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+    useEffect(()=>{
+      reference.current = headerRef.current;
+    }, []);
     const [actualLink, setActualLink] = useState(0);
     const servicesLink = useRef(null);
     const contactLink = useRef(null);
@@ -78,7 +83,7 @@ const Header = ({isSmallScreen}) => {
 
 
     return (
-        <header className="header">
+        <header ref={headerRef} className="header">
             {
                 info.map((link, index) => {
                     let displayClass = 'flex';

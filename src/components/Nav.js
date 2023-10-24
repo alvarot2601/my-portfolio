@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import {scaleValue } from "./Functions";
-const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByScroll, mousemoveExecutions }) => {
+const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByScroll, reference }) => {
+    const navRef = useRef(null);
+  //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+  useEffect(()=>{
+    reference.current = navRef.current;
+  }, []);
     const myName = useRef(null);
     const myNameYTop = useRef(null);
     const myNameYBottom = useRef(null);
@@ -86,7 +91,7 @@ const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByS
         myName.current.style.opacity = `${properties.opacity}`;
     }, [properties]);
     return (
-        <nav className="nav h-[30vh] md:h-[40vh] min-h-[150px] md:min-h-[280px]">
+        <nav ref={navRef} className="nav h-[30vh] md:h-[40vh] min-h-[150px] md:min-h-[280px]">
             <p ref={myName} className="nav__text text-center text-[clamp(30px,3vw,100px)]">Portfolio de <br></br> <span className="text-[clamp(40px,7vw,100px)]">Álvaro Taibo</span></p>
         </nav>
     );
