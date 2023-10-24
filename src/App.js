@@ -79,7 +79,7 @@ function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(true);
   //funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
-    if(window.innerWidth >= 768){
+    if(window.innerWidth >= 1024){
       setIsSmallScreen(false);
       const today = new Date();
       alert("Hacer scroll está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo." );
@@ -299,7 +299,7 @@ function App() {
 
   useEffect(() => {
     //para eliminar el smooth scroll en pantallas que no pertenezcan a pc
-    if (window.innerWidth >= 768) {
+    if (!isSmallScreen) {
       //alert(window.innerWidth)
       document.body.addEventListener("wheel", smooth);
       return () => document.body.removeEventListener("wheel", smooth);
@@ -408,9 +408,9 @@ function App() {
             <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 md:top-0 h-[30px] md:h-full  sm:block md:block w-full md:w-[30px] bg-transparent md:bg-slate-50 z-10'>
-        <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center md:items-start'>
-          <div className='hidden md:flex flex-row md:flex-col w-full justify-evenly md:justify-center md:items-center absolute text-sm font-mono' >
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
+        <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center lg:items-start'>
+          <div className='hidden lg:flex flex-row lg:flex-col w-full justify-evenly lg:justify-center lg:items-center absolute text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>
@@ -429,7 +429,7 @@ function App() {
             <span>r</span>
             <span>o</span>
           </div >
-          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] md:h-[100px] md:mx-auto w-[100px] md:w-[15px] bg-[#A5A1FF] md:bg-[#1B1B1F] z-30 transform ease-out md:duration-700 md:hover:bg-zinc-600 rounded-xl'></div>
+          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] lg:h-[100px] lg:mx-auto w-[100px] lg:w-[15px] bg-[#A5A1FF] lg:bg-[#1B1B1F] z-30 transform ease-out lg:duration-700 lg:hover:bg-zinc-600 rounded-xl'></div>
         </div>
       </div>
     </div>

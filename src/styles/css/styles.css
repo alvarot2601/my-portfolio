@@ -1649,7 +1649,7 @@ a {
     transform: translate(-100%, 0);
   }
 }
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1024px) {
   body {
     position: static;
   }
