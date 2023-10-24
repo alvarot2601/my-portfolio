@@ -397,7 +397,7 @@ function App() {
   }, [isSmallScreen, finalLimit]);
   return (
     <div className=''>
-      <div className='smooth-scroll-wrapper relative w-full md:w-[calc(100%-30px)]' ref={scroll}>
+      <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header isSmallScreen={isSmallScreen}/>
