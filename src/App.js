@@ -11,7 +11,7 @@ import Services from './components/Services';
 import './App.css';
 import './styles/css/styles.css';
 import { initialLimit, delay, debounce2 } from './components/Functions';
-import Contact from './components/Contact';
+import Contact from './components/Contact.tsx';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 
