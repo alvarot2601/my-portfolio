@@ -1,4 +1,5 @@
 import { React, useEffect, useRef, useState } from 'react';
+import swal from 'sweetalert';
 
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -21,7 +22,8 @@ function App() {
   const projectsRef = useRef(null);
   const servicesRef = useRef(null);
   const whoamiRef = useRef(null);
-  
+  const contactRef = useRef(null);
+
   //variables para el evento de teclado
   const coordYref = useRef(null);
   const relativeScrolledValueRef = useRef(null);
@@ -422,14 +424,20 @@ function App() {
   const changeScrollbarColor = () => {
     console.log(projectsRef.current.getBoundingClientRect().top)
     if(navRef.current.getBoundingClientRect().top<=0 && navRef.current.getBoundingClientRect().bottom > 0){
-      scrollbar.current.style.backgroundColor = "";
+      scrollbar.current.style.backgroundColor = "#A5A1FF";
+    }
+    else if(headerRef.current.getBoundingClientRect().top<=0 && headerRef.current.getBoundingClientRect().bottom > 0){
+      scrollbar.current.style.backgroundColor = "#FFAED8";
     }
     else if(projectsRef.current.getBoundingClientRect().top<=0 && projectsRef.current.getBoundingClientRect().bottom > 0){
       scrollbar.current.style.backgroundColor = "";
     }
     else if(servicesRef.current.getBoundingClientRect().top<=0 && servicesRef.current.getBoundingClientRect().bottom > 0){
       scrollbar.current.style.backgroundColor = "#78F3E2";
-    }//#fda4af
+    }
+    else if(whoamiRef.current.getBoundingClientRect().top<=0 && whoamiRef.current.getBoundingClientRect().bottom > 0){
+      scrollbar.current.style.backgroundColor = "#A5A1FF";
+    }
   }
   return (
     <div className=''>
@@ -440,7 +448,7 @@ function App() {
           <Services reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Projects reference={projectsRef} />
           <WhoAmI reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Contact coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Contact reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Footer />
         </div>
       </div>
@@ -465,7 +473,7 @@ function App() {
             <span>r</span>
             <span>o</span>
           </div >
-          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] lg:h-[100px] lg:mx-auto w-[100px] lg:w-[15px] bg-[#A5A1FF] lg:bg-[#1B1B1F] z-30 transform ease-out lg:duration-700 lg:hover:bg-zinc-600 rounded-xl'></div>
+          <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] lg:h-[100px] lg:mx-auto w-[100px] lg:w-[15px] bg-[#A5A1FF] lg:bg-[#1B1B1F] z-30 duration-700 transform ease-out lg:duration-700 lg:hover:bg-zinc-600 rounded-xl'></div>
         </div>
       </div>
     </div>

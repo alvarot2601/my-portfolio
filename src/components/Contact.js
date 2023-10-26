@@ -4,7 +4,11 @@ import emailjs from '@emailjs/browser';
 
 import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 'react-icons/ai';
 import {circleValue} from "./Functions";
-const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
+const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) => {
+    const contactRef = useRef(null);
+    useEffect(()=>{
+        reference.current = contactRef.current;
+      }, []);
     const input1 = useRef(null);
     const input2 = useRef(null);
     const textarea = useRef(null);
@@ -183,7 +187,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll}) => {
     
 
     return (
-        <section className="contact">
+        <section ref={contactRef} className="contact">
             <div className="contact__container pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px]">
                 <span className="little-title">¡CONTÁCTAME!</span>
                 <p>
