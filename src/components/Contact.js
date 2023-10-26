@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import swal from 'sweetalert';
+
 import { send } from 'emailjs-com';
 import emailjs from '@emailjs/browser';
 
@@ -82,9 +84,10 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) 
 
     emailjs.sendForm('service_os2jvcn', 'template_q6ps3ho', form.current, '2R2QCBGBzuH1hvWpo')
       .then((result) => {
-          alert("El email se ha enviado correctamente");
+          swal("El email se ha enviado correctamente", "", "success");
       }, (error) => {
-        alert("Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!");
+        swal("Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!", "", "error");
+        //alert("Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!");
         //console.log(error.text);
       });
 
