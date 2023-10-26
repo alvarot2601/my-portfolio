@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import {scaleValue } from "./Functions";
+import { motion } from "framer-motion";
+
+import { scaleValue } from "./Functions";
 const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByScroll, reference }) => {
     const navRef = useRef(null);
-  //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
-  useEffect(()=>{
-    reference.current = navRef.current;
-  }, []);
+    //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
+    useEffect(() => {
+        reference.current = navRef.current;
+    }, []);
     const myName = useRef(null);
     const myNameYTop = useRef(null);
     const myNameYBottom = useRef(null);
@@ -17,14 +19,14 @@ const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByS
 
     const disappearTextAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, objSetter, value, limitTop = Math.abs(coordY), limitBottom = (Math.abs(coordY) + window.innerHeight)) => {
         if (wheelDelta <= 0 && coordYTop < limitBottom && (coordYBottom + pxPerScroll) > limitTop) {
-           //obj.scale -= value;
+            //obj.scale -= value;
             //obj.opacity -= opacityValue;
             if (movedByScroll === true) {
                 objSetter({
                     scale: value,
                     opacity: value
                 });
-                
+
             } else {
                 objSetter({
                     scale: obj.scale - value,
@@ -92,7 +94,15 @@ const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByS
     }, [properties]);
     return (
         <nav ref={navRef} className="nav h-[30vh] md:h-[40vh] min-h-[150px] md:min-h-[280px]">
-            <p ref={myName} className="nav__text text-center text-[clamp(30px,3vw,100px)]">Portfolio de <br></br> <span className="text-[clamp(40px,7vw,100px)]">Álvaro Taibo</span></p>
+            <motion.p
+                initial={{ opacity: 0.5, scale: 0.5 }} whileTap={{ scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 1 },
+                }}
+                ref={myName} className="nav__text text-center text-[clamp(30px,3vw,100px)]">Portfolio de <br></br> <span className="text-[clamp(40px,7vw,100px)]">Álvaro Taibo</span>
+            </motion.p>
         </nav>
     );
 }

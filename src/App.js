@@ -1,6 +1,5 @@
 import { React, useEffect, useRef, useState } from 'react';
 import swal from 'sweetalert';
-
 import Header from './components/Header';
 import Nav from './components/Nav';
 import WhoAmI from './components/WhoAmI';
