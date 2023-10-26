@@ -6,10 +6,7 @@ import emailjs from '@emailjs/browser';
 
 import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 'react-icons/ai';
 import {circleValue} from "./Functions";
-interface Contact {
-    coordY: number;
-    reachedLimitBottom: boolean;
-  }
+
 const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) => {
     const contactRef = useRef(null);
     useEffect(()=>{
