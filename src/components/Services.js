@@ -36,6 +36,14 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     const serviceItem6 = useRef(null);
     const serviceItem7 = useRef(null);
 
+    const [rowServices1Top, setRowServices1Top] = useState(null);
+    const [rowServices2Top, setRowServices2Top] = useState(null);
+    const [rowServices3Top, setRowServices3Top] = useState(null);
+    const [rowServices4Top, setRowServices4Top] = useState(null);
+    const [rowServices1Bottom, setRowServices1Bottom] = useState(null);
+    const [rowServices2Bottom, setRowServices2Bottom] = useState(null);
+    const [rowServices3Bottom, setRowServices3Bottom] = useState(null);
+    const [rowServices4Bottom, setRowServices4Bottom] = useState(null);
 
     const rowServices1YTop = useRef(null);
     const rowServices2YTop = useRef(null);
@@ -103,11 +111,22 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         setCircleTextBottom(circleTextServices.current.getBoundingClientRect().bottom + Math.abs(coordY));
         // ¡No verás el valor actualizado aquí!
       }, [showDragme]);
+
+      useEffect(()=>{
+        setRowServices1Top(rowServices1.current.getBoundingClientRect().top);
+        setRowServices2Top(rowServices2.current.getBoundingClientRect().top);
+        setRowServices3Top(rowServices3.current.getBoundingClientRect().top);
+        setRowServices4Top(rowServices4.current.getBoundingClientRect().top);
+        setRowServices1Bottom(rowServices1.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
+        setRowServices2Bottom(rowServices2.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
+        setRowServices3Bottom(rowServices3.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
+        setRowServices4Bottom(rowServices4.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
+      }, []);
      
     //si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
     useEffect(() => {
         if (window.innerWidth > 1000) {
-            servicesAnimation2(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, "translateX", translateRow1, setTranslateRow1, translateRowValue, serviceItem0.current, serviceItem1.current);
+            servicesAnimation2(wheelDelta, coordY, rowServices1.current, rowServices1Top, rowServices1Bottom, "translateX", translateRow1, setTranslateRow1, translateRowValue, serviceItem0.current, serviceItem1.current);
             servicesAnimation2(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, "translateX", translateRow2, setTranslateRow2, translateRowValue, serviceItem2.current, serviceItem3.current);
             servicesAnimation2(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, "translateX", translateRow3, setTranslateRow3, translateRowValue, serviceItem4.current, serviceItem5.current);
             servicesAnimation2(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
@@ -463,7 +482,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                         }
                     }}
                     viewport={{ once: true }}
-                    onDrag={()=>console.log(3)}
+                    onDragTransitionEnd={()=>{
+                        setCircleTextTop(circleTextServices.current.getBoundingClientRect().top + Math.abs(coordY));
+                        setCircleTextBottom(circleTextServices.current.getBoundingClientRect().bottom + Math.abs(coordY));
+                    }}
+                    
                     onAnimationComplete={() => {
                         // Tu código a ejecutar al finalizar la animación
                         setShowDragme(showDragme => false);
