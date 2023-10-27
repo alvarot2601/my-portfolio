@@ -10,6 +10,8 @@ import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
 const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
     const [showDragme, setShowDragme] = useState(true);
+    const [circleTextTop, setCircleTextTop] = useState(null);
+    const [circleTextBottom, setCircleTextBottom] = useState(null);
     const servicesRef = useRef(null);
     const subservicesRef = useRef(null);
     const containerHeight = useRef(null);
@@ -88,16 +90,20 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         rowServices3YBottom.current = rowServices3.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
         rowServices4YTop.current = rowServices4.current.getBoundingClientRect().top;
         rowServices4YBottom.current = rowServices4.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
-
-        circleTextYTop.current = circleTextServices.current.getBoundingClientRect().top;
-        circleTextYBottom.current = circleTextServices.current.getBoundingClientRect().bottom;
+        //circleTextYTop.current = circleTextServices.current.getBoundingClientRect().top;
+        //circleTextYBottom.current = circleTextServices.current.getBoundingClientRect().bottom;
         diferencia.current = (rowServices1YTop.current - (rowServices1YTop.current - (window.innerHeight / 2)));
     }
     useEffect(() => {
-        window.addEventListener('load', setInitialStates)
-        return () => window.removeEventListener('load', setInitialStates);
+        window.addEventListener('DOMContentLoaded', setInitialStates)
+        return () => window.removeEventListener('DOMContentLoaded', setInitialStates);
     }, []);
-
+    useEffect(() => {
+        setCircleTextTop(circleTextServices.current.getBoundingClientRect().top + Math.abs(coordY));//si se hiciese scroll deberia ser window.scrollY
+        setCircleTextBottom(circleTextServices.current.getBoundingClientRect().bottom + Math.abs(coordY));
+        // ¡No verás el valor actualizado aquí!
+      }, [showDragme]);
+     
     //si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
     useEffect(() => {
         if (window.innerWidth > 1000) {
@@ -105,7 +111,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             servicesAnimation2(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, "translateX", translateRow2, setTranslateRow2, translateRowValue, serviceItem2.current, serviceItem3.current);
             servicesAnimation2(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, "translateX", translateRow3, setTranslateRow3, translateRowValue, serviceItem4.current, serviceItem5.current);
             servicesAnimation2(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
-            circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextYTop.current, circleTextYBottom.current, 'rotate', circleRotate, circleValue);
+            circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextTop, circleTextBottom, 'rotate', circleRotate, circleValue);
         } else {
             servicesAnimation3(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, 'translateX', translateRow1, setTranslateRow1, translateRowValue, null, null);
             servicesAnimation3(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, 'translateX', translateRow2, setTranslateRow2, translateRowValue, null, null);
@@ -116,7 +122,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             // servicesAnimation(e.wheelDelta, y, serviceItem6, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, null, null);
 
         }
-    }, [coordY]);
+    }, [coordY, circleTextTop]);
 
 
     const servicesAnimation2 = (wheelDelta, y, element, coordYTop, coordYBottom, transform, translateRow, translateRowSetter, value, animatedElement1 = null, animatedElement2 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
@@ -441,8 +447,12 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                     dragConstraints={{ top: -containerHeight.current, bottom: 0 }}
                     initial={{ translateX: 200, opacity: 0 }}
                     whileInView={{ translateX: 0, translateY: containerHeight.current, opacity: 1 }}
+                    whileHover={{scale:1.2, transition:{duration:0.2}}}
                     transition={{
-                        duration: 2,
+                        duration: 0.2,
+                        opacity:{
+                            duration:1
+                        },
                         translateX: {
                             duration: 1,
                             delay: 0.5
@@ -453,9 +463,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                         }
                     }}
                     viewport={{ once: true }}
+                    onDrag={()=>console.log(3)}
                     onAnimationComplete={() => {
                         // Tu código a ejecutar al finalizar la animación
-                        setShowDragme(showDragme => !showDragme);
+                        setShowDragme(showDragme => false);
                     }}
                     className="circle w-[150px] h-[150px] flex flex-col justify-center items-center cursor-move"
                 >
