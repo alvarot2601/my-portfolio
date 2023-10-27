@@ -17,7 +17,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     const containerHeight = useRef(null);
     const circleRef = useRef(null);
     //tamaño de las filas de los slides de servicios. Para q la animacion funcione bien la altura debe ser múltiplo de 150, que es el valor actual de lo q baja en cada scroleo
-    const rowServiceHeight = useRef(null);
+    const [rowServiceHeight, setRowServiceHeight] = useState(null);
+    useEffect(()=>{
+        setRowServiceHeight(rowServices1.current.offsetHeight);
+    }, []);
     const circleText = useRef(null);
     const circleTextServices = useRef(null);
     const circleTextYTop = useRef(null);
@@ -56,16 +59,28 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
 
 
     const rowServicesLimitBottom = coordY + halfviewportWidth;
+    const [necessaryScrollMoves, setNecessaryScrollMoves] = useState(null);
     //almacena los scrolls necesarios para que los slides terminen de desplegarse cuando el centro de la fila de los slides esté en el medio de la pantalla. Si
-    let necessaryScrollMoves = (rowServices1YTop.current + rowServiceHeight.current / 2 - (rowServices1YTop.current - window.innerHeight / 2)) / pxPerScroll;
+    //let necessaryScrollMoves = (rowServices1YTop.current + rowServiceHeight.current / 2 - (rowServices1YTop.current - window.innerHeight / 2)) / pxPerScroll;
     //si es decimal le sumamos 1
+    useEffect(()=>{
+        setNecessaryScrollMoves((rowServices1Top + rowServiceHeight / 2 - (rowServices1Top - window.innerHeight / 2)) / pxPerScroll);
+    }, [rowServices1Top, rowServiceHeight, pxPerScroll]);
+    /*if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
+        necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;*/
 
-    if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
-        necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;
-    const translateRowValue =
+    const [translateRowValue, setTranslateRowValue] = useState(null);
+    useEffect(()=>{
+        setTranslateRowValue(window.innerWidth > 1000
+            ? window.innerWidth / 2 / 2 / necessaryScrollMoves
+            : - (window.innerWidth / 2) / necessaryScrollMoves);
+    }, [necessaryScrollMoves]);
+   
+    
+    /*const translateRowValue =
         window.innerWidth > 1000
             ? window.innerWidth / 2 / 2 / necessaryScrollMoves
-            : - (window.innerWidth / 2) / necessaryScrollMoves;
+            : - (window.innerWidth / 2) / necessaryScrollMoves;*/
 
 
     const [translateRow1, setTranslateRow1] = useState(isSmallScreen ? window.innerWidth / 2 : 0);//window.innerWidth / 2 lo cambio x 0 de mommento
@@ -79,33 +94,19 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
 
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
-    const diferencia = useRef(null);
+    const [diferencia, setDiferencia] = useState(null);
+    useState(()=>{
+        setDiferencia(rowServices1Top - (rowServices1Top - (window.innerHeight / 2)));
+    }, [rowServices1Top]);
     useEffect(() => {
         setTranslateRow1(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow2(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow3(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow4(isSmallScreen ? window.innerWidth / 2 : 0);
     }, [isSmallScreen]);
-    const setInitialStates = () => {
-        rowServiceHeight.current = rowServices1.current.offsetHeight;
-        rowServices1YTop.current = rowServices1.current.getBoundingClientRect().top;
-        rowServices1YBottom.current = rowServices1.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
-
-
-        rowServices2YTop.current = rowServices2.current.getBoundingClientRect().top;
-        rowServices2YBottom.current = rowServices2.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
-        rowServices3YTop.current = rowServices3.current.getBoundingClientRect().top;
-        rowServices3YBottom.current = rowServices3.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
-        rowServices4YTop.current = rowServices4.current.getBoundingClientRect().top;
-        rowServices4YBottom.current = rowServices4.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
-        //circleTextYTop.current = circleTextServices.current.getBoundingClientRect().top;
-        //circleTextYBottom.current = circleTextServices.current.getBoundingClientRect().bottom;
-        diferencia.current = (rowServices1YTop.current - (rowServices1YTop.current - (window.innerHeight / 2)));
-    }
-    useEffect(() => {
-        window.addEventListener('DOMContentLoaded', setInitialStates)
-        return () => window.removeEventListener('DOMContentLoaded', setInitialStates);
-    }, []);
+    
+   
+   
     useEffect(() => {
         setCircleTextTop(circleTextServices.current.getBoundingClientRect().top + Math.abs(coordY));//si se hiciese scroll deberia ser window.scrollY
         setCircleTextBottom(circleTextServices.current.getBoundingClientRect().bottom + Math.abs(coordY));
@@ -117,19 +118,19 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         setRowServices2Top(rowServices2.current.getBoundingClientRect().top);
         setRowServices3Top(rowServices3.current.getBoundingClientRect().top);
         setRowServices4Top(rowServices4.current.getBoundingClientRect().top);
-        setRowServices1Bottom(rowServices1.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
-        setRowServices2Bottom(rowServices2.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
-        setRowServices3Bottom(rowServices3.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
-        setRowServices4Bottom(rowServices4.current.getBoundingClientRect().top + rowServiceHeight.current / 2);
-      }, []);
+        setRowServices1Bottom(rowServices1.current.getBoundingClientRect().top + rowServiceHeight / 2);
+        setRowServices2Bottom(rowServices2.current.getBoundingClientRect().top + rowServiceHeight / 2);
+        setRowServices3Bottom(rowServices3.current.getBoundingClientRect().top + rowServiceHeight / 2);
+        setRowServices4Bottom(rowServices4.current.getBoundingClientRect().top + rowServiceHeight / 2);
+      }, [rowServiceHeight]);
      
     //si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
     useEffect(() => {
         if (window.innerWidth > 1000) {
             servicesAnimation2(wheelDelta, coordY, rowServices1.current, rowServices1Top, rowServices1Bottom, "translateX", translateRow1, setTranslateRow1, translateRowValue, serviceItem0.current, serviceItem1.current);
-            servicesAnimation2(wheelDelta, coordY, rowServices2.current, rowServices2YTop.current, rowServices2YBottom.current, "translateX", translateRow2, setTranslateRow2, translateRowValue, serviceItem2.current, serviceItem3.current);
-            servicesAnimation2(wheelDelta, coordY, rowServices3.current, rowServices3YTop.current, rowServices3YBottom.current, "translateX", translateRow3, setTranslateRow3, translateRowValue, serviceItem4.current, serviceItem5.current);
-            servicesAnimation2(wheelDelta, coordY, rowServices4.current, rowServices4YTop.current, rowServices4YBottom.current, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
+            servicesAnimation2(wheelDelta, coordY, rowServices2.current, rowServices2Top, rowServices2Bottom, "translateX", translateRow2, setTranslateRow2, translateRowValue, serviceItem2.current, serviceItem3.current);
+            servicesAnimation2(wheelDelta, coordY, rowServices3.current, rowServices3Top, rowServices3Bottom, "translateX", translateRow3, setTranslateRow3, translateRowValue, serviceItem4.current, serviceItem5.current);
+            servicesAnimation2(wheelDelta, coordY, rowServices4.current, rowServices4Top, rowServices4Bottom, "translateX", translateRow4, setTranslateRow4, translateRowValue, serviceItem6.current, serviceItem7.current);
             circleAnimation(wheelDelta, coordY, circleTextServices.current, circleTextTop, circleTextBottom, 'rotate', circleRotate, circleValue);
         } else {
             servicesAnimation3(wheelDelta, coordY, rowServices1.current, rowServices1YTop.current, rowServices1YBottom.current, 'translateX', translateRow1, setTranslateRow1, translateRowValue, null, null);
@@ -141,14 +142,14 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             // servicesAnimation(e.wheelDelta, y, serviceItem6, rowServices4YTop, rowServices4YBottom, 'translateX', translateRow4, translateRowValue, null, null);
 
         }
-    }, [coordY, circleTextTop]);
+    }, [coordY, circleTextTop, translateRowValue, rowServices1Top, diferencia]);
 
 
     const servicesAnimation2 = (wheelDelta, y, element, coordYTop, coordYBottom, transform, translateRow, translateRowSetter, value, animatedElement1 = null, animatedElement2 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
         if (wheelDelta < 0 && coordYTop < limitBottom && coordYBottom > limitTop) {
             if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
                 let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-                porcentaje = 100 - ((porcentaje * 100) / diferencia.current);
+                porcentaje = 100 - ((porcentaje * 100) / diferencia);
 
                 // porcentaje =  100 - (porcentaje * 100 / (rowServices1YTop.current + window.innerHeight));
                 //obj.value += value;
@@ -157,9 +158,9 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             }
         }
         else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
-            if ((coordYTop + (rowServiceHeight.current / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
+            if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
                 let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-                porcentaje = 100 - ((porcentaje * 100) / diferencia.current);
+                porcentaje = 100 - ((porcentaje * 100) / diferencia);
                 const val = ((window.innerHeight / 2) * porcentaje) / 100;
                 translateRowSetter(val);
             }
@@ -180,7 +181,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             }
         }
         else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
-            if ((coordYTop + (rowServiceHeight.current / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
+            if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
                 let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
                 console.log('porcentaje, ', porcentaje);
                 porcentaje = 100 - (porcentaje * 100) / (window.innerWidth / 2);
@@ -204,7 +205,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             }
         } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
             //el 150 está hardcodeado
-            if ((coordYTop + (rowServiceHeight.current / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
+            if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
                 //el problema q existe es que no se contrae en la misma posicion en la que se expande, tarda 1 scroll más en contraerse
                 //obj.value -= value;
                 translateRowSetter(translateRow - value);
