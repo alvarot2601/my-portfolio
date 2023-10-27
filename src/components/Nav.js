@@ -97,6 +97,7 @@ const Nav = ({ coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedByS
             <motion.p
                 initial={{ opacity: 0.5, scale: 0.5 }} whileTap={{ scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
+                transition={{duration:1}}
                 whileHover={{
                     scale: 1.2,
                     transition: { duration: 1 },

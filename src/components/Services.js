@@ -4,6 +4,7 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 import { SiAntdesign, SiRedux } from "react-icons/si";
 import { FaLaptopCode, FaReact, FaPhp } from "react-icons/fa";
 import { TbBrandJavascript } from "react-icons/tb";
+import { motion } from "framer-motion";
 
 import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
@@ -401,13 +402,30 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         <section ref={servicesRef} className="services overflow-x-hidden" id="services">
             <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
-                    <span className="little-title">LO QUE HAGO</span>
-                    <p className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
+                    <motion.p 
+                   initial={{scale:0.1, opacity:0.3}}
+                   viewport={{ once: true }}
+                   whileInView={{scale:1, opacity:1}}
+                    transition={{
+                        duration: 1,
+                      }} 
+                    className="little-title">LO QUE HAGO</motion.p>
+                    <motion.p 
+                    initial={{opacity:0, scale:0.4}}
+                    viewport={{ once: true }}
+                    transition={{duration:0.3}}
+                    whileInView={{opacity:1, scale:1, transition:{duration:1, delay:0.5}}}
+                    whileHover={{rotate:3, transition:{duration:0.3}}}
+                    className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
                         Facilito a mis clientes <br></br> soluciones webs <br></br>
                         desarrolladas a medida<br></br> con habilidad y pasión.
-                    </p>
+                    </motion.p>
                 </div>
-                <div className="circle w-[150px] h-[150px] flex justify-center items-center">
+                <motion.div
+                whileInView={{translateY:["0%","-200%", "200%"],transition:{duration:[1,2,3]}}}
+                drag="y"
+                dragConstraints={{bottom:0, top:-300}}
+                className="circle w-[150px] h-[150px] flex justify-center items-center">
                     <AiOutlineArrowDown className="arrow" />
                     <div
                         className="circle__text-container"
@@ -418,7 +436,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                             SERVICIOS | SERVICIOS | SERVICIOS |
                         </p>
                     </div>
-                </div>
+                </motion.div>
                 {/*
                      * <p className="services__info">
                     We provide clients <br></br> with stunning Crafty web <br></br>solutions, developed <br></br> with skill & passion.
