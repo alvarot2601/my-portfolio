@@ -9,7 +9,11 @@ import { motion } from "framer-motion";
 import { halfviewportWidth } from "./Functions";
 import { circleValue } from "./Functions";
 const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
+    const [showDragme, setShowDragme] = useState(true);
     const servicesRef = useRef(null);
+    const subservicesRef = useRef(null);
+    const containerHeight = useRef(null);
+    const circleRef = useRef(null);
     //tamaño de las filas de los slides de servicios. Para q la animacion funcione bien la altura debe ser múltiplo de 150, que es el valor actual de lo q baja en cada scroleo
     const rowServiceHeight = useRef(null);
     const circleText = useRef(null);
@@ -66,13 +70,13 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     const CoordYRef = useRef(coordY);
     CoordYRef.current = coordY;
     const diferencia = useRef(null);
-    useEffect(()=>{
+    useEffect(() => {
         setTranslateRow1(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow2(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow3(isSmallScreen ? window.innerWidth / 2 : 0);
         setTranslateRow4(isSmallScreen ? window.innerWidth / 2 : 0);
     }, [isSmallScreen]);
-    const setInitialStates = ()=>{
+    const setInitialStates = () => {
         rowServiceHeight.current = rowServices1.current.offsetHeight;
         rowServices1YTop.current = rowServices1.current.getBoundingClientRect().top;
         rowServices1YBottom.current = rowServices1.current.getBoundingClientRect().top + rowServiceHeight.current / 2;
@@ -92,7 +96,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     useEffect(() => {
         window.addEventListener('load', setInitialStates)
         return () => window.removeEventListener('load', setInitialStates);
-      }, []);
+    }, []);
 
     //si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
     useEffect(() => {
@@ -114,7 +118,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         }
     }, [coordY]);
 
-    
+
     const servicesAnimation2 = (wheelDelta, y, element, coordYTop, coordYBottom, transform, translateRow, translateRowSetter, value, animatedElement1 = null, animatedElement2 = null, limitTop = Math.abs(y), limitBottom = (Math.abs(y) + window.innerHeight)) => {
         if (wheelDelta < 0 && coordYTop < limitBottom && coordYBottom > limitTop) {
             if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
@@ -214,62 +218,62 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
 
     //PARA DESPLAZAR LOS ITEMS LILAS Y NEGROS hacia los lados
     useEffect(() => {
-        if(isSmallScreen){
+        if (isSmallScreen) {
             if (translateRow1 < 0) setTranslateRow1(0);
             else if (translateRow1 > halfviewportWidth) setTranslateRow1(halfviewportWidth);
             serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) + "px" + ")";
-        }else{
+        } else {
             if (translateRow1 < 0) setTranslateRow1(0);
             else if (translateRow1 > halfviewportWidth / 2) setTranslateRow1(halfviewportWidth / 2);
             serviceItem1.current.style.transform = "translateX" + "(" + parseInt(translateRow1) + "px" + ")";
             serviceItem0.current.style.transform = "translateX" + "(" + parseInt(translateRow1) * -1 + "px" + ")";
         }
     }, [translateRow1]);
-   
+
     useEffect(() => {
-        if(isSmallScreen){
+        if (isSmallScreen) {
             if (translateRow2 < 0) setTranslateRow2(0);
             else if (translateRow2 > halfviewportWidth) setTranslateRow2(halfviewportWidth);
             serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) + "px" + ")";
-        }else{
+        } else {
             if (translateRow2 < 0) setTranslateRow2(0);
             else if (translateRow2 > halfviewportWidth / 2) setTranslateRow2(halfviewportWidth / 2);
             serviceItem3.current.style.transform = "translateX" + "(" + parseInt(translateRow2) + "px" + ")";
             serviceItem2.current.style.transform = "translateX" + "(" + parseInt(translateRow2) * -1 + "px" + ")";
         }
     }, [translateRow2]);
-   
+
     useEffect(() => {
-        if(isSmallScreen){
+        if (isSmallScreen) {
             if (translateRow3 < 0) setTranslateRow3(0);
             else if (translateRow3 > halfviewportWidth) setTranslateRow3(halfviewportWidth);
             serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
-        }else{
+        } else {
             if (translateRow3 < 0) setTranslateRow3(0);
             else if (translateRow3 > halfviewportWidth / 2) setTranslateRow3(halfviewportWidth / 2);
             serviceItem5.current.style.transform = "translateX" + "(" + parseInt(translateRow3) + "px" + ")";
             serviceItem4.current.style.transform = "translateX" + "(" + parseInt(translateRow3) * -1 + "px" + ")";
         }
     }, [translateRow3]);
-    
+
     useEffect(() => {
-        if(isSmallScreen){
+        if (isSmallScreen) {
             if (translateRow4 < 0) setTranslateRow4(0);
             else if (translateRow4 > halfviewportWidth) setTranslateRow4(halfviewportWidth);
             serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
-        }else{
+        } else {
             if (translateRow4 < 0) setTranslateRow4(0);
             else if (translateRow4 > halfviewportWidth / 2) setTranslateRow4(halfviewportWidth / 2);
             serviceItem7.current.style.transform = "translateX" + "(" + parseInt(translateRow4) + "px" + ")";
             serviceItem6.current.style.transform = "translateX" + "(" + parseInt(translateRow4) * -1 + "px" + ")";
         }
     }, [translateRow4]);
-  
+
     //igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
-  useEffect(()=>{
-    reference.current = servicesRef.current;
-  }, []);
-    
+    useEffect(() => {
+        reference.current = servicesRef.current;
+    }, []);
+
 
     const servicesArray = [
         [
@@ -337,7 +341,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             ["Siempre estaré", "ENCANTADO DE AYUDARTE"],
         ],
     ];
-    
+
 
     useEffect(() => {
         circleText.current.innerHTML = circleText.current.innerHTML
@@ -362,18 +366,17 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                     rotate: 360
                   });*/
     }, []);
-    
 
 
-    const servicesTouchAnimation = (element, row, topCoord) =>{
-        if(row.getBoundingClientRect().top < window.innerHeight) 
-        {
-            if(topCoord <= (window.scrollY + (window.innerHeight / 2))){
-                let percentage = 100 + ((((window.innerHeight/2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight/2));
+
+    const servicesTouchAnimation = (element, row, topCoord) => {
+        if (row.getBoundingClientRect().top < window.innerHeight) {
+            if (topCoord <= (window.scrollY + (window.innerHeight / 2))) {
+                let percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
                 console.log(percentage)
-                let val = (window.innerWidth/2) - (percentage * (window.innerWidth/2)) / 100;
-                if(val<0) val=0;
-                else if(val>window.innerWidth/2) val = window.innerWidth/2;
+                let val = (window.innerWidth / 2) - (percentage * (window.innerWidth / 2)) / 100;
+                if (val < 0) val = 0;
+                else if (val > window.innerWidth / 2) val = window.innerWidth / 2;
                 element.style.transform = "translateX" + "(" + parseInt(val) + "px" + ")";
             }
         }
@@ -385,56 +388,91 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
         servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
     }
 
-    useEffect(()=>{
-        if(isSmallScreen){
+    useEffect(() => {
+        if (isSmallScreen) {
             window.addEventListener("scroll", touchAnimation);
             return () => window.removeEventListener("scroll", touchAnimation);
         }
     }, []);
-   
+
     useEffect(() => {
         if (isSmallScreen) {
-          document.body.addEventListener("touchmove", touchAnimation);
-          return () => document.body.removeEventListener("touchmove", touchAnimation);
+            document.body.addEventListener("touchmove", touchAnimation);
+            return () => document.body.removeEventListener("touchmove", touchAnimation);
         }
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        const circleHeight = circleRef.current.offsetHeight;
+        const subservicesElement = subservicesRef.current;
+        const paddingTop = parseInt(getComputedStyle(subservicesElement).paddingTop, 10);
+        const paddingBottom = parseInt(getComputedStyle(subservicesElement).paddingBottom, 10);
+        containerHeight.current = subservicesRef.current.offsetHeight - paddingBottom - paddingTop - circleHeight;
+
+
+    }, []);
     return (
         <section ref={servicesRef} className="services overflow-x-hidden" id="services">
-            <div className="pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
+            <div ref={subservicesRef} className="relative pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
                 <div className="w-full py-[28px]">
-                    <motion.p 
-                   initial={{scale:0.1, opacity:0.3}}
-                   viewport={{ once: true }}
-                   whileInView={{scale:1, opacity:1}}
-                    transition={{
-                        duration: 1,
-                      }} 
-                    className="little-title">LO QUE HAGO</motion.p>
-                    <motion.p 
-                    initial={{opacity:0, scale:0.4}}
-                    viewport={{ once: true }}
-                    transition={{duration:0.3}}
-                    whileInView={{opacity:1, scale:1, transition:{duration:1, delay:0.5}}}
-                    whileHover={{rotate:3, transition:{duration:0.3}}}
-                    className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
+                    <motion.p
+                        initial={{ scale: 0.1, opacity: 0.3 }}
+                        viewport={{ once: true }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{
+                            duration: 1,
+                        }}
+                        className="little-title">LO QUE HAGO</motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, scale: 0.4 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3 }}
+                        whileInView={{ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 } }}
+                        whileHover={{ rotate: 3, transition: { duration: 0.3 } }}
+                        className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
                         Facilito a mis clientes <br></br> soluciones webs <br></br>
                         desarrolladas a medida<br></br> con habilidad y pasión.
                     </motion.p>
                 </div>
+
                 <motion.div
-                whileInView={{translateY:["0%","-200%", "200%"],transition:{duration:[1,2,3]}}}
-                drag="y"
-                dragConstraints={{bottom:0, top:-300}}
-                className="circle w-[150px] h-[150px] flex justify-center items-center">
-                    <AiOutlineArrowDown className="arrow" />
-                    <div
-                        className="circle__text-container"
-                        id="circle__text-container--1"
-                        ref={circleTextServices}
-                    >
-                        <p className="circle__text" ref={circleText}>
-                            SERVICIOS | SERVICIOS | SERVICIOS |
-                        </p>
+                    ref={circleRef}
+                    drag="y"
+                    dragConstraints={{ top: -containerHeight.current, bottom: 0 }}
+                    initial={{ translateX: 200, opacity: 0 }}
+                    whileInView={{ translateX: 0, translateY: containerHeight.current, opacity: 1 }}
+                    transition={{
+                        duration: 2,
+                        translateX: {
+                            duration: 1,
+                            delay: 0.5
+                        },
+                        translateY: {
+                            duration: 2,
+                            delay: 1.5
+                        }
+                    }}
+                    viewport={{ once: true }}
+                    onAnimationComplete={() => {
+                        // Tu código a ejecutar al finalizar la animación
+                        setShowDragme(showDragme => !showDragme);
+                    }}
+                    className="circle w-[150px] h-[150px] flex flex-col justify-center items-center cursor-move"
+                >
+                    <p className={`text-sm ${showDragme ? 'flex' : 'hidden'} `}>Arrástrame!</p>
+                        <AiOutlineArrowDown className="arrow" />
+                        <div
+                            className="circle__text-container"
+                            id="circle__text-container--1"
+                            ref={circleTextServices}
+                        >
+                            <p className="circle__text" ref={circleText}>
+                                SERVICIOS | SERVICIOS | SERVICIOS |
+                            </p>
+                        </div>
+                    
+                    <div className="">
+                        
                     </div>
                 </motion.div>
                 {/*
