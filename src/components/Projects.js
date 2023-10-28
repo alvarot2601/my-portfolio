@@ -25,7 +25,7 @@ const Projects = ({reference}) => {
       'https://alvarot2601.github.io/dashboard-photos',
       'https://github.com/alvarot2601/dashboard-photos',
       'Logo de mi proyecto myPhotoApp',
-      'Proyecto terminado',
+      'Proyecto personal terminado',
       'Creado en bootcamp',
     ],
     [
@@ -36,7 +36,7 @@ const Projects = ({reference}) => {
       'https://alvarot2601.github.io/Hotel-Miranda',
       'https://github.com/alvarot2601/Hotel-Miranda',
       'Logo de mi proyecto Hotel Miranda',
-      'Proyecto terminado',
+      'Proyecto personal terminado',
       'Creado en bootcamp',
     ],
     [
@@ -47,7 +47,7 @@ const Projects = ({reference}) => {
       'https://alvarot2601.github.io/Oxygen-Shop',
       'https://github.com/alvarot2601/Oxygen-Shop',
       'Logo de mi proyecto Oxygen Shop',
-      'Proyecto terminado',
+      'Proyecto personal terminado',
       'Creado en bootcamp',
     ],
     [
@@ -91,7 +91,7 @@ const Projects = ({reference}) => {
       'https://alvarot2601.github.io/smooth-scrollbar/',
       'https://github.com/alvarot2601/smooth-scrollbar',
       '',
-      'Proyecto terminado',
+      'Proyecto personal terminado',
       'Para desarrolladores web',
     ],
     [
