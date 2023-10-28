@@ -127,7 +127,7 @@ const Header = ({ isSmallScreen, reference }) => {
 
 
   return (
-    <header ref={headerRef} className="header">
+    <header ref={headerRef} className="header overflow-x-hidden">
       {
         info.map((link, index) => {
           let displayClass = 'flex';
