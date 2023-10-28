@@ -1272,6 +1272,9 @@ form textarea {
   background-color: #fda4af;
   color: #e11d48;
 }
+.my-work .smooth_scroll {
+  background-color: grey;
+}
 .my-work svg {
   font-size: 2rem;
 }
