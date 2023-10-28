@@ -85,7 +85,7 @@ function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(true);
   // funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
-    if (document.body.clientWidth >= 1024) {
+    if (document.body.clientWidth >= 1025) {
       setIsSmallScreen(false);
       const today = new Date();
       // swal("Hacer scroll en pc está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo.", "", "info");

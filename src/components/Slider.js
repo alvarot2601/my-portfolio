@@ -33,8 +33,8 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}
                 (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
                     -80,
   });
-  const sliderValueRef = (document.body.clientWidth >= 1000) ? -500 :
-    (document.body.clientWidth < 1000 && document.body.clientWidth > 700) ? -150 :
+  const sliderValueRef = (document.body.clientWidth >= 1024) ? -300 :
+    (document.body.clientWidth < 1024 && document.body.clientWidth > 700) ? -150 :
         (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
             -80;
 
@@ -191,8 +191,9 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}
 
     }, []);
 */
-  // /////////EN CASO DE QUE LA PANTALLA SEA MAYOR A 1024PX LAS OPCIONES EN EL PARAMETRO SERÁN DIFERENTES, NO SE LE INCLUIRÁ EL AUTOPLAY A SWIPER
-  const params = (!isSmallScreen) ? {
+//no se puede utilizar issmascreen ya que una vez empieza a ejecutar swiper con los parametros ya no se pueden revertir
+  // /////////EN CASO DE QUE LA PANTALLA SEA MAYOR A 1025PX LAS OPCIONES EN EL PARAMETRO SERÁN DIFERENTES, NO SE LE INCLUIRÁ EL AUTOPLAY A SWIPER
+  const params = (document.body.clientWidth>=1025) ? {
     slidesPerView: 'auto',
     spaceBetween: 20,
     loop: true,

@@ -26,7 +26,7 @@ const WhoAmI = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference}) => 
         value: (document.body.clientWidth >= 1600) ? -300 :
                 (document.body.clientWidth >= 1400) ? -200 :
                     (document.body.clientWidth >= 1200) ? -150 :
-                        (document.body.clientWidth >= 1000) ? -100 :
+                        (document.body.clientWidth >= 1025) ? -100 :
                             0,
       },
   );
