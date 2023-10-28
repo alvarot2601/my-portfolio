@@ -444,7 +444,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
       pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px]
       rounded-[48px] lg:roundex-[86px] services__content">
         <div className="w-full py-[28px]">
-          <div className='w-full flex items-center gap-[3px] h-1'>
+          <div className='w-full flex items-center justify-start gap-[3px] h-1'>
             <motion.p
             /*initial={{ scale: 0.1, opacity: 0.3 }}
             viewport={{ once: true }}
@@ -455,14 +455,14 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             className="little-title w-fit">LO QUE HAGO</motion.p>
             <motion.div
             whileInView={{
-              width:"90%",
+              width:"83%",
               transition:{
                 duration:4
               }
             }}
             viewport={{once:true}}
             onAnimationComplete={()=>setArrowDown(true)}
-            className='w-[10px] h-1 bg-slate-300'>&#8203;</motion.div>
+            className='w-[1px] h-1 bg-slate-300'>&#8203;</motion.div>
             {
               arrowDown ? <FaArrowDown/> : <FaArrowRight/>
             }
