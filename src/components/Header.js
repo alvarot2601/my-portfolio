@@ -194,7 +194,7 @@ const Header = ({ isSmallScreen, reference }) => {
                     delay:2.7
                   },
                   rotate: {
-                    duration: 1,
+                    duration: 0.3,
                     delay: 3.6,
                   }
                 }
