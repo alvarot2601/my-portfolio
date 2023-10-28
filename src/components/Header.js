@@ -127,11 +127,10 @@ const Header = ({ isSmallScreen, reference }) => {
 
 
   return (
-    <header ref={headerRef} className="header overflow-x-hidden">
+    <header ref={headerRef} className="header overflow-hidden">
       {
         info.map((link, index) => {
           let displayClass = 'flex';
-
           let frasePaddingClass = 'px-20';
           let carrouselInvisible = 'carrousel';
           let fraseFontSizeClass = 'text-9xl';
