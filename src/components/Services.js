@@ -96,7 +96,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             ? window.innerWidth / 2 / 2 / necessaryScrollMoves
             : - (window.innerWidth / 2) / necessaryScrollMoves;*/
 
-
+  
   const [translateRow1, setTranslateRow1] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);// window.innerWidth / 2 lo cambio x 0 de mommento
   // const [translateSmallRow1, setTranslateSmallRow1] = useState(window.innerWidth / 2);
   const [translateRow2, setTranslateRow2] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);

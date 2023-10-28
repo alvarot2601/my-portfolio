@@ -165,7 +165,7 @@
     transform: rotate(-360deg);
   }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .header {
     height: auto;
   }
@@ -1408,7 +1408,7 @@ form textarea {
   gap: 20px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .services__item--purple, .services__extension {
     display: none;
   }
@@ -1657,7 +1657,7 @@ a {
     position: static;
   }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .marquee-animation {
     width: 100%;
   }
