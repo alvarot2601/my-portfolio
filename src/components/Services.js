@@ -452,7 +452,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             transition={{
               duration: 1,
             }}*/
-            className="little-title w-fit">LO QUE HAGO</motion.p>
+            className="little-title w-[8%]">LO QUE HAGO</motion.p>
             <motion.div
             whileInView={{
               width:"90%",
