@@ -21,21 +21,21 @@ import {AiFillGithub} from 'react-icons/ai';
 SwiperCore.use([Autoplay]);
 
 
-const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll}) => {
+const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}) => {
   const slider = useRef(null);
   const my_who_contentTop = useRef(null);
   const my_who_contentBottom = useRef(null);
   const necessaryScrollMoves_my_who = useRef(null);
 
   const [sliderValue, setSliderValue] = useState({
-    value: (window.innerWidth >= 1000) ? -500 :
-            (window.innerWidth < 1000 && window.innerWidth > 700) ? -150 :
-                (window.innerWidth <= 700 && window.innerWidth > 500) ? -100 :
+    value: (document.body.clientWidth >= 1000) ? -500 :
+            (document.body.clientWidth < 1000 && document.body.clientWidth > 700) ? -150 :
+                (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
                     -80,
   });
-  const sliderValueRef = (window.innerWidth >= 1000) ? -500 :
-    (window.innerWidth < 1000 && window.innerWidth > 700) ? -150 :
-        (window.innerWidth <= 700 && window.innerWidth > 500) ? -100 :
+  const sliderValueRef = (document.body.clientWidth >= 1000) ? -500 :
+    (document.body.clientWidth < 1000 && document.body.clientWidth > 700) ? -150 :
+        (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
             -80;
 
 
@@ -191,8 +191,8 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll}) => {
 
     }, []);
 */
-  // /////////EN CASO DE QUE LA PANTALLA SEA MAYOR A 1000PX LAS OPCIONES EN EL PARAMETRO SERÁN DIFERENTES, NO SE LE INCLUIRÁ EL AUTOPLAY A SWIPER
-  const params = (window.innerWidth >= 769) ? {
+  // /////////EN CASO DE QUE LA PANTALLA SEA MAYOR A 1024PX LAS OPCIONES EN EL PARAMETRO SERÁN DIFERENTES, NO SE LE INCLUIRÁ EL AUTOPLAY A SWIPER
+  const params = (!isSmallScreen) ? {
     slidesPerView: 'auto',
     spaceBetween: 20,
     loop: true,

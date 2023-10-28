@@ -75,14 +75,19 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     setNecessaryScrollMoves((rowServices1Top + rowServiceHeight / 2 -
       (rowServices1Top - window.innerHeight / 2)) / pxPerScroll);
   }, [rowServices1Top, rowServiceHeight, pxPerScroll]);
+  /*useEffect(() => {
+    if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
+      setNecessaryScrollMoves(necessaryScrollMoves=> Math.round(necessaryScrollMoves) + 1);
+        
+  }, [necessaryScrollMoves]);*/
   /* if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
         necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;*/
 
   const [translateRowValue, setTranslateRowValue] = useState(null);
   useEffect(() => {
-    setTranslateRowValue(window.innerWidth > 1000 ?
-      window.innerWidth / 2 / 2 / necessaryScrollMoves :
-      - (window.innerWidth / 2) / necessaryScrollMoves);
+    setTranslateRowValue(!isSmallScreen ?
+      document.body.clientWidth / 2 / 2 / necessaryScrollMoves :
+      - (document.body.clientWidth / 2) / necessaryScrollMoves);
   }, [necessaryScrollMoves]);
 
 
@@ -92,13 +97,13 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             : - (window.innerWidth / 2) / necessaryScrollMoves;*/
 
 
-  const [translateRow1, setTranslateRow1] = useState(isSmallScreen ? window.innerWidth / 2 : 0);// window.innerWidth / 2 lo cambio x 0 de mommento
+  const [translateRow1, setTranslateRow1] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);// window.innerWidth / 2 lo cambio x 0 de mommento
   // const [translateSmallRow1, setTranslateSmallRow1] = useState(window.innerWidth / 2);
-  const [translateRow2, setTranslateRow2] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+  const [translateRow2, setTranslateRow2] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);
   // const [translateSmallRow2, setTranslateSmallRow2] = useState(window.innerWidth / 2);
-  const [translateRow3, setTranslateRow3] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+  const [translateRow3, setTranslateRow3] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);
   // const [translateSmallRow3, setTranslateSmallRow3] = useState(window.innerWidth / 2);
-  const [translateRow4, setTranslateRow4] = useState(isSmallScreen ? window.innerWidth / 2 : 0);
+  const [translateRow4, setTranslateRow4] = useState(isSmallScreen ? document.body.clientWidth / 2 : 0);
   // const [translateSmallRow4, setTranslateSmallRow4] = useState(window.innerWidth / 2);
 
   const CoordYRef = useRef(coordY);
@@ -107,12 +112,13 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
   useState(() => {
     setDiferencia(rowServices1Top - (rowServices1Top - (window.innerHeight / 2)));
   }, [rowServices1Top]);
-  useEffect(() => {
+  
+  /*useEffect(() => {
     setTranslateRow1(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow2(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow3(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow4(isSmallScreen ? window.innerWidth / 2 : 0);
-  }, [isSmallScreen]);
+  }, [isSmallScreen]);*/
 
 
   useEffect(() => {
@@ -134,7 +140,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
 
   // si la pantalla es mayor a 1000px de ancho se debe poder ejecutar la animacion
   useEffect(() => {
-    if (window.innerWidth > 1000) {
+    if (!isSmallScreen) {
       servicesAnimation2(wheelDelta, coordY, rowServices1.current, rowServices1Top, rowServices1Bottom, 'translateX', translateRow1, setTranslateRow1, translateRowValue, serviceItem0.current, serviceItem1.current);
       servicesAnimation2(wheelDelta, coordY, rowServices2.current, rowServices2Top, rowServices2Bottom, 'translateX', translateRow2, setTranslateRow2, translateRowValue, serviceItem2.current, serviceItem3.current);
       servicesAnimation2(wheelDelta, coordY, rowServices3.current, rowServices3Top, rowServices3Bottom, 'translateX', translateRow3, setTranslateRow3, translateRowValue, serviceItem4.current, serviceItem5.current);
@@ -177,11 +183,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
       if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
         console.log('porcentaje, ', porcentaje);
-        porcentaje = 100 - (porcentaje * 100) / (window.innerWidth / 2);
+        porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
 
         // porcentaje =  100 - (porcentaje * 100 / (rowServices1YTop.current + window.innerHeight));
         // obj.value += value;
-        const val = (window.innerWidth / 2) - ((window.innerWidth / 2) * porcentaje) / 100;
+        const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
         console.log('porcentaje, ', porcentaje);
       }
@@ -189,8 +195,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
       if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
         console.log('porcentaje, ', porcentaje);
-        porcentaje = 100 - (porcentaje * 100) / (window.innerWidth / 2);
-        const val = (window.innerWidth / 2) - ((window.innerWidth / 2) * porcentaje) / 100;
+        porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
+        const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
         console.log('porcentaje, ', porcentaje);
       }
@@ -402,9 +408,9 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
       if (topCoord <= (window.scrollY + (window.innerHeight / 2))) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
         console.log(percentage);
-        let val = (window.innerWidth / 2) - (percentage * (window.innerWidth / 2)) / 100;
+        let val = (document.body.clientWidth / 2) - (percentage * (document.body.clientWidth / 2)) / 100;
         if (val < 0) val = 0;
-        else if (val > window.innerWidth / 2) val = window.innerWidth / 2;
+        else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;
         element.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
       }
     }

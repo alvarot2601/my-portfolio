@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Slider from './Slider';
 
-const WhoAmI = ({coordY, wheelDelta, pxPerScroll, reference}) => {
+const WhoAmI = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference}) => {
   const whoamiRef = useRef(null);
   // igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
   useEffect(()=>{
@@ -15,18 +15,18 @@ const WhoAmI = ({coordY, wheelDelta, pxPerScroll, reference}) => {
   const necessaryScrollMoves_my_who_text = useRef(null);
   const transXValue = useRef(null);
   const [sliderValue, setSliderValue] = useState({
-    value: (window.innerWidth >= 1000) ? -250 :
-        (window.innerWidth < 1000 && window.innerWidth > 700) ? -150 :
-        (window.innerWidth <= 700 && window.innerWidth > 500) ? -100 :
+    value: (document.body.clientWidth >= 1000) ? -250 :
+        (document.body.clientWidth < 1000 && document.body.clientWidth > 700) ? -150 :
+        (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
         -80,
   });
     // animacion para el texto
   const [transX, setTransX] = useState(
       {
-        value: (window.innerWidth >= 1600) ? -300 :
-                (window.innerWidth >= 1400) ? -200 :
-                    (window.innerWidth >= 1200) ? -150 :
-                        (window.innerWidth >= 1000) ? -100 :
+        value: (document.body.clientWidth >= 1600) ? -300 :
+                (document.body.clientWidth >= 1400) ? -200 :
+                    (document.body.clientWidth >= 1200) ? -150 :
+                        (document.body.clientWidth >= 1000) ? -100 :
                             0,
       },
   );
@@ -85,7 +85,7 @@ const WhoAmI = ({coordY, wheelDelta, pxPerScroll, reference}) => {
   }, [pxPerScroll]);
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) {
+    if (!isSmallScreen) {
       circleAnimation(wheelDelta, coordY, text.current, textCoordYTop.current, textCoordYBottom.current, 'translateX', transX, setTransX, transXValue.current);
     }
   }, [coordY]);
@@ -124,7 +124,7 @@ const WhoAmI = ({coordY, wheelDelta, pxPerScroll, reference}) => {
                         Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress.
           </p>
         </div>
-        <Slider my_who_content={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll = {pxPerScroll} />
+        <Slider isSmallScreen={isSmallScreen} my_who_content={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll = {pxPerScroll} />
       </div>
     </section>
   );
