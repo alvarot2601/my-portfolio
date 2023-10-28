@@ -85,7 +85,7 @@ function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(true);
   // funcion para setear algunas variables que se necesitan setear cuando el dom cargue y para que despues se pueda aplicar la funcion cleanup de los useeffect
   const setInitialStates = () => {
-    if (window.innerWidth >= 1024) {
+    if (document.body.clientWidth >= 1024) {
       setIsSmallScreen(false);
       const today = new Date();
       // swal("Hacer scroll en pc está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo.", "", "info");
@@ -112,13 +112,7 @@ function App() {
     relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
   };
 
-  useEffect(() => {
-    if (isSmallScreen) {
-      scrollbarWrapper.current.style.height = '30px';
-    } else {
-      scrollbarWrapper.current.style.height = window.innerHeight + 'px';
-    }
-  }, [isSmallScreen]);
+ 
 
   const getStartCoordinates = (e) => {
     // continueScrolling = true;
@@ -306,7 +300,8 @@ function App() {
   useEffect(() => {
     // para eliminar el smooth scroll en pantallas que no pertenezcan a pc
     if (!isSmallScreen) {
-      // alert(window.innerWidth)
+      //alert(window.innerWidth)
+      
       document.body.addEventListener('wheel', smooth);
       return () => document.body.removeEventListener('wheel', smooth);
     }
@@ -314,30 +309,20 @@ function App() {
 
 
   useEffect(() => {
-    scroll.current.style.transform = 'translateY(' + coordY + 'px)';
-    scrollbar.current.style.transform = 'translateY(' + relativeScrolledValueState + 'px)';
-    if (lastCoordY.current < relativeScrolledValueState) {
-      setWheelDelta(-150);
-      lastCoordY.current = relativeScrolledValueState;
-    } else if (lastCoordY.current > relativeScrolledValueState) {
-      setWheelDelta(150);
-      lastCoordY.current = relativeScrolledValueState;
+    if(!isSmallScreen){
+      scroll.current.style.transform = 'translateY(' + coordY + 'px)';
+      scrollbar.current.style.transform = 'translateY(' + relativeScrolledValueState + 'px)';
+      if (lastCoordY.current < relativeScrolledValueState) {
+        setWheelDelta(-150);
+        lastCoordY.current = relativeScrolledValueState;
+      } else if (lastCoordY.current > relativeScrolledValueState) {
+        setWheelDelta(150);
+        lastCoordY.current = relativeScrolledValueState;
+      }
     }
-    console.log('coordY, ' + coordY);
-  }, [coordY, relativeScrolledValueState]);
+  }, [coordY, relativeScrolledValueState, isSmallScreen]);
 
-  /* const resize = () => {
-    finalLimit.current = document.body.scrollHeight;
-    pxPerScroll.current = (document.body.scrollHeight - window.innerHeight) / times_to_reach.current;
-    scrollbarWrapper.current.style.height = document.body.scrollHeight + 'px';
-    //relativePercentage = (windowHeight - scrollBarHeight) / TIMES_TO_REACH;
-    relativePercentage.current = (document.body.innerHeight - scrollBarHeight) / times_to_reach.current;
-    //setRelativePercentage((document.body.innerHeight - scrollBarHeight) / times_to_reach.current);
-  }
-  useEffect(() => {
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, []);*/
+  
 
 
   const keydownHandle = (e) => {
@@ -398,7 +383,7 @@ function App() {
       window.addEventListener('scroll', moveScrollbar);
       return () => window.removeEventListener('scroll', moveScrollbar);
     }
-  }, [isSmallScreen, finalLimit]);
+  }, []);
 
   useEffect(() => {
     if (isSmallScreen) {
@@ -425,18 +410,18 @@ function App() {
     <div className=''>
       <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
-          <Nav reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
+          <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header reference={headerRef} isSmallScreen={isSmallScreen} />
           <Services reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Projects reference={projectsRef} />
-          <WhoAmI reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Contact reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Projects isSmallScreen={isSmallScreen} reference={projectsRef} />
+          <WhoAmI isSmallScreen={isSmallScreen} reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Contact isSmallScreen={isSmallScreen} reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Footer />
         </div>
       </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
+      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full  lg:w-[30px] bg-slate-300 lg:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center lg:items-start'>
-          <div className='hidden lg:flex flex-row lg:flex-col w-full justify-evenly lg:justify-center lg:items-center absolute text-sm font-mono' >
+          <div className='flex flex-row lg:flex-col w-full justify-evenly lg:justify-center lg:items-center absolute text-sm font-mono' >
             <span>C</span>
             <span>r</span>
             <span>e</span>

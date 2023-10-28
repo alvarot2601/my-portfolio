@@ -40,7 +40,7 @@ const Header = ({ isSmallScreen, reference }) => {
 
   const hideText = (e) => {
     // ejecutamos solo si la pantalla es mayor a x px
-    if (window.innerWidth >= 1024) {
+    if (!isSmallScreen) {
       servicesLink.current.classList.add('carrousel--hidden');
       if (e.currentTarget == servicesLink.current) {
         servicesLink.current.classList.toggle('carrousel--hidden');
@@ -61,7 +61,7 @@ const Header = ({ isSmallScreen, reference }) => {
   };
 
   const showText = (e) => {
-    if (window.innerWidth >= 1024) {
+    if (!isSmallScreen) {
       servicesLink.current.classList.remove('carrousel--hidden');
       if (e.currentTarget == servicesLink.current) {
         // servicesLink.current.classList.toggle('carrousel--hidden');
@@ -218,7 +218,8 @@ const Header = ({ isSmallScreen, reference }) => {
                     variantAboutMe :
                     variantServices
               }
-              key={`div-${index}`} className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onClick={handleLink} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
+              key={`div-${index}`}
+              className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onClick={handleLink} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
               <a href={`#${link[4]}`} className="flex flex-col items-end h-full ">
                 {
                   (link[0] === 'services-link') ?
