@@ -113,12 +113,12 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     setDiferencia(rowServices1Top - (rowServices1Top - (window.innerHeight / 2)));
   }, [rowServices1Top]);
   
-  /*useEffect(() => {
+  useEffect(() => {
     setTranslateRow1(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow2(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow3(isSmallScreen ? window.innerWidth / 2 : 0);
     setTranslateRow4(isSmallScreen ? window.innerWidth / 2 : 0);
-  }, [isSmallScreen]);*/
+  }, [isSmallScreen]);
 
 
   useEffect(() => {
@@ -468,7 +468,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             }}
             viewport={{once:true}}
             onAnimationComplete={()=>setArrowDown(true)}
-            className='w-[10px] h-1 bg-slate-300'>&#8203;</motion.div>
+            className='w-[10px] h-1 bg-[#A5A1FF]'>&#8203;</motion.div>
             {
               arrowDown ? <FaArrowDown/> : <FaArrowRight/>
             }
