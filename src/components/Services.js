@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import {React, useEffect, useRef, useState} from 'react';
-import {MdSupportAgent, MdVisibility} from 'react-icons/md';
-import {AiOutlineArrowDown} from 'react-icons/ai';
-import {SiAntdesign, SiRedux} from 'react-icons/si';
-import {FaLaptopCode, FaReact, FaPhp} from 'react-icons/fa';
-import {TbBrandJavascript} from 'react-icons/tb';
-import {motion} from 'framer-motion';
+import { React, useEffect, useRef, useState } from 'react';
+import { MdSupportAgent, MdVisibility } from 'react-icons/md';
+import { AiOutlineArrowDown } from 'react-icons/ai';
+import { SiAntdesign, SiRedux } from 'react-icons/si';
+import { FaLaptopCode, FaReact, FaPhp } from 'react-icons/fa';
+import { TbBrandJavascript } from 'react-icons/tb';
+import { motion } from 'framer-motion';
 
-import {halfviewportWidth} from './Functions';
-import {circleValue} from './Functions';
-const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>{
+import { halfviewportWidth } from './Functions';
+import { circleValue } from './Functions';
+const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
   const [showDragme, setShowDragme] = useState(true);
   const [circleTextTop, setCircleTextTop] = useState(null);
   const [circleTextBottom, setCircleTextBottom] = useState(null);
@@ -22,13 +22,13 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
   ser múltiplo de 150, que es el valor actual
   de lo q baja en cada scroleo */
   const [rowServiceHeight, setRowServiceHeight] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     setRowServiceHeight(rowServices1.current.offsetHeight);
   }, []);
   const circleText = useRef(null);
   const circleTextServices = useRef(null);
   // eslint-disable-next-line no-unused-vars
-  const [circleRotate, setCircleRotate] = useState({value: 0});
+  const [circleRotate, setCircleRotate] = useState({ value: 0 });
   const rowServices1 = useRef(null);
   const rowServices2 = useRef(null);
   const rowServices3 = useRef(null);
@@ -69,18 +69,18 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
   // rowServiceHeight.current / 2 - (rowServices1YTop.current -
   //  window.innerHeight / 2)) / pxPerScroll;
   // si es decimal le sumamos 1
-  useEffect(()=>{
+  useEffect(() => {
     setNecessaryScrollMoves((rowServices1Top + rowServiceHeight / 2 -
-    (rowServices1Top - window.innerHeight / 2)) / pxPerScroll);
+      (rowServices1Top - window.innerHeight / 2)) / pxPerScroll);
   }, [rowServices1Top, rowServiceHeight, pxPerScroll]);
   /* if (necessaryScrollMoves - Math.floor(necessaryScrollMoves) !== 0)
         necessaryScrollMoves = Math.round(necessaryScrollMoves) + 1;*/
 
   const [translateRowValue, setTranslateRowValue] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     setTranslateRowValue(window.innerWidth > 1000 ?
-            window.innerWidth / 2 / 2 / necessaryScrollMoves :
-            - (window.innerWidth / 2) / necessaryScrollMoves);
+      window.innerWidth / 2 / 2 / necessaryScrollMoves :
+      - (window.innerWidth / 2) / necessaryScrollMoves);
   }, [necessaryScrollMoves]);
 
 
@@ -102,7 +102,7 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
   const CoordYRef = useRef(coordY);
   CoordYRef.current = coordY;
   const [diferencia, setDiferencia] = useState(null);
-  useState(()=>{
+  useState(() => {
     setDiferencia(rowServices1Top - (rowServices1Top - (window.innerHeight / 2)));
   }, [rowServices1Top]);
   useEffect(() => {
@@ -119,7 +119,7 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
     // ¡No verás el valor actualizado aquí!
   }, [showDragme]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setRowServices1Top(rowServices1.current.getBoundingClientRect().top);
     setRowServices2Top(rowServices2.current.getBoundingClientRect().top);
     setRowServices3Top(rowServices3.current.getBoundingClientRect().top);
@@ -372,11 +372,11 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
 
   useEffect(() => {
     circleText.current.innerHTML = circleText.current.innerHTML
-        .split('')
-        .map((char, i) => {
-          return `<span style="transform:rotate(${i * 10}deg)">${char}</span>`;
-        })
-        .join('');
+      .split('')
+      .map((char, i) => {
+        return `<span style="transform:rotate(${i * 10}deg)">${char}</span>`;
+      })
+      .join('');
 
     // gsap
     /* gsap.registerPlugin(ScrollTrigger);
@@ -437,35 +437,39 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
   }, []);
   return (
     <section ref={servicesRef} className="services overflow-x-hidden" id="services">
-      <div ref={subservicesRef} className="relative pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px] services__content">
+      <div ref={subservicesRef} className="relative pt-[28px] pr-[28px] pb-[30px] 
+      pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px]
+      rounded-[48px] lg:roundex-[86px] services__content">
         <div className="w-full py-[28px]">
           <motion.p
-            initial={{scale: 0.1, opacity: 0.3}}
-            viewport={{once: true}}
-            whileInView={{scale: 1, opacity: 1}}
+            initial={{ scale: 0.1, opacity: 0.3 }}
+            viewport={{ once: true }}
+            whileInView={{ scale: 1, opacity: 1 }}
             transition={{
               duration: 1,
             }}
             className="little-title">LO QUE HAGO</motion.p>
           <motion.p
-            initial={{opacity: 0, scale: 0.4}}
-            viewport={{once: true}}
-            transition={{duration: 0.3}}
-            whileInView={{opacity: 1, scale: 1, transition: {duration: 1.5, delay: 1}}}
-            whileHover={{rotate: 3, transition: {duration: 0.3}}}
-            className="services__info mt-[26px] text-[clamp(28px,7vw,118px)]">
-                        Facilito a mis clientes <br></br> soluciones webs <br></br>
-                        desarrolladas a medida<br></br> con habilidad y pasión.
+            drag
+            dragConstraints={{top:-5,left:-5,bottom:5, right:5}}
+            initial={{ opacity: 0, scale: 0.4 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            whileInView={{ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 } }}
+            whileHover={{ rotate: 3, transition: { duration: 0.3 } }}
+            className="services__info mt-[26px] text-[clamp(28px,7vw,118px)] cursor-move">
+            Facilito a mis clientes <br></br> soluciones webs <br></br>
+            desarrolladas a medida<br></br> con habilidad y pasión.
           </motion.p>
         </div>
 
         <motion.div
           ref={circleRef}
           drag="y"
-          dragConstraints={{top: -containerHeight.current, bottom: 0}}
-          initial={{translateX: 200, opacity: 0}}
-          whileInView={{translateX: 0, translateY: containerHeight.current, opacity: 1}}
-          whileHover={{scale: 1.2, transition: {duration: 0.2}}}
+          dragConstraints={{ top: -containerHeight.current, bottom: 0 }}
+          initial={{ translateX: 200, opacity: 0 }}
+          whileInView={{ translateX: 0, translateY: containerHeight.current, opacity: 1 }}
+          whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
           transition={{
             duration: 0.2,
             opacity: {
@@ -480,8 +484,8 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
               delay: 1.5,
             },
           }}
-          viewport={{once: true}}
-          onDragTransitionEnd={()=>{
+          viewport={{ once: true }}
+          onDragTransitionEnd={() => {
             setCircleTextTop(circleTextServices.current.getBoundingClientRect().top + Math.abs(coordY));
             setCircleTextBottom(circleTextServices.current.getBoundingClientRect().bottom + Math.abs(coordY));
           }}
@@ -500,7 +504,7 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
             ref={circleTextServices}
           >
             <p className="circle__text" ref={circleText}>
-                                SERVICIOS | SERVICIOS | SERVICIOS |
+              SERVICIOS | SERVICIOS | SERVICIOS |
             </p>
           </div>
 
@@ -519,30 +523,30 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
           return (
             <div
               ref={
-                                index == 0 ?
-                                    rowServices1 :
-                                    index == 1 ?
-                                        rowServices2 :
-                                        index == 2 ?
-                                            rowServices3 :
-                                            index == 3 ?
-                                                rowServices4 :
-                                                ''
+                index == 0 ?
+                  rowServices1 :
+                  index == 1 ?
+                    rowServices2 :
+                    index == 2 ?
+                      rowServices3 :
+                      index == 3 ?
+                        rowServices4 :
+                        ''
               }
               key={`services-${index}`}
               className={`services__row services__row_${index} h-full min-h-[280px] sm:min-h-[200px] lg:min-h-[300px]`}
             >
               <div
                 ref={
-                                    index == 0 ?
-                                        serviceItem0 :
-                                        index == 1 ?
-                                            serviceItem2 :
-                                            index == 2 ?
-                                                serviceItem4 :
-                                                index == 3 ?
-                                                    serviceItem6 :
-                                                    null
+                  index == 0 ?
+                    serviceItem0 :
+                    index == 1 ?
+                      serviceItem2 :
+                      index == 2 ?
+                        serviceItem4 :
+                        index == 3 ?
+                          serviceItem6 :
+                          null
                 }
                 className={`services__item services__item--${index} rounded-[48px] p-4 lg:p-[48px]`}
               >
@@ -558,24 +562,24 @@ const Services = ({coordY, wheelDelta, pxPerScroll, isSmallScreen, reference})=>
               </div>
               <div
                 ref={
-                                    index === 0 ?
-                                        serviceItem1 :
-                                        index === 1 ?
-                                            serviceItem3 :
-                                            index === 2 ?
-                                                serviceItem5 :
-                                                index === 3 ?
-                                                    serviceItem7 :
-                                                    null
+                  index === 0 ?
+                    serviceItem1 :
+                    index === 1 ?
+                      serviceItem3 :
+                      index === 2 ?
+                        serviceItem5 :
+                        index === 3 ?
+                          serviceItem7 :
+                          null
                 }
                 className={`services__item services__item--purple services__item--purple-${index}  rounded-[48px] p-4 lg:p-[48px]`}
               >
                 <span className="text-center text-xl xl:text-2xl 2xl:text-3xl font-thin">{item[1][0]}</span>
                 {typeof item[1][1] === 'string' ? (
-                                    <span className="text-center text-4xl xl:text-5xl 2xl:text-6xl">{item[1][1]}</span>
-                                ) : (
-                                    <div className="services__icons-container">{item[1][1]}</div>
-                                )}
+                  <span className="text-center text-4xl xl:text-5xl 2xl:text-6xl">{item[1][1]}</span>
+                ) : (
+                  <div className="services__icons-container">{item[1][1]}</div>
+                )}
               </div>
               <div className="services__extension"></div>
             </div>

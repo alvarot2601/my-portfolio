@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import {motion} from 'framer-motion';
 import React, { useRef, useEffect } from 'react';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { HiIdentification } from 'react-icons/hi';
@@ -80,6 +81,50 @@ const Header = ({ isSmallScreen, reference }) => {
     }
   };
 
+  const initVariantProjects = {
+    translateX: '56vw'
+  }
+  const variantProjects = {
+    translateX: 0,
+    transition:{
+      duration:1,
+      delay:0.9
+    }
+  }
+  const initVariantServices = {
+    translateX: "-50vw"
+  }
+  const variantServices = {
+    translateX: 0,
+    transition:{
+      duration:1
+    }
+  }
+  const variantContact = {
+    translateY: 0,
+    rotate:0,
+   
+  }
+  const initVariantContact = {
+    translateY: 300,
+    rotate:10,
+    
+  }
+  const variantAboutMe = {
+    translateX: 0,
+    transition:{
+      duration:1,
+      delay:1.8
+    }
+  }
+  const initVariantAboutme = {
+    translateX: '29vw',
+    transition:{
+      duration:1,
+      delay:2.7
+    }
+  }
+
 
   return (
     <header ref={headerRef} className="header">
@@ -131,7 +176,8 @@ const Header = ({ isSmallScreen, reference }) => {
               break;
           }
           return (
-            <div
+            <motion.div
+            
               ref={
                 (link[0] == 'projects-link') ?
                   projectsLink :
@@ -140,6 +186,37 @@ const Header = ({ isSmallScreen, reference }) => {
                     (link[0] == 'about-link') ?
                       aboutMeLink :
                       servicesLink
+              }
+              transition={
+                link[0] === 'contact-link' ? {
+                  translateY: {
+                    duration: 1,
+                    delay:2.7
+                  },
+                  rotate: {
+                    duration: 1,
+                    delay: 3.6,
+                  }
+                }
+                : ''
+              }
+              initial={
+                (link[0] == 'projects-link') ?
+                  initVariantProjects :
+                  (link[0] == 'contact-link') ?
+                    initVariantContact :
+                    (link[0] == 'about-link') ?
+                    initVariantAboutme :
+                    initVariantServices
+              }
+              animate={
+                (link[0] == 'projects-link') ?
+                  variantProjects :
+                  (link[0] == 'contact-link') ?
+                    variantContact :
+                    (link[0] == 'about-link') ?
+                    variantAboutMe :
+                    variantServices
               }
               key={`div-${index}`} className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onClick={handleLink} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
               <a href={`#${link[4]}`} className="flex flex-col items-end h-full ">
@@ -178,7 +255,7 @@ const Header = ({ isSmallScreen, reference }) => {
               </a>
               <p className={`frase ${frasePaddingClass} ${fraseFontSizeClass} ${fraseColorClass} font-black`} >{link[3]}</p>
               <p className={`frase ${frasePaddingClass} ${fraseFontSizeClass} ${fraseColorClass} font-black`}>{link[3]}</p>
-            </div>
+            </motion.div>
           );
         })
       }
