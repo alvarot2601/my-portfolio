@@ -25,11 +25,11 @@ export const opacityValue = 0.15;
 
 
 // para almacenar el valor de sliderValue y mantenerlo constantemente
-export const sliderValueRef = (window.innerWidth >= 1000) ? -500 :
+/*export const sliderValueRef = (window.innerWidth >= 1000) ? -500 :
 (window.innerWidth < 1000 && window.innerWidth > 700) ? -150 :
     (window.innerWidth <= 700 && window.innerWidth > 500) ? -100 :
         -80;
-
+*/
 
 // //////////FUNCTIONS
 
