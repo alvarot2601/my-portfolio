@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser';
 import {AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown} from 'react-icons/ai';
 import {circleValue} from './Functions';
 
-const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) => {
+const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, isSmallScreen}) => {
   const contactRef = useRef(null);
   useEffect(()=>{
     reference.current = contactRef.current;
@@ -59,22 +59,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) 
     const unit = (transform === 'translateX') ? 'px' : 'deg';
     if (element2 === null) {
       element.style.transform = transform + '(' + parseInt(obj.value) + unit + ')';
-    } /* else if (element2.classList.contains('services__item')) {
-            if (obj.value > (halfviewportWidth / 2)) obj.value = (halfviewportWidth / 2);
-            if (obj.value < 0) obj.value = 0;
-            element3.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
-            element2.style.transform = transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
-        }
-        else {
-            //entra aquí con es el swiper
-            if(obj.value > 0) obj.value = 0;
-            else if(obj.value < -300) obj.value = -300;
-            console.log('element', element)
-            console.log('element2', element2)
-            console.log('element2.style.transform', transform + "(" + parseInt(obj.value) + unit + ")")
-            element2.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
-            element3.style.transform = transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
-        }*/
+    }
   };
   const handleChange = (e) => {
     setToSend({...toSend, [e.target.name]: e.target.value});
@@ -158,20 +143,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) 
     })
         .join('');
 
-    // gsap
-    /* gsap.registerPlugin(ScrollTrigger);
-
-
-           gsap.to("#circle__text-container2", {
-             scrollTrigger: {
-                 trigger: "#circle__text-container2",
-                 start: "top bottom",
-                 end: "bottom top",
-                 scrub: true,
-                 markers: false
-             },
-             rotate: 360
-           });*/
+   
   }, []);
 
   useEffect(() => {
@@ -181,6 +153,29 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference}) 
     }
   }, [inputValue]);
 
+  const scrollCircleAnimatiom = (element, topCoord) =>{
+    console.log('element.getBoundingClientRect().top', element.getBoundingClientRect().top)
+    console.log(' window.innerHeight',  window.innerHeight)
+    if (element.getBoundingClientRect().top < window.innerHeight) {
+  
+        const percentage = 100 + ((((window.innerHeight) - topCoord.getBoundingClientRect().top) * 100) / (window.innerHeight));
+        console.log(percentage);
+        let val = (document.body.clientWidth) - (percentage * (document.body.clientWidth)) / 100;
+        /*if (val < 0) val = 0;
+        else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;*/
+        element.style.transform = 'rotate' + '(' + parseInt(-val) + 'deg' + ')';
+      }
+  }
+ 
+  const scrollAnimation = () =>{
+    scrollCircleAnimatiom(circleTextServices.current, circleText.current);
+  }
+  useEffect(() => {
+    if (isSmallScreen) {
+      window.addEventListener('scroll', scrollAnimation);
+      return () => window.removeEventListener('scroll', scrollAnimation);
+    }
+  }, [isSmallScreen]);
 
   return (
     <section ref={contactRef} className="contact">
