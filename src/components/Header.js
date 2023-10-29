@@ -26,7 +26,7 @@ const Header = ({ isSmallScreen, reference }) => {
   const aboutMeLinkIcon = useRef(null);
   const projectsLinkIcon = useRef(null);
   const info = [
-    ['services-link', 'Ver mis servicios', <TfiArrowDown className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Especializado en React.', 'services'],
+    ['services-link', 'Ver mis servicios', <TfiArrowDown className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Creando la web de tus sueños, línea a línea', 'services'],
     ['projects-link', 'Proyectos', <AiOutlineFundProjectionScreen className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Algunos de mis proyectos. ', 'projects'],
     ['contact-link', 'Contáctame', <IoMdMailUnread className="order-0 md:order-1 text-3xl lg:text-4xl" />, ' ¿Quieres hablar de negocios? !Contacta conmigo! ', 'contact'],
     ['about-link', 'Sobre mí', <HiIdentification className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Aprende más sobre mí. ', 'aboutme'],
@@ -131,7 +131,7 @@ const Header = ({ isSmallScreen, reference }) => {
       {
         info.map((link, index) => {
           let displayClass = 'flex';
-          let frasePaddingClass = 'px-20';
+          let frasePaddingClass = 'px-[10rem]';
           let carrouselInvisible = 'carrousel';
           let fraseFontSizeClass = 'text-9xl';
           let fraseColorClass = 'text-slate-900';

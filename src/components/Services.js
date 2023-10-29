@@ -309,6 +309,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     reference.current = servicesRef.current;
   }, []);
 
+  const widthBar = (document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
 
   const servicesArray = [
     [
@@ -417,6 +418,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
   };
   const touchAnimation = () => {
     servicesTouchAnimation(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
+    
     servicesTouchAnimation(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
     servicesTouchAnimation(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
     servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
@@ -429,12 +431,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     }
   }, []);
 
-  useEffect(() => {
-    if (isSmallScreen) {
-      document.body.addEventListener('touchmove', touchAnimation);
-      return () => document.body.removeEventListener('touchmove', touchAnimation);
-    }
-  }, []);
+ 
 
   useEffect(() => {
     const circleHeight = circleRef.current.offsetHeight;
@@ -458,10 +455,10 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             transition={{
               duration: 1,
             }}*/
-            className="little-title w-fit">LO QUE HAGO</motion.p>
+            className="text-sm md:text-md w-fit">LO QUE HAGO</motion.p>
             <motion.div
             whileInView={{
-              width:"83%",
+              width: widthBar,
               transition:{
                 duration:4
               }
@@ -483,7 +480,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             transition={{ duration: 0.3 }}
             whileInView={{ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 } }}
             whileHover={{ rotate: 3, transition: { duration: 0.3 } }}
-            className="services__info mt-[26px] text-[clamp(28px,7vw,118px)] cursor-move">
+            className="services__info mt-[26px] text-[clamp(28px,7vw,118px)] cursor-move w-fit">
             Facilito a mis clientes <br></br> soluciones webs <br></br>
             desarrolladas a medida<br></br> con habilidad y pasión.
           </motion.p>
