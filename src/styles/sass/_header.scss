@@ -1,10 +1,10 @@
 .header{
     display: grid;
     gap:6px;
-    min-height: 380px;
-    height: -webkit-calc(60vh - 6px);
-    height: -moz-calc(60vh - 6px);
-    height: calc(60vh - 6px);
+    //min-height: 380px;
+    min-height: -webkit-calc(60vh - 6px);
+    min-height: -moz-calc(60vh - 6px);
+    min-height: calc(60vh - 6px);
     //padding:6px;
     &__card{
         height: 100%;
