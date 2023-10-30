@@ -312,13 +312,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
     reference.current = servicesRef.current;
   }, []);
 
-  useEffect(()=>{
-    if(scrollbar!==null){
-     scrollbar.addListener(scrollAnimation);
-     return ()=> scrollbar.removeListener(scrollAnimation);
-    }
-   }, [scrollbar]);
-   
+  
 
   const scrollAnimation = () =>{
     scrollCircleAnimatiom(circleTextServices.current, circleText.current);
@@ -415,12 +409,29 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
                   });*/
   }, []);
 
-
-  const servicesTouchAnimation = (element, row, topCoord) => {
+  const deployServices = (element, element2, row, topCoord) => {
+    if (row.getBoundingClientRect().top < window.innerHeight) {
+      if (topCoord <= (window.scrollY + (window.innerHeight))) {
+        const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
+        console.log(percentage)
+        let val = (percentage * (document.body.clientWidth / 4)) / 100;
+        if (val < 0) val = 0;
+        else if (val > document.body.clientWidth / 4) val = document.body.clientWidth / 4;
+        element.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
+        element2.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
+      }
+    }
+  };
+  const deployServicesHandler = () => {
+    deployServices(serviceItem0.current, serviceItem1.current, rowServices1.current, rowServices1YTop.current);
+    deployServices(serviceItem2.current, serviceItem3.current, rowServices2.current, rowServices2YTop.current);
+    deployServices(serviceItem4.current, serviceItem5.current, rowServices3.current, rowServices3YTop.current);
+    deployServices(serviceItem6.current, serviceItem7.current, rowServices4.current, rowServices4YTop.current);
+  };
+  const deploySingleService = (element, row, topCoord) => {
     if (row.getBoundingClientRect().top < window.innerHeight) {
       if (topCoord <= (window.scrollY + (window.innerHeight / 2))) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
-        console.log(percentage);
         let val = (document.body.clientWidth / 2) - (percentage * (document.body.clientWidth / 2)) / 100;
         if (val < 0) val = 0;
         else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;
@@ -428,20 +439,46 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
       }
     }
   };
-  const touchAnimation = () => {
-    servicesTouchAnimation(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
+  const deploySingleServiceHandler = () => {
+    deploySingleService(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
     
-    servicesTouchAnimation(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
-    servicesTouchAnimation(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
-    servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
+    deploySingleService(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
+    deploySingleService(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
+    deploySingleService(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
   };
 
+  useEffect(()=>{
+    if(scrollbar!==null){
+     scrollbar.addListener(scrollAnimation);
+     return ()=> scrollbar.removeListener(scrollAnimation);
+    }
+   }, [scrollbar]);
+
+   useEffect(() => {
+    if(!isSmallScreen){
+     if(scrollbar!==null){
+       scrollbar.addListener(deployServicesHandler);
+       return ()=> scrollbar.removeListener(deployServicesHandler);
+      }
+    }
+   }, [scrollbar, isSmallScreen]);
+   
   useEffect(() => {
+   if(isSmallScreen){
+    if(scrollbar!==null){
+      scrollbar.addListener(deploySingleServiceHandler);
+      return ()=> scrollbar.removeListener(deploySingleServiceHandler);
+     }
+   }
+  }, [scrollbar, isSmallScreen]);
+
+
+  /*useEffect(() => {
     if (isSmallScreen) {
       window.addEventListener('scroll', touchAnimation);
       return () => window.removeEventListener('scroll', touchAnimation);
     }
-  }, []);
+  }, []);*/
 
  
 
