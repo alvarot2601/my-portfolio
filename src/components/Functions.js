@@ -34,7 +34,7 @@ export const opacityValue = 0.15;
 // //////////FUNCTIONS
 
 export const scrollCircleAnimatiom = (element, topCoord) =>{
-    if (element.getBoundingClientRect().top < window.innerHeight) {
+    if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom >= 0) {
         const percentage = 100 + ((((window.innerHeight) - topCoord.getBoundingClientRect().top) * 100) / (window.innerHeight));
         let val = (360) - (percentage * (360)) / 100;
         /*if (val < 0) val = 0;

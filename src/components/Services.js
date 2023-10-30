@@ -406,7 +406,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
   }, []);
 
   const deployServices = (element, element2, row, topCoord) => {
-    if (row.getBoundingClientRect().top < window.innerHeight) {
+    if (row.getBoundingClientRect().top < window.innerHeight && row.getBoundingClientRect().bottom >= 0) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
         let val = (percentage * (document.body.clientWidth / 4)) / 100;
         if (val < 0) val = 0;
@@ -422,7 +422,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
     deployServices(serviceItem6.current, serviceItem7.current, rowServices4.current, rowServices4YTop.current);
   };
   const deploySingleService = (element, row, topCoord) => {
-    if (row.getBoundingClientRect().top < window.innerHeight) {
+    if (row.getBoundingClientRect().top < window.innerHeight && row.getBoundingClientRect().bottom >= 0) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
         let val = (document.body.clientWidth / 2) - (percentage * (document.body.clientWidth / 2)) / 100;
         if (val < 0) val = 0;

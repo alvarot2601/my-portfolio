@@ -21,64 +21,17 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scr
         (document.body.clientWidth <= 700 && document.body.clientWidth > 500) ? -100 :
           -80,
   });
-  // animacion para el texto
-  const [transX, setTransX] = useState(
-    {
-      value: (document.body.clientWidth >= 1600) ? -300 :
-        (document.body.clientWidth >= 1400) ? -200 :
-          (document.body.clientWidth >= 1200) ? -150 :
-            (document.body.clientWidth >= 1025) ? -100 :
-              0,
-    },
-  );
+  
 
   const setVariables = () => {
     textCoordYTop.current = text.current.getBoundingClientRect().top;
     textCoordYBottom.current = text.current.getBoundingClientRect().bottom;
     // añado 2.3 por INTUICION!!
     necessaryScrollMoves_my_who_text.current = ((window.innerHeight / 2.3) + (textCoordYBottom.current - textCoordYTop.current)) / pxPerScroll;
-    transXValue.current = Math.abs(transX.value) / necessaryScrollMoves_my_who_text.current;
+    //transXValue.current = Math.abs(transX.value) / necessaryScrollMoves_my_who_text.current;
   };
 
-  const circleAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, objSetter, value, element2 = null, element3 = null, limitTop = Math.abs(coordY), limitBottom = (Math.abs(coordY) + window.innerHeight)) => {
-    if (wheelDelta < 0 && coordYTop < limitBottom && (coordYBottom + pxPerScroll) > limitTop) {
-      // obj.value += value;
-      objSetter({
-        value: obj.value + value,
-      });
-    } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
-      // obj.value -= value;
-      objSetter({
-        value: obj.value - value,
-      });
-    } else if (coordYBottom < limitBottom && coordYBottom > limitTop) {
-      if (wheelDelta > 0) {
-        // obj.value -= value;
-        objSetter({
-          value: obj.value - value,
-        });
-      }
-    }
-    const unit = (transform === 'translateX') ? 'px' : 'deg';
-    if (element2 === null) {
-      element.style.transform = transform + '(' + parseInt(obj.value) + unit + ')';
-    } /* else if (element2.classList.contains('services__item')) {
-            if (obj.value > (halfviewportWidth / 2)) obj.value = (halfviewportWidth / 2);
-            if (obj.value < 0) obj.value = 0;
-            element3.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
-            element2.style.transform = transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
-        }
-        else {
-            //entra aquí con es el swiper
-            if(obj.value > 0) obj.value = 0;
-            else if(obj.value < -300) obj.value = -300;
-            console.log('element', element)
-            console.log('element2', element2)
-            console.log('element2.style.transform', transform + "(" + parseInt(obj.value) + unit + ")")
-            element2.style.transform = transform + "(" + parseInt(obj.value) + unit + ")";
-            element3.style.transform = transform + "(" + (parseInt(obj.value) * -1) + unit + ")";
-        }*/
-  };
+  
 
 
   useEffect(() => {
@@ -91,9 +44,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scr
     }
   }, [coordY]);
 
-  useEffect(() => {
-    text.current.style.transform = 'translateX' + '(' + parseInt(transX.value) + 'px' + ')';
-  }, [transX]);
+ 
 
   
   
@@ -107,7 +58,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scr
         <div className="my-who__info w-full sm:w-[90vh] md:w-[70vw] lg:w-[60vw]">
           <motion.p
           initial={{translateX:-300}}
-          transition={{duration:1}}
+          transition={{duration:0.7, ease:"easeOut"}}
           whileInView={{translateX:0}}
           ref={text} className="my-who__text px-[38px] transform-none md:transform-gpu text-[clamp(18px,2.5vw,50px)]">
             Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress.
@@ -140,4 +91,46 @@ export default WhoAmI;
      scrollbar.addListener(moveTextAnimation);
      return ()=> scrollbar.removeListener(moveTextAnimation);
     }
-   }, [scrollbar]);*/
+   }, [scrollbar]);
+   
+
+
+    useEffect(() => {
+    text.current.style.transform = 'translateX' + '(' + parseInt(transX.value) + 'px' + ')';
+  }, [transX]);
+   
+   // animacion para el texto
+  const [transX, setTransX] = useState(
+    {
+      value: (document.body.clientWidth >= 1600) ? -300 :
+        (document.body.clientWidth >= 1400) ? -200 :
+          (document.body.clientWidth >= 1200) ? -150 :
+            (document.body.clientWidth >= 1025) ? -100 :
+              0,
+    },
+  );
+   
+   const circleAnimation = (wheelDelta, y, element, coordYTop, coordYBottom, transform, obj, objSetter, value, element2 = null, element3 = null, limitTop = Math.abs(coordY), limitBottom = (Math.abs(coordY) + window.innerHeight)) => {
+    if (wheelDelta < 0 && coordYTop < limitBottom && (coordYBottom + pxPerScroll) > limitTop) {
+      // obj.value += value;
+      objSetter({
+        value: obj.value + value,
+      });
+    } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
+      // obj.value -= value;
+      objSetter({
+        value: obj.value - value,
+      });
+    } else if (coordYBottom < limitBottom && coordYBottom > limitTop) {
+      if (wheelDelta > 0) {
+        // obj.value -= value;
+        objSetter({
+          value: obj.value - value,
+        });
+      }
+    }
+    const unit = (transform === 'translateX') ? 'px' : 'deg';
+    if (element2 === null) {
+      element.style.transform = transform + '(' + parseInt(obj.value) + unit + ')';
+    } 
+  };*/
