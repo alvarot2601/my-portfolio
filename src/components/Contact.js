@@ -1,23 +1,23 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import swal from 'sweetalert';
 
-import {send} from 'emailjs-com';
+import { send } from 'emailjs-com';
 import emailjs from '@emailjs/browser';
 
-import {AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown} from 'react-icons/ai';
-import {circleValue} from './Functions';
+import { AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown } from 'react-icons/ai';
+import { circleValue } from './Functions';
 
 import { scrollCircleAnimatiom } from './Functions';
-const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, isSmallScreen, scrollbar}) => {
+const Form = ({ coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, isSmallScreen, scrollbar }) => {
 
-  useEffect(()=>{
-   if(scrollbar!==null){
-    scrollbar.addListener(scrollAnimation);
-    return ()=> scrollbar.removeListener(scrollAnimation);
-   }
+  useEffect(() => {
+    if (scrollbar !== null) {
+      scrollbar.addListener(scrollAnimation);
+      return () => scrollbar.removeListener(scrollAnimation);
+    }
   }, [scrollbar]);
   const contactRef = useRef(null);
-  useEffect(()=>{
+  useEffect(() => {
     reference.current = contactRef.current;
   }, []);
   const input1 = useRef(null);
@@ -37,7 +37,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
   };
   const circleText = useRef(null);
   const circleTextServices = useRef(null);
-  const [circleRotate, setCircleRotate] = useState({value: 0});
+  const [circleRotate, setCircleRotate] = useState({ value: 0 });
   const form = useRef(null);
   const name_input = useRef(null);
   const mail_input = useRef(null);
@@ -70,30 +70,30 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
     }
   };
   const handleChange = (e) => {
-    setToSend({...toSend, [e.target.name]: e.target.value});
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
   };
 
   const sendEmail = async (e) => {
     e.preventDefault();
 
     emailjs.sendForm('service_os2jvcn', 'template_q6ps3ho', form.current, '2R2QCBGBzuH1hvWpo')
-        .then((result) => {
-          swal('El email se ha enviado correctamente', '', 'success');
-        }, (error) => {
-          swal('Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!', '', 'error');
+      .then((result) => {
+        swal('El email se ha enviado correctamente', '', 'success');
+      }, (error) => {
+        swal('Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!', '', 'error');
         // alert("Ha habido un error y el correo NO se ha enviado. Escríbeme por whatsapp o linkedin!");
         // console.log(error.text);
-        });
+      });
 
 
     e.preventDefault();
     let response = '';
     try {
       response = await send(
-          'service_os2jvcn',
-          'template_q6ps3ho',
-          toSend,
-          '2R2QCBGBzuH1hvWpo',
+        'service_os2jvcn',
+        'template_q6ps3ho',
+        toSend,
+        '2R2QCBGBzuH1hvWpo',
       );
     } catch (error) {
       alert('Error! Por favor envíame un correo a mi dirección alvarot2601@gmail.com');
@@ -122,13 +122,13 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
       [key]: _placeholders[key],
     });
   };
-  useEffect(()=>{
+  useEffect(() => {
     if (placeholderElement !== null) {
       placeholderElement.placeholder = placeholder;
     }
   }, [placeholderElement]);
 
-  useEffect(()=>{
+  useEffect(() => {
     circleTextYTop.current = circleTextServices.current.getBoundingClientRect().top;
     circleTextYBottom.current = circleTextServices.current.getBoundingClientRect().bottom;
   }, []);
@@ -140,7 +140,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
   }, [coordY]);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     reachedLimitBottomRef.current = reachedLimitBottom;
   }, [reachedLimitBottom]);
 
@@ -149,9 +149,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
     circleText.current.innerHTML = circleText.current.innerHTML.split('').map((char, i) => {
       return `<span style="transform:rotate(${i * 9.3}deg)">${char}</span>`;
     })
-        .join('');
-
-   
+      .join('');
   }, []);
 
   useEffect(() => {
@@ -162,13 +160,12 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
   }, [inputValue]);
 
 
- 
-  const scrollAnimation = () =>{
+  const scrollAnimation = () => {
     scrollCircleAnimatiom(circleTextServices.current, circleText.current);
   }
   useEffect(() => {
     window.addEventListener('scroll', scrollAnimation);
-      return () => window.removeEventListener('scroll', scrollAnimation);
+    return () => window.removeEventListener('scroll', scrollAnimation);
   }, []);
 
   return (
@@ -176,18 +173,18 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
       <div className="contact__container pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px]">
         <span className="little-title">¡CONTÁCTAME!</span>
         <p>
-                    ¿Tienes alguna pregunta o idea?<br></br>
-                    ¿Necesitas ayuda en algún proyecto?<br></br>
-                    ¡Contáctame!
+          ¿Tienes alguna pregunta o idea?<br></br>
+          ¿Necesitas ayuda en algún proyecto?<br></br>
+          ¡Contáctame!
         </p>
         <div className="contact__subcontainer w-full">
           <div className="contact__action w-full">
             <div>
               <a href="mailto:alvarot2601@gmail.com" className="contact__email">
-                                alvarot2601@gmail.com
+                alvarot2601@gmail.com
               </a>
               <a href="tel:+34684025751" className="contact__number">
-                                +34 684 025 751
+                +34 684 025 751
               </a>
             </div>
             <div className="w-full flex gap-5 items-center justify-center sm:justify-start">
@@ -204,7 +201,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
             <AiOutlineArrowDown className="arrow" />
             <div className="circle__text-container" id="circle__text-container--2" ref={circleTextServices}>
               <p className="circle__text" ref={circleText}>
-                                CONTÁCTAME | CONTÁCTAME | CONTÁCTAME |
+                CONTÁCTAME | CONTÁCTAME | CONTÁCTAME |
               </p>
             </div>
           </div>
@@ -212,13 +209,13 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
       </div>
 
       <form ref={form} method="post" className="mt-[4px] gap-[4px]" onSubmit={sendEmail}>
-        <input ref={input1} type="text" id="name" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="from_name" placeholder={placeholder.input1} onChange={handleChange} onFocus={()=>handleFocus('input1')} onBlur={()=>handleBlur('input1')} value={toSend.from_name} required />
-        <input ref={input2} type="email" id="mail" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="user_mail" placeholder={placeholder.input2} onChange={handleChange} onFocus={()=>handleFocus('input2')} onBlur={()=>handleBlur('input2')} value={toSend.user_mail} required />
-        <textarea ref={textarea} id="message" className="px-[44px] py-[36px] rounded-[48px] lg:px-[78px] lg:py-[56px]" name="message" placeholder={placeholder.textarea} onChange={handleChange} onFocus={()=>handleFocus('textarea')} onBlur={()=>handleBlur('textarea')} value={toSend.message}>
+        <input ref={input1} type="text" id="name" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="from_name" placeholder={placeholder.input1} onChange={handleChange} onFocus={() => handleFocus('input1')} onBlur={() => handleBlur('input1')} value={toSend.from_name} required />
+        <input ref={input2} type="email" id="mail" className="px-[44px] py-[36px] rounded-[86px] lg:px-[78px] lg:py-[56px]" name="user_mail" placeholder={placeholder.input2} onChange={handleChange} onFocus={() => handleFocus('input2')} onBlur={() => handleBlur('input2')} value={toSend.user_mail} required />
+        <textarea ref={textarea} id="message" className="px-[44px] py-[36px] rounded-[48px] lg:px-[78px] lg:py-[56px]" name="message" placeholder={placeholder.textarea} onChange={handleChange} onFocus={() => handleFocus('textarea')} onBlur={() => handleBlur('textarea')} value={toSend.message}>
         </textarea>
         <button type="submit" id="submit" value={inputValue} className="submit-input px-[44px] py-[36px] rounded-[48px] lg:px-[78px] lg:py-[56px] " ref={submit_input}>
           <AiOutlineSend />
-                    Enviar
+          Enviar
         </button>
       </form>
     </section>

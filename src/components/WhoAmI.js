@@ -64,7 +64,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scr
             Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress.
           </motion.p>
         </div>
-        <Slider isSmallScreen={isSmallScreen} my_who_content={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll} />
+        <Slider isSmallScreen={isSmallScreen} my_who_content={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll} scrollbar={scrollbar} />
       </div>
     </section>
   );
