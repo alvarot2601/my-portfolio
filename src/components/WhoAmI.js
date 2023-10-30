@@ -58,7 +58,7 @@ const WhoAmI = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scr
         <div className="my-who__info w-full sm:w-[90vh] md:w-[70vw] lg:w-[60vw]">
           <motion.p
           initial={{translateX:-300}}
-          transition={{duration:1}}
+          transition={{duration:0.7}}
           whileInView={{translateX:0}}
           ref={text} className="my-who__text px-[38px] transform-none md:transform-gpu text-[clamp(18px,2.5vw,50px)]">
             Soy un desarrollador web con varios años de experiencia en el sector. Algunas tecnologías con las que he trabajado en diversos proyectos para empresas internacionales (Europa) y nacionales son: React, PHP, SQL, Vanilla JS, JQuery, tailwind, bootstrap y Wordpress.
@@ -94,7 +94,7 @@ export default WhoAmI;
    }, [scrollbar]);
    
 
-   
+
     useEffect(() => {
     text.current.style.transform = 'translateX' + '(' + parseInt(transX.value) + 'px' + ')';
   }, [transX]);
