@@ -4,15 +4,15 @@ import hotelMirandaProject from '../assets/img/hotel-miranda-logo.svg';
 import umediProject from '../assets/img/LOGO-UMEDI.png';
 import andelProject from '../assets/img/logo-andel.svg';
 
-import {SiUnsplash} from 'react-icons/si';
-import {BsArrowUpRight} from 'react-icons/bs';
-import {useEffect} from 'react';
-import {useRef} from 'react';
+import { SiUnsplash } from 'react-icons/si';
+import { BsArrowUpRight } from 'react-icons/bs';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
-const Projects = ({reference}) => {
+const Projects = ({ reference }) => {
   const projectsRef = useRef(null);
   // igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
-  useEffect(()=>{
+  useEffect(() => {
     reference.current = projectsRef.current;
   }, []);
 
@@ -114,34 +114,34 @@ const Projects = ({reference}) => {
           let width = 'w-[calc(50%-8px)]';
           let heightClass = 'min-h-[300px]';
           let roundedClass = 'rounded-full sm:rounded-[48px] lg:rounded-[86px]';
-          if (index===0) {
+          if (index === 0) {
             heightClass = 'min-h-[380px]';
             roundedClass = 'rounded-[48px] lg:rounded-[86px]';
           }
-          if(index==projects.length-1 && index%2==0) width="w-full";
+          if (index == projects.length - 1 && index % 2 == 0) width = "w-full";
           return (
-            <a key={`a-${index}`} href={project[4]!== '' ? project[4] : 'javascript:void(0)'} target={project[4]!== '' ? '_blank' : '_self'} className={`${width} ${heightClass} ${roundedClass} lg:min-h-[350px] pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`} rel="noreferrer">
+            <a key={`a-${index}`} href={project[4] !== '' ? project[4] : 'javascript:void(0)'} target={project[4] !== '' ? '_blank' : '_self'} className={`${width} ${heightClass} ${roundedClass} lg:min-h-[350px] pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`} rel="noreferrer">
               <div className="my-work__content">
                 <div className="my-work__row w-full flex flex-row items-center justify-center sm:justify-between">
-                  <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type hidden sm:flex text-sm sm:text-md lg:text-lg">{project[2]}</span>
+                  <span className="my-work__number">{`0${index + 1}.`}</span> <span className="my-work__type hidden sm:flex text-sm sm:text-md lg:text-lg">{project[2]}</span>
                 </div>
                 {
-                                project[3] !== '' ?
-                                <span className="my-work__logo-span">{project[3]}</span> :
-                                (project[0] == 'unsplash') ?
-                                <SiUnsplash className="my-work__logo-svg"/> :
-                                (project[0] == 'marinaspa' || project[0] === 'complementos_ines' ||project[0] === 'smooth_scroll') ?
-                                <span className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{project[1]}</span> :
-                                <img className= {`my-work__logo my-work__logo--${index} object-scale-down`} src={project[1]} alt={project[6]} />
+                  project[3] !== '' ?
+                    <span className="my-work__logo-span">{project[3]}</span> :
+                    (project[0] == 'unsplash') ?
+                      <SiUnsplash className="my-work__logo-svg" /> :
+                      (project[0] == 'marinaspa' || project[0] === 'complementos_ines' || project[0] === 'smooth_scroll') ?
+                        <span className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{project[1]}</span> :
+                        <img className={`my-work__logo my-work__logo--${index} object-scale-down`} src={project[1]} alt={project[6]} />
                 }
                 <div className="my-work__row w-full flex flex-row items-center justify-center sm:justify-between">
                   <div>
                     <span className="my-work__finish hidden sm:flex text-sm md:text-md">{project[7]}</span>
                     {
-                                    project[8] !== '' ? <span className="hidden sm:block">{project[8]}</span> : ''
+                      project[8] !== '' ? <span className="hidden sm:block">{project[8]}</span> : ''
                     }
                   </div>
-                  <BsArrowUpRight/>
+                  <BsArrowUpRight />
                 </div>
               </div>
             </a>

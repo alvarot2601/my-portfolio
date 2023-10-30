@@ -6,10 +6,11 @@ import { SiAntdesign, SiRedux } from 'react-icons/si';
 import { FaLaptopCode, FaReact, FaPhp, FaArrowRight, FaCartArrowDown, FaArrowCircleDown, FaArrowDown } from 'react-icons/fa';
 import { TbBrandJavascript } from 'react-icons/tb';
 import { motion } from 'framer-motion';
+import { scrollCircleAnimatiom } from './Functions';
 
 import { halfviewportWidth } from './Functions';
 import { circleValue } from './Functions';
-const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
+const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scrollbar }) => {
   const [arrowDown, setArrowDown] = useState(false);
 
   const [showDragme, setShowDragme] = useState(true);
@@ -19,6 +20,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
   const subservicesRef = useRef(null);
   const containerHeight = useRef(null);
   const circleRef = useRef(null);
+  const widthBar = '100%';//(document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
+
   /* tamaño de las filas de los slides de servicios.
   Para q la animacion funcione bien la altura debe
   ser múltiplo de 150, que es el valor actual
@@ -182,23 +185,19 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     if (wheelDelta < 0 && coordYTop < limitBottom && coordYBottom > limitTop) {
       if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-        console.log('porcentaje, ', porcentaje);
         porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
 
         // porcentaje =  100 - (porcentaje * 100 / (rowServices1YTop.current + window.innerHeight));
         // obj.value += value;
         const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
-        console.log('porcentaje, ', porcentaje);
       }
     } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
       if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-        console.log('porcentaje, ', porcentaje);
         porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
         const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
-        console.log('porcentaje, ', porcentaje);
       }
     }
   };
@@ -309,8 +308,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     reference.current = servicesRef.current;
   }, []);
 
-  const widthBar = '100%';//(document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
+  
 
+  const scrollAnimation = () =>{
+    scrollCircleAnimatiom(circleTextServices.current, circleText.current);
+  }
   const servicesArray = [
     [
       [
@@ -403,33 +405,71 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
                   });*/
   }, []);
 
-
-  const servicesTouchAnimation = (element, row, topCoord) => {
+  const deployServices = (element, element2, row, topCoord) => {
     if (row.getBoundingClientRect().top < window.innerHeight) {
-      if (topCoord <= (window.scrollY + (window.innerHeight / 2))) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
-        console.log(percentage);
+        let val = (percentage * (document.body.clientWidth / 4)) / 100;
+        if (val < 0) val = 0;
+        else if (val > document.body.clientWidth / 4) val = document.body.clientWidth / 4;
+        element.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
+        element2.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
+    }
+  };
+  const deployServicesHandler = () => {
+    deployServices(serviceItem0.current, serviceItem1.current, rowServices1.current, rowServices1YTop.current);
+    deployServices(serviceItem2.current, serviceItem3.current, rowServices2.current, rowServices2YTop.current);
+    deployServices(serviceItem4.current, serviceItem5.current, rowServices3.current, rowServices3YTop.current);
+    deployServices(serviceItem6.current, serviceItem7.current, rowServices4.current, rowServices4YTop.current);
+  };
+  const deploySingleService = (element, row, topCoord) => {
+    if (row.getBoundingClientRect().top < window.innerHeight) {
+        const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
         let val = (document.body.clientWidth / 2) - (percentage * (document.body.clientWidth / 2)) / 100;
         if (val < 0) val = 0;
         else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;
         element.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
-      }
     }
   };
-  const touchAnimation = () => {
-    servicesTouchAnimation(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
+  const deploySingleServiceHandler = () => {
+    deploySingleService(serviceItem0.current, rowServices1.current, rowServices1YTop.current);
     
-    servicesTouchAnimation(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
-    servicesTouchAnimation(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
-    servicesTouchAnimation(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
+    deploySingleService(serviceItem2.current, rowServices2.current, rowServices2YTop.current);
+    deploySingleService(serviceItem4.current, rowServices3.current, rowServices3YTop.current);
+    deploySingleService(serviceItem6.current, rowServices4.current, rowServices4YTop.current);
   };
 
+  useEffect(()=>{
+    if(scrollbar!==null){
+     scrollbar.addListener(scrollAnimation);
+     return ()=> scrollbar.removeListener(scrollAnimation);
+    }
+   }, [scrollbar]);
+
+   useEffect(() => {
+    if(!isSmallScreen){
+     if(scrollbar!==null){
+       scrollbar.addListener(deployServicesHandler);
+       return ()=> scrollbar.removeListener(deployServicesHandler);
+      }
+    }
+   }, [scrollbar, isSmallScreen]);
+   
   useEffect(() => {
+   if(isSmallScreen){
+    if(scrollbar!==null){
+      scrollbar.addListener(deploySingleServiceHandler);
+      return ()=> scrollbar.removeListener(deploySingleServiceHandler);
+     }
+   }
+  }, [scrollbar, isSmallScreen]);
+
+
+  /*useEffect(() => {
     if (isSmallScreen) {
       window.addEventListener('scroll', touchAnimation);
       return () => window.removeEventListener('scroll', touchAnimation);
     }
-  }, []);
+  }, []);*/
 
  
 
@@ -468,7 +508,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             className='w-[10px] h-[1px] bg-[#A5A1FF]'>&#8203;</motion.div>
             
             {
-              arrowDown ? <FaArrowDown/> : <FaArrowRight/>
+              arrowDown ? <FaArrowDown /> : <FaArrowRight/>
             }
           </div>
           
