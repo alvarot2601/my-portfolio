@@ -1,4 +1,6 @@
 import {React, useEffect, useRef, useState} from 'react';
+import Scrollbar from 'smooth-scrollbar';
+
 import swal from 'sweetalert';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -92,14 +94,7 @@ function App() {
       // alert("Hacer scroll en pc está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo.");
     }
     finalLimit.current = document.body.scrollHeight;
-    /* setTimeout(()=>{
-      if(finalLimit.current !== document.body.scrollHeight){
-        finalLimit.current = document.body.scrollHeight;
-        //alert(4)
-      }
-    }, 500);*/
-    // setFinalLimit(document.body.scrollHeight);
-    // scrollbarWrapper.current.style.height = window.innerHeight + "px";
+   
     pxPerScroll.current = 150;// (document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
     continueScrollingRef.current = false;
     scrollbarDifference.current = true;
@@ -137,8 +132,6 @@ function App() {
 
   const getActualCoordinates = (e) => {
     const currentY = e.clientY;
-
-
     if (continueScrollingRef.current === true) {
       // alert(2)
       mousemoveExecutions.current += 1;
@@ -195,17 +188,10 @@ function App() {
         }
       }
 
-      // scrollbar.current.style.transform = "translateY(" + (positionScrollbar) + "px)";
-
-      // para guardar las coordenadas y utilizarlas a la hora de hacer scroll utilizando la rueda del mouse
-      // relativeScrolledValue = scrollbar.current.getBoundingClientRect().top;
-
-
-      // setEquivalentPercentage(equivalentPercentageVar);
-      // setCoordY(y);
+     
     }
   };
-  const debounce2 = (func, delay) => {
+  const debounce = (func, delay) => {
     let timeoutId;
 
     return function(...args) {
@@ -217,8 +203,9 @@ function App() {
       }, delay);
     };
   };
+  
 
-  const smooth = debounce2((e) => {
+  const smooth = debounce((e) => {
     let y = coordY;
     setMovedByScroll(false);
     let relativeScrolledValue = relativeScrolledValueState;
@@ -279,29 +266,10 @@ function App() {
     return () => window.removeEventListener('load', setInitialStates);
   }, []);
 
-  /* useEffect(() => {
-     //añado mousemove al object window para que el usuario pueda seguir haciendo scroll sin tener el raton sobre la scrollbar
-     window.addEventListener("mousemove", getActualCoordinates);
-
-     return () => window.removeEventListener('mousemove', getActualCoordinates);
-   }, []);
-   useEffect( () => {
-     scrollbar.current.addEventListener("mousedown", getStartCoordinates);
-     return () => scrollbar.current.removeEventListener('mousedown', getStartCoordinates);
-   }, []);
-
-
-   useEffect(() => {
-     window.addEventListener("mouseup", getEndCoordinates);
-     return () => window.removeEventListener('mouseup', getEndCoordinates);
-   }, []);*/
-
 
   useEffect(() => {
     // para eliminar el smooth scroll en pantallas que no pertenezcan a pc
     if (!isSmallScreen) {
-      //alert(window.innerWidth)
-      
       document.body.addEventListener('wheel', smooth);
       return () => document.body.removeEventListener('wheel', smooth);
     }
