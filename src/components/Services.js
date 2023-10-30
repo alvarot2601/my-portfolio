@@ -185,23 +185,19 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
     if (wheelDelta < 0 && coordYTop < limitBottom && coordYBottom > limitTop) {
       if (coordYBottom > ((Math.abs(y) - pxPerScroll) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-        console.log('porcentaje, ', porcentaje);
         porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
 
         // porcentaje =  100 - (porcentaje * 100 / (rowServices1YTop.current + window.innerHeight));
         // obj.value += value;
         const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
-        console.log('porcentaje, ', porcentaje);
       }
     } else if (wheelDelta > 0 && coordYTop < (limitBottom + pxPerScroll) && coordYBottom > limitTop) {
       if ((coordYTop + (rowServiceHeight / 2)) > ((Math.abs(y)) + (window.innerHeight / 2))) {
         let porcentaje = coordYTop - (Math.abs(coordY) + (window.innerHeight / 2));
-        console.log('porcentaje, ', porcentaje);
         porcentaje = 100 - (porcentaje * 100) / (document.body.clientWidth / 2);
         const val = (document.body.clientWidth / 2) - ((document.body.clientWidth / 2) * porcentaje) / 100;
         translateRowSetter(val);
-        console.log('porcentaje, ', porcentaje);
       }
     }
   };
@@ -411,15 +407,12 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
 
   const deployServices = (element, element2, row, topCoord) => {
     if (row.getBoundingClientRect().top < window.innerHeight) {
-      if (topCoord <= (window.scrollY + (window.innerHeight))) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
-        console.log(percentage)
         let val = (percentage * (document.body.clientWidth / 4)) / 100;
         if (val < 0) val = 0;
         else if (val > document.body.clientWidth / 4) val = document.body.clientWidth / 4;
         element.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
         element2.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
-      }
     }
   };
   const deployServicesHandler = () => {
@@ -430,13 +423,11 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, s
   };
   const deploySingleService = (element, row, topCoord) => {
     if (row.getBoundingClientRect().top < window.innerHeight) {
-      if (topCoord <= (window.scrollY + (window.innerHeight / 2))) {
         const percentage = 100 + ((((window.innerHeight / 2) - row.getBoundingClientRect().top) * 100) / (window.innerHeight / 2));
         let val = (document.body.clientWidth / 2) - (percentage * (document.body.clientWidth / 2)) / 100;
         if (val < 0) val = 0;
         else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;
         element.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
-      }
     }
   };
   const deploySingleServiceHandler = () => {

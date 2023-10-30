@@ -110,88 +110,7 @@ function App() {
 
  
 
-  const getStartCoordinates = (e) => {
-    // continueScrolling = true;
-    setContinueScrolling(true);
-    continueScrollingRef.current = true;
-    // startCoordinates = e.clientY;
-    setStartCoordinates(e.clientY);
-    scrollbarDifference.current = (parseInt(e.clientY) - parseInt(scrollbar.current.getBoundingClientRect().top));
-    lastCoordY.current = e.clientY;
-    coordYref.current = 0;
-    // setScrollbarDifference(parseInt(e.clientY) - parseInt(scrollbar.current.getBoundingClientRect().top));
-    // scrollbarDifference = parseInt(e.clientY) - parseInt(scrollbar.getBoundingClientRect().top);
-  };
-  const getEndCoordinates = (e) => {
-    setEndCoordinates(e.clientY);
-    // endCoordinates = e.clientY;
-    // continueScrolling = false;
-    continueScrollingRef.current = false;
-    setContinueScrolling(false);
-    lastCoordY.current = e.clientY;
-  };
-
-  const getActualCoordinates = (e) => {
-    const currentY = e.clientY;
-    if (continueScrollingRef.current === true) {
-      // alert(2)
-      mousemoveExecutions.current += 1;
-      setMovedByScroll(true);
-      clientY.current = e.clientY;
-      // alert('entra1')
-      if (mousemoveExecutions.current % 2 != 0 || mousemoveExecutions.current === 1) return;
-      // alert('entra2')
-      clientY2.current = e.clientY;
-      let positionScrollbar = 0;
-      // scrollbar.current.style.transitionProperty = "none";
-      // scroll.current.style.transitionProperty = "none";
-      positionScrollbar = (parseInt(e.clientY) - scrollbarDifference.current);
-      // realizo las comprobaciones pertinentes
-      if (positionScrollbar > scrollbarEndLimit) {
-        positionScrollbar = scrollbarEndLimit;
-        setRelativeScrolledValueState(positionScrollbar);
-        setCoordY(-(finalLimit.current - window.innerHeight));
-        coordYref.current = -(finalLimit.current - window.innerHeight);
-        relativeAnimPercentage.current = 100;
-        // scroll.current.style.transform = "translateY(" + ((finalLimit - window.innerHeight) * -1) + "px)";
-      } else if (positionScrollbar < scrollbarStartLimit) {
-        positionScrollbar = scrollbarStartLimit;
-        setRelativeScrolledValueState(positionScrollbar);
-        setCoordY(0);
-        coordYref.current = 0;
-        relativeAnimPercentage.current = 100;
-        // scroll.current.style.transform = "translateY(0px)";
-      } else {
-        // alert(3)
-        // percentage = variable para calcular el porcentaje relativo entre la distancia recorrida por la barra de scroll y el contenido de la web
-        let percentage;
-        if (scrollbar.current.getBoundingClientRect().top === 0) {
-          percentage = -(1 * 100) / realScrollWrapperHeight;
-        } else {
-          percentage = (scrollbar.current.getBoundingClientRect().top * 100) / realScrollWrapperHeight;
-        }
-
-        const equivalentPercentage = -((percentage * (finalLimit.current - window.innerHeight)) / 100);
-        setCoordY(equivalentPercentage);
-        coordYref.current = equivalentPercentage;
-        setRelativeScrolledValueState(positionScrollbar);
-        let value;
-        for (let i = 0; i < allCoordY.current.length - 1; i++) {
-          if (allCoordY.current[i] === Math.abs(equivalentPercentage)) {
-            const valor = allCoordY.current[i];
-            relativeAnimPercentage.current = 100;
-            break;
-          } else if (allCoordY.current[i] < Math.abs(equivalentPercentage) && allCoordY.current[i + 1] > Math.abs(equivalentPercentage)) {
-            const valor = allCoordY.current[i + 1];
-            relativeAnimPercentage.current = (equivalentPercentage * 100) / valor;
-            break;
-          }
-        }
-      }
-
-     
-    }
-  };
+  
   const debounce = (func, delay) => {
     let timeoutId;
 
@@ -274,14 +193,63 @@ function App() {
     }
   }, []);
 
-  //he cambiado position del body y comento useEffect con wheel
-  /*useEffect(() => {
+ 
+
+  
+
+
+  
+  
+
+  
+  return (
+    <div className=''>
+      <div className='smooth-scroll-wrapper relative w-full' ref={scroll}  style={{ height: '100vh', overflow: 'auto' }}>
+        <div className='content px-[8px] flex flex-col gap-[8px]'>
+          <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
+          <Header reference={headerRef} isSmallScreen={isSmallScreen} />
+          <Services scrollbar={scrollbarState} reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Projects isSmallScreen={isSmallScreen} reference={projectsRef} />
+          <WhoAmI scrollbar={scrollbarState} isSmallScreen={isSmallScreen} reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Contact scrollbar={scrollbarState} isSmallScreen={isSmallScreen} reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Footer />
+        </div>
+      </div>
+      
+    </div>
+  );
+}
+
+/*
+useEffect(() => {
+    if (isSmallScreen) {
+      window.addEventListener('scroll', moveScrollbarAnimation);
+      return () => window.removeEventListener('scroll', moveScrollbarAnimation);
+    }
+  }, []);
+
+  const moveScrollbarAnimation = () =>{
+    var requestAnimationFrame =
+    window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    window.requestAnimationFrame(moveScrollbar);
+  }
+
+
+
+
+ //he cambiado position del body y comento useEffect con wheel
+  useEffect(() => {
     // para eliminar el smooth scroll en pantallas que no pertenezcan a pc
     if (!isSmallScreen) {
       document.body.addEventListener('wheel', smooth);
       return () => document.body.removeEventListener('wheel', smooth);
     }
-  });*/
+  });
 
 
   useEffect(() => {
@@ -298,10 +266,11 @@ function App() {
     }
   }, [coordY, relativeScrolledValueState, isSmallScreen]);
 
-  
 
 
-  const keydownHandle = (e) => {
+
+
+const keydownHandle = (e) => {
     let relativeScrolledValue = relativeScrolledValueRef.current;
     if (e.keyCode === 40) {// abajo
       if (Math.abs(coordYref.current - pxPerScroll.current) > finalLimit.current - window.innerHeight) {
@@ -342,7 +311,7 @@ function App() {
     const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
     scrollbar.current.style.transform = 'translateX(' + relativeValue + 'px)';
   };
-  /* const scrollPage = () => {
+  const scrollPage = () => {
     alert(3)
     const percentage = ((window.innerWidth - scrollbarWidth) * 100) / (scrollbar.current.getBoundingClientRect().left);
     const relativeValue = (percentage * (window.innerWidth - scrollbarWidth)) / 100;
@@ -353,26 +322,93 @@ function App() {
       scrollbar.current.addEventListener("touchstart", scrollPage);
       scrollbar.current.removeEventListener("touchstart", scrollPage);
     }
-  });*/
-  useEffect(() => {
-    if (isSmallScreen) {
-      window.addEventListener('scroll', moveScrollbarAnimation);
-      return () => window.removeEventListener('scroll', moveScrollbarAnimation);
+  });
+
+
+
+const getStartCoordinates = (e) => {
+    // continueScrolling = true;
+    setContinueScrolling(true);
+    continueScrollingRef.current = true;
+    // startCoordinates = e.clientY;
+    setStartCoordinates(e.clientY);
+    scrollbarDifference.current = (parseInt(e.clientY) - parseInt(scrollbar.current.getBoundingClientRect().top));
+    lastCoordY.current = e.clientY;
+    coordYref.current = 0;
+    // setScrollbarDifference(parseInt(e.clientY) - parseInt(scrollbar.current.getBoundingClientRect().top));
+    // scrollbarDifference = parseInt(e.clientY) - parseInt(scrollbar.getBoundingClientRect().top);
+  };
+  const getEndCoordinates = (e) => {
+    setEndCoordinates(e.clientY);
+    // endCoordinates = e.clientY;
+    // continueScrolling = false;
+    continueScrollingRef.current = false;
+    setContinueScrolling(false);
+    lastCoordY.current = e.clientY;
+  };
+
+  const getActualCoordinates = (e) => {
+    const currentY = e.clientY;
+    if (continueScrollingRef.current === true) {
+      // alert(2)
+      mousemoveExecutions.current += 1;
+      setMovedByScroll(true);
+      clientY.current = e.clientY;
+      // alert('entra1')
+      if (mousemoveExecutions.current % 2 != 0 || mousemoveExecutions.current === 1) return;
+      // alert('entra2')
+      clientY2.current = e.clientY;
+      let positionScrollbar = 0;
+      // scrollbar.current.style.transitionProperty = "none";
+      // scroll.current.style.transitionProperty = "none";
+      positionScrollbar = (parseInt(e.clientY) - scrollbarDifference.current);
+      // realizo las comprobaciones pertinentes
+      if (positionScrollbar > scrollbarEndLimit) {
+        positionScrollbar = scrollbarEndLimit;
+        setRelativeScrolledValueState(positionScrollbar);
+        setCoordY(-(finalLimit.current - window.innerHeight));
+        coordYref.current = -(finalLimit.current - window.innerHeight);
+        relativeAnimPercentage.current = 100;
+        // scroll.current.style.transform = "translateY(" + ((finalLimit - window.innerHeight) * -1) + "px)";
+      } else if (positionScrollbar < scrollbarStartLimit) {
+        positionScrollbar = scrollbarStartLimit;
+        setRelativeScrolledValueState(positionScrollbar);
+        setCoordY(0);
+        coordYref.current = 0;
+        relativeAnimPercentage.current = 100;
+        // scroll.current.style.transform = "translateY(0px)";
+      } else {
+        // alert(3)
+        // percentage = variable para calcular el porcentaje relativo entre la distancia recorrida por la barra de scroll y el contenido de la web
+        let percentage;
+        if (scrollbar.current.getBoundingClientRect().top === 0) {
+          percentage = -(1 * 100) / realScrollWrapperHeight;
+        } else {
+          percentage = (scrollbar.current.getBoundingClientRect().top * 100) / realScrollWrapperHeight;
+        }
+
+        const equivalentPercentage = -((percentage * (finalLimit.current - window.innerHeight)) / 100);
+        setCoordY(equivalentPercentage);
+        coordYref.current = equivalentPercentage;
+        setRelativeScrolledValueState(positionScrollbar);
+        let value;
+        for (let i = 0; i < allCoordY.current.length - 1; i++) {
+          if (allCoordY.current[i] === Math.abs(equivalentPercentage)) {
+            const valor = allCoordY.current[i];
+            relativeAnimPercentage.current = 100;
+            break;
+          } else if (allCoordY.current[i] < Math.abs(equivalentPercentage) && allCoordY.current[i + 1] > Math.abs(equivalentPercentage)) {
+            const valor = allCoordY.current[i + 1];
+            relativeAnimPercentage.current = (equivalentPercentage * 100) / valor;
+            break;
+          }
+        }
+      }
+
+     
     }
-  }, []);
-
-  const moveScrollbarAnimation = () =>{
-    var requestAnimationFrame =
-    window.requestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.msRequestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-    window.requestAnimationFrame(moveScrollbar);
-  }
-
-  useEffect(() => {
+  };
+useEffect(() => {
     if (isSmallScreen) {
       window.addEventListener('scroll', changeScrollbarColor);
       return () => window.removeEventListener('scroll', changeScrollbarColor);
@@ -393,20 +429,11 @@ function App() {
       scrollbar.current.style.backgroundColor = '#A5A1FF';
     }
   };
-  return (
-    <div className=''>
-      <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll} style={{ height: '100vh', overflow: 'auto' }}>
-        <div className='content px-[8px] flex flex-col gap-[8px]'>
-          <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
-          <Header  reference={headerRef} isSmallScreen={isSmallScreen} />
-          <Services scrollbar={scrollbarState} reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Projects isSmallScreen={isSmallScreen} reference={projectsRef} />
-          <WhoAmI isSmallScreen={isSmallScreen} reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Contact scrollbar={scrollbarState} isSmallScreen={isSmallScreen} reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Footer />
-        </div>
-      </div>
-      <div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full  lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
+
+
+
+
+<div ref={scrollbarWrapper} id="scrollbar-wrapper" className='fixed right-0 top-0 h-[30px] lg:h-full w-full  lg:w-[30px] bg-transparent lg:bg-slate-50 z-10'>
         <div id="scrollbar-wrapper2" className='h-full w-full z-20 relative flex items-center lg:items-start'>
           <div className='hidden lg:flex flex-row lg:flex-col w-full justify-end lg:justify-center lg:items-center absolute text-sm font-mono' >
             <span>C</span>
@@ -429,9 +456,6 @@ function App() {
           </div >
           <div ref={scrollbar} id="scrollbar" className='cursor-pointer h-[15px] lg:h-[100px] lg:mx-auto w-[100px] lg:w-[15px] bg-[#A5A1FF] lg:bg-[#1B1B1F] z-30 duration-700 transform ease-out lg:duration-700 lg:hover:bg-zinc-600 rounded-xl'></div>
         </div>
-      </div>
-    </div>
-  );
-}
+      </div>*/
 
 export default App;
