@@ -83,17 +83,7 @@ const Projects = ({reference}) => {
       'Proyecto en progreso',
       'Cliente: Centro de estética',
     ],
-    [
-      'smooth_scroll',
-      'Smooth Scrollbar',
-      'Vanilla JS',
-      '',
-      'https://alvarot2601.github.io/smooth-scrollbar/',
-      'https://github.com/alvarot2601/smooth-scrollbar',
-      '',
-      'Proyecto personal terminado',
-      'Para desarrolladores web',
-    ],
+    ,
     [
       'complementos_ines',
       'C.I.',
@@ -105,19 +95,32 @@ const Projects = ({reference}) => {
       'Proyecto en progreso',
       'Cliente: Tienda de ropa ',
     ],
+    [
+      'smooth_scroll',
+      'Smooth Scrollbar',
+      'Vanilla JS',
+      '',
+      'https://alvarot2601.github.io/smooth-scrollbar/',
+      'https://github.com/alvarot2601/smooth-scrollbar',
+      '',
+      'Proyecto personal terminado',
+      'Para desarrolladores web',
+    ]
   ];
   return (
     <section ref={projectsRef} className="my-work flex flex-wrap gap-[8px]" id="my-work">
       {
         projects.map((project, index) => {
+          let width = 'w-[calc(50%-8px)]';
           let heightClass = 'min-h-[300px]';
           let roundedClass = 'rounded-full sm:rounded-[48px] lg:rounded-[86px]';
           if (index===0) {
             heightClass = 'min-h-[380px]';
             roundedClass = 'rounded-[48px] lg:rounded-[86px]';
           }
+          if(index==projects.length-1 && index%2==0) width="w-full";
           return (
-            <a key={`a-${index}`} href={project[4]!== '' ? project[4] : 'javascript:void(0)'} target={project[4]!== '' ? '_blank' : '_self'} className={`w-[calc(50%-8px)] ${heightClass} ${roundedClass} lg:min-h-[350px] pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`} rel="noreferrer">
+            <a key={`a-${index}`} href={project[4]!== '' ? project[4] : 'javascript:void(0)'} target={project[4]!== '' ? '_blank' : '_self'} className={`${width} ${heightClass} ${roundedClass} lg:min-h-[350px] pt-[54px] pr-[72px] pb-[54px] pl-[72px] my-work__item my-work__item--${index} ${project[0]}`} rel="noreferrer">
               <div className="my-work__content">
                 <div className="my-work__row w-full flex flex-row items-center justify-center sm:justify-between">
                   <span className="my-work__number">{`0${index+1}.`}</span> <span className="my-work__type hidden sm:flex text-sm sm:text-md lg:text-lg">{project[2]}</span>

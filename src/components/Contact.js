@@ -159,8 +159,7 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
     if (element.getBoundingClientRect().top < window.innerHeight) {
   
         const percentage = 100 + ((((window.innerHeight) - topCoord.getBoundingClientRect().top) * 100) / (window.innerHeight));
-        console.log(percentage);
-        let val = (document.body.clientWidth) - (percentage * (document.body.clientWidth)) / 100;
+        let val = (360) - (percentage * (360)) / 100;
         /*if (val < 0) val = 0;
         else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;*/
         element.style.transform = 'rotate' + '(' + parseInt(-val) + 'deg' + ')';

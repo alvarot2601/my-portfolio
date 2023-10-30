@@ -92,7 +92,7 @@ const Nav = ({coordY, wheelDelta, pxPerScroll, relativeAnimPercentage, movedBySc
     myName.current.style.opacity = `${properties.opacity}`;
   }, [properties]);
   return (
-    <nav ref={navRef} className="nav h-[30vh] md:h-[40vh] min-h-[150px] md:min-h-[280px]">
+    <nav ref={navRef} className="nav h-[20vh] md:[25vh] lg:h-[40vh] min-h-[150px] lg:min-h-[280px]">
       <motion.p
         initial={{opacity: 0.5, scale: 0.5}} whileTap={{scale: 0.9}}
         animate={{opacity: 1, scale: 1}}
