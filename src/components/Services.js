@@ -309,7 +309,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     reference.current = servicesRef.current;
   }, []);
 
-  const widthBar = (document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
+  const widthBar = '100%';//(document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
 
   const servicesArray = [
     [
@@ -455,7 +455,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             transition={{
               duration: 1,
             }}*/
-            className="text-sm md:text-md w-fit">LO QUE HAGO</motion.p>
+            className="text-[0.75rem] sm:text-sm md:text-md whitespace-nowrap w-fit">LO QUE HAGO</motion.p>
             <motion.div
             whileInView={{
               width: widthBar,
@@ -465,7 +465,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             }}
             viewport={{once:true}}
             onAnimationComplete={()=>setArrowDown(true)}
-            className='w-[10px] h-1 bg-[#A5A1FF]'>&#8203;</motion.div>
+            className='w-[10px] h-[1px] bg-[#A5A1FF]'>&#8203;</motion.div>
             
             {
               arrowDown ? <FaArrowDown/> : <FaArrowRight/>
@@ -480,9 +480,9 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             transition={{ duration: 0.3 }}
             whileInView={{ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 } }}
             whileHover={{ rotate: 3, transition: { duration: 0.3 } }}
-            className="services__info mt-[26px] text-[clamp(28px,7vw,118px)] cursor-move w-fit">
-            Facilito a mis clientes <br></br> soluciones webs <br></br>
-            desarrolladas a medida<br></br> con habilidad y pasión.
+            className="max-w-[82vw]  services__info mt-[26px] text-[clamp(28px,7vw,118px)] cursor-move w-fit">
+            Facilito a mis clientes soluciones webs
+            desarrolladas a medida con habilidad y pasión.
           </motion.p>
         </div>
 
@@ -517,7 +517,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             // Tu código a ejecutar al finalizar la animación
             setShowDragme((showDragme) => false);
           }}
-          className="circle w-[150px] h-[150px] flex flex-col justify-center items-center cursor-move"
+          className="circle  w-[150px] h-[150px] hidden lg:flex flex-col justify-center items-center cursor-move"
         >
           <p className={`text-sm ${showDragme ? 'flex' : 'hidden'} `}>Arrástrame!</p>
           <AiOutlineArrowDown className="arrow" />

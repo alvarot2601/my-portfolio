@@ -380,10 +380,21 @@ function App() {
   });*/
   useEffect(() => {
     if (isSmallScreen) {
-      window.addEventListener('scroll', moveScrollbar);
-      return () => window.removeEventListener('scroll', moveScrollbar);
+      window.addEventListener('scroll', moveScrollbarAnimation);
+      return () => window.removeEventListener('scroll', moveScrollbarAnimation);
     }
   }, []);
+
+  const moveScrollbarAnimation = () =>{
+    var requestAnimationFrame =
+    window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    window.requestAnimationFrame(moveScrollbar);
+  }
 
   useEffect(() => {
     if (isSmallScreen) {
