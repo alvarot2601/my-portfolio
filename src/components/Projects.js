@@ -111,7 +111,7 @@ const Projects = ({reference}) => {
     <section ref={projectsRef} className="my-work flex flex-wrap gap-[8px]" id="my-work">
       {
         projects.map((project, index) => {
-          let width = 'w-[calc(50%-8px)]';let a;
+          let width = 'w-[calc(50%-8px)]';
           let heightClass = 'min-h-[300px]';
           let roundedClass = 'rounded-full sm:rounded-[48px] lg:rounded-[86px]';
           if (index===0) {
