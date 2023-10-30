@@ -17,13 +17,14 @@ import Footer from './components/Footer';
 
 
 function App() {
+  const [scrollbarState, setScrollbarState] = useState(null);
   const navRef = useRef(null);
   const headerRef = useRef(null);
   const projectsRef = useRef(null);
   const servicesRef = useRef(null);
   const whoamiRef = useRef(null);
   const contactRef = useRef(null);
-
+  
   // variables para el evento de teclado
   const coordYref = useRef(null);
   const relativeScrolledValueRef = useRef(null);
@@ -266,14 +267,21 @@ function App() {
     return () => window.removeEventListener('load', setInitialStates);
   }, []);
 
-
+  //scrollbar smooth
   useEffect(() => {
+    if (scroll.current) {
+      setScrollbarState(Scrollbar.init(scroll.current, { damping: 0.07 }));
+    }
+  }, []);
+
+  //he cambiado position del body y comento useEffect con wheel
+  /*useEffect(() => {
     // para eliminar el smooth scroll en pantallas que no pertenezcan a pc
     if (!isSmallScreen) {
       document.body.addEventListener('wheel', smooth);
       return () => document.body.removeEventListener('wheel', smooth);
     }
-  });
+  });*/
 
 
   useEffect(() => {
@@ -387,14 +395,14 @@ function App() {
   };
   return (
     <div className=''>
-      <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll}>
+      <div className='smooth-scroll-wrapper relative w-full lg:w-[calc(100%-30px)]' ref={scroll} style={{ height: '100vh', overflow: 'auto' }}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
-          <Header reference={headerRef} isSmallScreen={isSmallScreen} />
-          <Services reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Header  reference={headerRef} isSmallScreen={isSmallScreen} />
+          <Services scrollbar={scrollbarState} reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Projects isSmallScreen={isSmallScreen} reference={projectsRef} />
           <WhoAmI isSmallScreen={isSmallScreen} reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
-          <Contact isSmallScreen={isSmallScreen} reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
+          <Contact scrollbar={scrollbarState} isSmallScreen={isSmallScreen} reference={contactRef} coordY={coordY} reachedLimitBottom={reachedLimitBottom} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Footer />
         </div>
       </div>

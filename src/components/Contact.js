@@ -7,7 +7,15 @@ import emailjs from '@emailjs/browser';
 import {AiOutlineSend, AiFillLinkedin, AiFillGithub, AiOutlineArrowDown} from 'react-icons/ai';
 import {circleValue} from './Functions';
 
-const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, isSmallScreen}) => {
+import { scrollCircleAnimatiom } from './Functions';
+const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, isSmallScreen, scrollbar}) => {
+
+  useEffect(()=>{
+   if(scrollbar!==null){
+    scrollbar.addListener(scrollAnimation);
+    return ()=> scrollbar.removeListener(scrollAnimation);
+   }
+  }, [scrollbar]);
   const contactRef = useRef(null);
   useEffect(()=>{
     reference.current = contactRef.current;
@@ -153,28 +161,15 @@ const Form = ({coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, i
     }
   }, [inputValue]);
 
-  const scrollCircleAnimatiom = (element, topCoord) =>{
-    console.log('element.getBoundingClientRect().top', element.getBoundingClientRect().top)
-    console.log(' window.innerHeight',  window.innerHeight)
-    if (element.getBoundingClientRect().top < window.innerHeight) {
-  
-        const percentage = 100 + ((((window.innerHeight) - topCoord.getBoundingClientRect().top) * 100) / (window.innerHeight));
-        let val = (360) - (percentage * (360)) / 100;
-        /*if (val < 0) val = 0;
-        else if (val > document.body.clientWidth / 2) val = document.body.clientWidth / 2;*/
-        element.style.transform = 'rotate' + '(' + parseInt(-val) + 'deg' + ')';
-      }
-  }
+
  
   const scrollAnimation = () =>{
     scrollCircleAnimatiom(circleTextServices.current, circleText.current);
   }
   useEffect(() => {
-    if (isSmallScreen) {
-      window.addEventListener('scroll', scrollAnimation);
+    window.addEventListener('scroll', scrollAnimation);
       return () => window.removeEventListener('scroll', scrollAnimation);
-    }
-  }, [isSmallScreen]);
+  }, []);
 
   return (
     <section ref={contactRef} className="contact">

@@ -6,10 +6,11 @@ import { SiAntdesign, SiRedux } from 'react-icons/si';
 import { FaLaptopCode, FaReact, FaPhp, FaArrowRight, FaCartArrowDown, FaArrowCircleDown, FaArrowDown } from 'react-icons/fa';
 import { TbBrandJavascript } from 'react-icons/tb';
 import { motion } from 'framer-motion';
+import { scrollCircleAnimatiom } from './Functions';
 
 import { halfviewportWidth } from './Functions';
 import { circleValue } from './Functions';
-const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference }) => {
+const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference, scrollbar }) => {
   const [arrowDown, setArrowDown] = useState(false);
 
   const [showDragme, setShowDragme] = useState(true);
@@ -19,6 +20,8 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
   const subservicesRef = useRef(null);
   const containerHeight = useRef(null);
   const circleRef = useRef(null);
+  const widthBar = '100%';//(document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
+
   /* tamaño de las filas de los slides de servicios.
   Para q la animacion funcione bien la altura debe
   ser múltiplo de 150, que es el valor actual
@@ -309,8 +312,17 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
     reference.current = servicesRef.current;
   }, []);
 
-  const widthBar = '100%';//(document.body.clientWidth<= 500) ? "55%" : (document.body.clientWidth<= 800) ? "70%" : (document.body.clientWidth<= 1200) ? "83%" : '83%';
+  useEffect(()=>{
+    if(scrollbar!==null){
+     scrollbar.addListener(scrollAnimation);
+     return ()=> scrollbar.removeListener(scrollAnimation);
+    }
+   }, [scrollbar]);
+   
 
+  const scrollAnimation = () =>{
+    scrollCircleAnimatiom(circleTextServices.current, circleText.current);
+  }
   const servicesArray = [
     [
       [
@@ -468,7 +480,7 @@ const Services = ({ coordY, wheelDelta, pxPerScroll, isSmallScreen, reference })
             className='w-[10px] h-[1px] bg-[#A5A1FF]'>&#8203;</motion.div>
             
             {
-              arrowDown ? <FaArrowDown/> : <FaArrowRight/>
+              arrowDown ? <FaArrowDown /> : <FaArrowRight/>
             }
           </div>
           
