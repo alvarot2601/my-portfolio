@@ -21,7 +21,7 @@ import {AiFillGithub} from 'react-icons/ai';
 SwiperCore.use([Autoplay]);
 
 
-const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}) => {
+const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen, scrollbar}) => {
   const slider = useRef(null);
   const my_who_contentTop = useRef(null);
   const my_who_contentBottom = useRef(null);
@@ -104,6 +104,31 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}
     swiper_1.current.style.transform = 'translateX' + '(' + parseInt(sliderValue.value) + 'px' + ')';
     swiper_2.current.style.transform = 'translateX' + '(' + (parseInt(sliderValue.value) * -1) + 'px' + ')';
   }, [sliderValue]);
+
+  //valor al cual se le calculara el valor relativo dependiendo del porcentaje
+  const maxSlideValue = 300;
+  const sliderAnimation = (element, element2, container) => {
+    if (container.getBoundingClientRect().top < window.innerHeight && container.getBoundingClientRect().bottom >= 0) {
+        const percentage = ((((window.innerHeight) - container.getBoundingClientRect().bottom) * 100) / (window.innerHeight));
+        let val = (percentage * (maxSlideValue)) / 100;
+        console.log('percentage', percentage)
+        console.log('val', val)
+        element.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
+        element2.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
+    }
+  };
+  const scrollAnimation = () =>{
+    sliderAnimation(swiper_1.current,swiper_2.current,  my_who_content.current);
+  }
+  useEffect(() => {
+    if(!isSmallScreen){
+      if (scrollbar !== null) {
+        scrollbar.addListener(scrollAnimation);
+        return () => scrollbar.removeListener(scrollAnimation);
+      }
+    }
+  }, [scrollbar, isSmallScreen]);
+  
 
 
   const mySkills = [
@@ -198,7 +223,7 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}
     spaceBetween: 20,
     loop: true,
     freeMode: {
-      enabled: true,
+      enabled: false,//cambio de true a false ya que si está en true da error de evento touchend si se toca
       momentumBounce: false,
       momentumVelocityRatio: 0.4,
     },
@@ -213,12 +238,13 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen}
             disableOnInteraction: false,
           },
           freeMode: {
-            enabled: true,
+            enabled: false,
             momentumBounce: false,
             momentumVelocityRatio: 0.4,
             minimumVelocity: 0.02,
           },
         };
+        
   return (
     <div className="slider mt-[60px] md:mt-[30px] min-w-[180%] md:min-w-[150%] translate-x-[-100px] rotate-[-24deg]" ref={my_who_content}>
       <Swiper

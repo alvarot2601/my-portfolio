@@ -161,26 +161,6 @@ function App() {
     relativeScrolledValueRef.current = relativeScrolledValue;
   }, delay);
 
-
-  const cancelScroll = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  };
-
-
-  useEffect(() => {
-    if (clientY.current > clientY2.current) {
-      // alert('mayor')
-      mousemoveExecutions.current = 1;
-    } else if (clientY.current < clientY2.current) {
-      mousemoveExecutions.current = 1;
-      // alert('menor')
-    } else if (clientY.current == clientY2.current) {
-      // alert('igual')
-    }
-  }, [clientY.current]);
-
   useEffect(() => {
     window.addEventListener('load', setInitialStates);
     return () => window.removeEventListener('load', setInitialStates);
@@ -193,17 +173,8 @@ function App() {
     }
   }, []);
 
- 
-
-  
-
-
-  
-  
-
   
   return (
-    <div className=''>
       <div className='smooth-scroll-wrapper relative w-full' ref={scroll}  style={{ height: '100vh', overflow: 'auto' }}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
@@ -215,8 +186,6 @@ function App() {
           <Footer />
         </div>
       </div>
-      
-    </div>
   );
 }
 
