@@ -1415,9 +1415,6 @@ form textarea {
     width: 100%;
     transform: translateX(50%);
   }
-  .services .circle {
-    display: none;
-  }
   .services__info {
     line-height: 118%;
   }
