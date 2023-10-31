@@ -1,4 +1,4 @@
-import {React, useEffect, useRef, useState} from 'react';
+import { React, useEffect, useRef, useState } from 'react';
 import Scrollbar from 'smooth-scrollbar';
 
 import swal from 'sweetalert';
@@ -10,13 +10,22 @@ import Services from './components/Services';
 
 import './App.css';
 import './styles/css/styles.css';
-import {initialLimit, delay, debounce2} from './components/Functions';
+import { initialLimit, delay, debounce2 } from './components/Functions';
 import Contact from './components/Contact.js';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 
+import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 
 function App() {
+  const [scrollYProgress, setScrollYProgress] = useState(null);
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+  
+  
   const [scrollbarState, setScrollbarState] = useState(null);
   const navRef = useRef(null);
   const headerRef = useRef(null);
@@ -24,7 +33,7 @@ function App() {
   const servicesRef = useRef(null);
   const whoamiRef = useRef(null);
   const contactRef = useRef(null);
-  
+
   // variables para el evento de teclado
   const coordYref = useRef(null);
   const relativeScrolledValueRef = useRef(null);
@@ -95,7 +104,7 @@ function App() {
       // alert("Hacer scroll en pc está deshabilitado. Para poder navegar debes pulsar sobre las fechas del teclado o con la rueda del ratón. A día de hoy (" + today.getDate() + "/" + parseInt(today.getMonth() + 1) + "/" + today.getFullYear() + ") sigo actualizando y mejorando mi portfolio, por lo que si encuentras algún fallo|mejora no dudes en contactar conmigo.");
     }
     finalLimit.current = document.body.scrollHeight;
-   
+
     pxPerScroll.current = 150;// (document.body.scrollHeight - window.innerHeight) / TIMES_TO_REACH;
     continueScrollingRef.current = false;
     scrollbarDifference.current = true;
@@ -108,13 +117,13 @@ function App() {
     relativePercentage.current = (window.innerHeight - (scrollBarHeight)) / times_to_reach.current;
   };
 
- 
 
-  
+
+
   const debounce = (func, delay) => {
     let timeoutId;
 
-    return function(...args) {
+    return function (...args) {
       const context = this;
 
       clearTimeout(timeoutId);
@@ -123,7 +132,7 @@ function App() {
       }, delay);
     };
   };
-  
+
 
   const smooth = debounce((e) => {
     let y = coordY;
@@ -173,9 +182,30 @@ function App() {
     }
   }, []);
 
-  
+  const fillProgressBar = (limit, currentY) => {
+    const percentage = (currentY * 100) / limit;
+    progressBar.current.style.width = percentage + "%";
+  }
+  useEffect(() => {
+    if (scrollbarState !== null) {
+      scrollbarState.addListener(status=>fillProgressBar(status.limit.y, status.offset.y));
+      return () => scrollbarState.removeListener(fillProgressBar);
+    }
+  }, [scrollbarState]);
+ 
+
+  const progressBar = useRef(null);
   return (
-      <div className='smooth-scroll-wrapper relative w-full' ref={scroll}  style={{ height: '100vh', overflow: 'auto' }}>
+    <>
+      <motion.div
+      transition={{
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+      }}
+      ref={progressBar} className='progress-bar fixed left-0 top-0  h-[10px] bg-[#78F3E2] origin-[0%_0%] z-50'>
+      </motion.div>
+      <div className='smooth-scroll-wrapper relative w-full' ref={scroll} style={{ height: '100vh', overflow: 'auto' }}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
           <Header reference={headerRef} isSmallScreen={isSmallScreen} />
@@ -186,6 +216,8 @@ function App() {
           <Footer />
         </div>
       </div>
+    </>
+
   );
 }
 

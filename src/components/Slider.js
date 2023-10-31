@@ -113,8 +113,8 @@ const Slider = ({coordY, wheelDelta, my_who_content, pxPerScroll, isSmallScreen,
         let val = (percentage * (maxSlideValue)) / 100;
         console.log('percentage', percentage)
         console.log('val', val)
-        element.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
-        element2.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
+        element.style.transform = 'translateX' + '(' + parseInt(val) + 'px' + ')';
+        element2.style.transform = 'translateX' + '(' + parseInt(-val) + 'px' + ')';
     }
   };
   const scrollAnimation = () =>{
