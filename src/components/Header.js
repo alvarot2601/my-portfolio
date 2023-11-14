@@ -7,7 +7,7 @@ import { TfiArrowDown } from 'react-icons/tfi';
 import { FaMobile } from 'react-icons/fa';
 import { IoMdMailUnread } from 'react-icons/io';
 
-const Header = ({ isSmallScreen, reference }) => {
+const Header = ({ isSmallScreen, reference, scrollbar}) => {
   const headerRef = useRef(null);
   // igualamos referencia creada en este componente a la q se le paso x props para poder asignar la ref
   useEffect(() => {
@@ -31,10 +31,16 @@ const Header = ({ isSmallScreen, reference }) => {
     ['contact-link', 'Contáctame', <IoMdMailUnread className="order-0 md:order-1 text-3xl lg:text-4xl" />, ' ¿Quieres hablar de negocios? !Contacta conmigo! ', 'contact'],
     ['about-link', 'Sobre mí', <HiIdentification className="order-0 md:order-1 text-3xl lg:text-4xl" />, 'Aprende más sobre mí. ', 'aboutme'],
   ];
-  const handleLink = (e) => {
-    if (!isSmallScreen) {
-      e.preventDefault();
-    }
+  const handleLink = (link) => {
+    
+    if(link==='projects')
+      scrollbar.scrollTo(0, document.getElementById("projects").getBoundingClientRect().top, 400);
+    else if(link==='services')
+      scrollbar.scrollTo(0, document.getElementById("services").getBoundingClientRect().top, 400);
+    else if(link==='contact')
+      scrollbar.scrollTo(0, document.getElementById("contact").getBoundingClientRect().top, 400); 
+    else if(link==='aboutme')
+      scrollbar.scrollTo(0, document.getElementById("mywho").getBoundingClientRect().top, 400);       
   };
 
 
@@ -218,7 +224,7 @@ const Header = ({ isSmallScreen, reference }) => {
                     variantServices
               }
               key={`div-${index}`}
-              className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onClick={handleLink} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
+              className={`${carrouselInvisible} container--header ${link[0]} ${generalClass}`} onClick={()=>handleLink(link[4])} onMouseOver={(e) => hideText(e)} onMouseOut={(e) => showText(e)}>
               <a href={`#${link[4]}`} className="flex flex-col items-end h-full ">
                 {
                   (link[0] === 'services-link') ?

@@ -15,7 +15,7 @@ import Contact from './components/Contact.js';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 
-import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 
 function App() {
   const [scrollYProgress, setScrollYProgress] = useState(null);
@@ -208,7 +208,7 @@ function App() {
       <div className='smooth-scroll-wrapper relative w-full' ref={scroll} style={{ height: '100vh', overflow: 'auto' }}>
         <div className='content px-[8px] flex flex-col gap-[8px]'>
           <Nav isSmallScreen={isSmallScreen} reference={navRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} relativeAnimPercentage={relativeAnimPercentage.current} movedByScroll={movedByScroll} mousemoveExecutions={mousemoveExecutions.current} />
-          <Header reference={headerRef} isSmallScreen={isSmallScreen} />
+          <Header reference={headerRef} isSmallScreen={isSmallScreen} scrollbar={scrollbarState} />
           <Services scrollbar={scrollbarState} reference={servicesRef} isSmallScreen={isSmallScreen} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />
           <Projects isSmallScreen={isSmallScreen} reference={projectsRef} />
           <WhoAmI scrollbar={scrollbarState} isSmallScreen={isSmallScreen} reference={whoamiRef} coordY={coordY} wheelDelta={wheelDelta} pxPerScroll={pxPerScroll.current} />

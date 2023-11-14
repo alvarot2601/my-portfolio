@@ -29,28 +29,6 @@ const Projects = ({ reference }) => {
       'Creado en bootcamp',
     ],
     [
-      'miranda',
-      hotelMirandaProject,
-      'html5 Y css',
-      '',
-      'https://alvarot2601.github.io/Hotel-Miranda',
-      'https://github.com/alvarot2601/Hotel-Miranda',
-      'Logo de mi proyecto Hotel Miranda',
-      'Proyecto personal terminado',
-      'Creado en bootcamp',
-    ],
-    [
-      'oxygen',
-      oxygenShop,
-      'html5, css y vanilla js',
-      '',
-      'https://alvarot2601.github.io/Oxygen-Shop',
-      'https://github.com/alvarot2601/Oxygen-Shop',
-      'Logo de mi proyecto Oxygen Shop',
-      'Proyecto personal terminado',
-      'Creado en bootcamp',
-    ],
-    [
       'umedi',
       umediProject,
       'Wordpress',
@@ -108,7 +86,7 @@ const Projects = ({ reference }) => {
     ]
   ];
   return (
-    <section ref={projectsRef} className="my-work flex flex-wrap gap-[8px]" id="my-work">
+    <section ref={projectsRef} className="my-work flex flex-wrap gap-[8px]" id="projects">
       {
         projects.map((project, index) => {
           let width = 'w-[calc(50%-8px)]';

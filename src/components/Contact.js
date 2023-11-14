@@ -169,7 +169,7 @@ const Form = ({ coordY, reachedLimitBottom, wheelDelta, pxPerScroll, reference, 
   }, []);
 
   return (
-    <section ref={contactRef} className="contact">
+    <section ref={contactRef} className="contact" id="contact">
       <div className="contact__container pt-[28px] pr-[28px] pb-[30px] pl-[38px] lg:pt-[54px] lg:pr-[72px] lg:pb-[54px] lg:pl-[72px] rounded-[48px] lg:roundex-[86px]">
         <span className="little-title">¡CONTÁCTAME!</span>
         <p>
