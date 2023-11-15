@@ -62,17 +62,7 @@ const Projects = ({ reference }) => {
       'Proyecto personal terminado',
       'Para desarrolladores web',
     ],
-    [
-      'marinaspa',
-      'MARINASPÁ',
-      'React',
-      '',
-      'https://alvarot2601.github.io/marinaspa',
-      '',
-      'Logo de mi proyecto MarinaSpá',
-      'Proyecto en progreso',
-      'Cliente: Centro de estética',
-    ],
+    
     ,
     [
       'complementos_ines',
@@ -84,6 +74,16 @@ const Projects = ({ reference }) => {
       'Logo de mi proyecto Complementos Inés',
       'Proyecto en progreso',
       'Cliente: Tienda de ropa ',
+    ],[
+      'marinaspa',
+      'MARINASPÁ',
+      'React',
+      '',
+      'https://alvarot2601.github.io/marinaspa',
+      '',
+      'Logo de mi proyecto MarinaSpá',
+      'Proyecto en progreso',
+      'Cliente: Centro de estética',
     ]
   ];
   return (
