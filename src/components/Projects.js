@@ -50,6 +50,18 @@ const Projects = ({ reference }) => {
       'Proyecto terminado',
       'Cliente: Colegio',
     ],
+    
+    [
+      'smooth_scroll',
+      'Smooth Scrollbar',
+      'Vanilla JS',
+      '',
+      'https://alvarot2601.github.io/smooth-scrollbar/',
+      'https://github.com/alvarot2601/smooth-scrollbar',
+      '',
+      'Proyecto personal terminado',
+      'Para desarrolladores web',
+    ],
     [
       'marinaspa',
       'MARINASPÁ',
@@ -72,17 +84,6 @@ const Projects = ({ reference }) => {
       'Logo de mi proyecto Complementos Inés',
       'Proyecto en progreso',
       'Cliente: Tienda de ropa ',
-    ],
-    [
-      'smooth_scroll',
-      'Smooth Scrollbar',
-      'Vanilla JS',
-      '',
-      'https://alvarot2601.github.io/smooth-scrollbar/',
-      'https://github.com/alvarot2601/smooth-scrollbar',
-      '',
-      'Proyecto personal terminado',
-      'Para desarrolladores web',
     ]
   ];
   return (
