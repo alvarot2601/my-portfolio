@@ -55,7 +55,7 @@ const Projects = ({ reference }) => {
       'MARINASPÁ',
       'React',
       '',
-      '',
+      'https://alvarot2601.github.io/marinaspa',
       '',
       'Logo de mi proyecto MarinaSpá',
       'Proyecto en progreso',
